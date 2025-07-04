@@ -8,6 +8,34 @@ app_license = "mit"
 # Apps
 # ------------------
 
+# fixtures = ["Testing Type"]
+
+# fixtures = [
+#     {
+#         "dt": "DocType",
+#         "filters": [
+#             ["name", "=", "Testing Type"]
+#         ]
+#     }
+# ]
+
+fixtures = [
+    {
+        "dt": "DocType",
+        "filters": [
+            ["name", "in", [
+                            "Testing Type",
+                            "Testing Version",
+                            "Test Plan"
+                ]
+            ]
+        ]
+    }
+]
+
+
+
+
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
