@@ -1,0 +1,90 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-09 15:15:57.495906",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "project_id",
+  "title",
+  "status",
+  "expected_start_date",
+  "expected_end_date",
+  "priority",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Id",
+   "reqd": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Project Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Open\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expected Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expected_end_date",
+   "fieldtype": "Date",
+   "label": "Expected End Date"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "Medium\nLow\nHigh"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-09 16:02:12.564651",
+ "modified_by": "Administrator",
+ "module": "Test Case Management",
+ "name": "Test Project",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "title",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

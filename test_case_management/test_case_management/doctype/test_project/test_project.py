@@ -5,7 +5,8 @@
 from frappe.model.document import Document
 import frappe
 
-class TestPlan(Document):
+class TestProject(Document):
 	def autoname(self):
-		self.name = frappe.scrub(self.test_plan_name).replace("_", "-")
+		print('self. ....', self.title)
+		self.name = frappe.scrub(self.title).replace("_", "-")
 

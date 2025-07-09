@@ -1,0 +1,17 @@
+[
+ {
+  "_assign": null,
+  "_comments": null,
+  "_liked_by": null,
+  "_user_tags": null,
+  "app_name": "test_case_management",
+  "custom": 0,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "modified": "2025-07-04 12:59:45.673859",
+  "module_name": "Test Case Management",
+  "name": "Test Case Management",
+  "package": null,
+  "restrict_to_domain": null
+ }
+]

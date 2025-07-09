@@ -8,30 +8,41 @@ app_license = "mit"
 # Apps
 # ------------------
 
-# fixtures = ["Testing Type"]
-
-# fixtures = [
-#     {
-#         "dt": "DocType",
-#         "filters": [
-#             ["name", "=", "Testing Type"]
-#         ]
-#     }
-# ]
 
 fixtures = [
     {
         "dt": "DocType",
         "filters": [
             ["name", "in", [
-                            "Testing Type",
-                            "Testing Version",
-                            "Test Plan"
-                ]
-            ]
+                "Testing Type",
+                "Testing Version",
+                "Test Plan",
+                "Test Case",
+                "Test Plan Case",
+                "Test Case Bank",
+                "Test Project",
+            ]]
+        ]
+    },
+    {
+        "dt": "Workspace",
+        "filters": [
+            ["name", "=", "Test Case Management"]
+        ]
+    },
+    {
+        "dt": "Module Def",
+        "filters": [
+            ["name", "=", "Test Case Management"]
         ]
     }
 ]
+
+
+doctype_js = {
+    "Test Plan": "public/js/test_plan.js",
+    "Project": "public/js/project.js"
+}
 
 
 

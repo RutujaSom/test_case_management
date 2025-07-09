@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-08 17:01:42.430525",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_case_id",
+  "title",
+  "priority",
+  "pre_conditions",
+  "case_steps",
+  "expected_result",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_case_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Case ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Priority",
+   "options": "Low\nMedium\nHigh\nCritical",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pre_conditions",
+   "fieldtype": "Text Editor",
+   "label": "Pre Conditions"
+  },
+  {
+   "fieldname": "case_steps",
+   "fieldtype": "Table",
+   "label": "Test Case Steps",
+   "options": "Test Case Steps"
+  },
+  {
+   "fieldname": "expected_result",
+   "fieldtype": "Text Editor",
+   "label": "Expected Result",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nApproved\nObsolete"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-08 17:51:06.358082",
+ "modified_by": "Administrator",
+ "module": "Test Case Management",
+ "name": "Test Case Bank",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

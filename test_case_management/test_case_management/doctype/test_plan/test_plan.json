@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-04 15:40:38.029181",
+ "creation": "2025-07-07 18:37:37.181402",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -11,7 +11,9 @@
   "start_date",
   "end_date",
   "description",
-  "status"
+  "status",
+  "test_case_steps_manadatory",
+  "test_cases"
  ],
  "fields": [
   {
@@ -24,7 +26,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Project",
-   "options": "Project",
+   "options": "Test Project",
    "reqd": 1
   },
   {
@@ -57,12 +59,24 @@
    "label": "Status",
    "options": "Draft\nActive\nCompleted\nArchived",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "test_case_steps_manadatory",
+   "fieldtype": "Check",
+   "label": "Test Case Steps Manadatory"
+  },
+  {
+   "fieldname": "test_cases",
+   "fieldtype": "Table",
+   "label": "Test Case",
+   "options": "Test Plan Cases"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-04 18:18:47.977804",
+ "modified": "2025-07-09 16:01:30.819132",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Plan",
@@ -81,9 +95,8 @@
    "write": 1
   }
  ],
- "show_title_field_in_link": 1,
+ "search_fields": "test_plan_name",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "title_field": "test_plan_name"
+ "states": []
 }

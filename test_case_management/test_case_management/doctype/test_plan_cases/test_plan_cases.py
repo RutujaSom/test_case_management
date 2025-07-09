@@ -3,9 +3,7 @@
 
 # import frappe
 from frappe.model.document import Document
-import frappe
 
-class TestPlan(Document):
-	def autoname(self):
-		self.name = frappe.scrub(self.test_plan_name).replace("_", "-")
 
+class TestPlanCases(Document):
+	pass
