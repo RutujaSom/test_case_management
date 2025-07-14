@@ -33,4 +33,4 @@ bench --site your-site-name migrate
 bench build
 
 🔁 Restart Bench
-bench restart
+bench restart / bench start
