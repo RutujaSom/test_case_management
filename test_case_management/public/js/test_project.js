@@ -103,3 +103,95 @@ function show_test_case_selector(frm) {
         }
     });
 }
+
+
+
+
+//  -------------------------------
+frappe.ui.form.on('Test Project', {
+    refresh(frm) {
+        if (!frm.is_new()) {
+            frm.add_custom_button('Import Test Cases', () => {
+                open_import_dialog(frm);
+            });
+        }
+    }
+});
+
+
+
+function open_import_dialog(frm) {
+    const d = new frappe.ui.Dialog({
+        title: 'Import Test Cases',
+        fields: [
+            {
+                label: 'File Type',
+                fieldname: 'file_type',
+                fieldtype: 'Select',
+                options: ['CSV', 'Excel'],
+                reqd: 1
+            },
+            {
+                label: 'File',
+                fieldname: 'file_url',
+                fieldtype: 'Attach',
+                reqd: 1
+            }
+        ],
+        primary_action_label: 'Import',
+        primary_action(values) {
+            frappe.call({
+                method: 'test_case_management.api.test_project.import_test_cases_from_file_for_project',
+                args: {
+                    project: frm.doc.name,
+                    file_url: values.file_url,
+                    file_type: values.file_type
+                },
+                callback(r) {
+                    if (r.message) {
+                        frappe.msgprint(r.message);
+                        frm.reload_doc();
+                    }
+                    d.hide();
+                }
+            });
+        }
+    });
+
+    d.show();
+}
+
+
+
+frappe.ui.form.on('Test Project', {
+    refresh(frm) {
+        if (!frm.is_new()) {
+            frm.add_custom_button("Export Template", () => {
+                let dialog = new frappe.ui.Dialog({
+                    title: "Export Template",
+                    fields: [
+                        {
+                            label: 'File Type',
+                            fieldname: 'file_type',
+                            fieldtype: 'Select',
+                            options: ['Excel', 'CSV'],
+                            default: 'Excel',
+                            reqd: 1
+                        }
+                    ],
+                    primary_action_label: 'Download',
+                    primary_action(values) {
+                        // Direct download via GET (file will be returned by frappe.response)
+                        const file_type = values.file_type;
+                        const url = `/api/method/test_case_management.api.test_plan.download_template?file_type=${file_type}`;
+                        window.open(url, '_blank');
+                        dialog.hide();
+                    }
+                });
+
+                dialog.show();
+            });
+
+        }
+    }
+});
