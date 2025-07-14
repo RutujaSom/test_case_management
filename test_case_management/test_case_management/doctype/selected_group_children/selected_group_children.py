@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TestingType(Document):
+class SelectedGroupChildren(Document):
 	pass

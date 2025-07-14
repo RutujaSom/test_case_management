@@ -11,7 +11,8 @@
   "expected_start_date",
   "expected_end_date",
   "priority",
-  "is_active"
+  "is_active",
+  "description"
  ],
  "fields": [
   {
@@ -59,12 +60,18 @@
    "fieldname": "is_active",
    "fieldtype": "Check",
    "label": "Is Active"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-09 16:02:12.564651",
+ "modified": "2025-07-11 15:52:45.708480",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Project",
@@ -84,7 +91,9 @@
   }
  ],
  "search_fields": "title",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "title"
 }

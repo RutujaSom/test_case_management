@@ -1,26 +1,29 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-04 15:17:04.082783",
+ "creation": "2025-07-10 14:36:55.326853",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "testing_type_name"
+  "title"
  ],
  "fields": [
   {
-   "fieldname": "testing_type_name",
+   "fieldname": "title",
    "fieldtype": "Data",
-   "label": "Name"
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1,
+   "unique": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-04 15:26:09.338633",
+ "modified": "2025-07-11 11:14:51.539641",
  "modified_by": "Administrator",
  "module": "Test Case Management",
- "name": "Testing Type",
+ "name": "Test Case Type",
  "owner": "Administrator",
  "permissions": [
   {
@@ -31,12 +34,14 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Test Manager",
+   "role": "System Manager",
    "share": 1,
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "title"
 }

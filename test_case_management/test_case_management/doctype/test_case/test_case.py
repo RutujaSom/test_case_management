@@ -17,8 +17,6 @@ import frappe
 from frappe.model.document import Document
 
 class TestCase(Document):
-    def autoname(self):
-        self.name = frappe.scrub(self.title).replace("_", "-")
 
     def validate(self):
         # Get the previous doc before saving

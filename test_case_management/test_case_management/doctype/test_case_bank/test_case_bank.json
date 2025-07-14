@@ -10,8 +10,11 @@
   "priority",
   "pre_conditions",
   "case_steps",
-  "expected_result",
-  "status"
+  "expected_results",
+  "status",
+  "attachment",
+  "test_case_type",
+  "estimated_time"
  ],
  "fields": [
   {
@@ -48,22 +51,39 @@
    "options": "Test Case Steps"
   },
   {
-   "fieldname": "expected_result",
-   "fieldtype": "Text Editor",
-   "label": "Expected Result",
-   "reqd": 1
-  },
-  {
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
    "options": "Draft\nApproved\nObsolete"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "fieldname": "test_case_type",
+   "fieldtype": "Link",
+   "label": "Type",
+   "options": "Test Case Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "estimated_time",
+   "fieldtype": "Data",
+   "label": "Estimated Time"
+  },
+  {
+   "fieldname": "expected_results",
+   "fieldtype": "Text Editor",
+   "label": "Expected Result",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-08 17:51:06.358082",
+ "modified": "2025-07-10 17:25:21.444474",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case Bank",

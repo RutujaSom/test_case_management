@@ -8,19 +8,33 @@ app_license = "mit"
 # Apps
 # ------------------
 
+override_doctype_class = {
+    "Test Plan": "test_case_management.test_case_management.doctype.test_plan.test_plan.TestPlan"
+}
+
+doc_events = {
+    "Test Plan": {
+        "on_submit": "test_case_management.test_case_management.doctype.test_plan.test_plan.TestPlan.after_insert"
+    }
+}
+
 
 fixtures = [
     {
         "dt": "DocType",
         "filters": [
             ["name", "in", [
-                "Testing Type",
                 "Testing Version",
                 "Test Plan",
                 "Test Case",
                 "Test Plan Case",
                 "Test Case Bank",
                 "Test Project",
+                "Test Case Type",
+                "Configuration",
+                "Selected Group Children",
+                "Group Child",
+                "Test Run Case"
             ]]
         ]
     },
@@ -41,8 +55,14 @@ fixtures = [
 
 doctype_js = {
     "Test Plan": "public/js/test_plan.js",
-    "Project": "public/js/project.js"
+    "Test Project": "public/js/test_project.js",
+    "Test Run": "public/js/test_run.js"
 }
+
+doc_type_dashboards = {
+    "Test Project": "test_case_management.config.test_project_dashboard"
+}
+
 
 
 

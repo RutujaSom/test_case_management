@@ -12,7 +12,10 @@
   "pre_conditions",
   "case_steps",
   "expected_results",
-  "status"
+  "status",
+  "test_case_type",
+  "estimated_time",
+  "attachment"
  ],
  "fields": [
   {
@@ -68,12 +71,29 @@
    "fieldtype": "Data",
    "label": "Test Case Id",
    "reqd": 1
+  },
+  {
+   "fieldname": "test_case_type",
+   "fieldtype": "Link",
+   "label": "Type",
+   "options": "Test Case Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "estimated_time",
+   "fieldtype": "Data",
+   "label": "Estimated Time"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-09 15:40:20.350220",
+ "modified": "2025-07-11 11:15:48.259743",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case",
@@ -93,7 +113,9 @@
   }
  ],
  "search_fields": "title",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "title"
 }

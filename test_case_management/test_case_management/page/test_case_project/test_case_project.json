@@ -1,0 +1,23 @@
+{
+ "content": null,
+ "creation": "2025-07-12 17:51:16.006013",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2025-07-12 17:58:05.053160",
+ "modified_by": "Administrator",
+ "module": "Test Case Management",
+ "name": "test-case-project",
+ "owner": "Administrator",
+ "page_name": "test-case-project",
+ "roles": [
+  {
+   "role": "Administrator"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 1,
+ "title": "Test Case Project"
+}

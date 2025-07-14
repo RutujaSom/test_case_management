@@ -13,7 +13,8 @@
   "description",
   "status",
   "test_case_steps_manadatory",
-  "test_cases"
+  "test_cases",
+  "configuration"
  ],
  "fields": [
   {
@@ -71,12 +72,18 @@
    "fieldtype": "Table",
    "label": "Test Case",
    "options": "Test Plan Cases"
+  },
+  {
+   "fieldname": "configuration",
+   "fieldtype": "Table",
+   "label": "Configuration",
+   "options": "Selected Group Children"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-09 16:01:30.819132",
+ "modified": "2025-07-12 12:58:19.238797",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Plan",
@@ -96,7 +103,9 @@
   }
  ],
  "search_fields": "test_plan_name",
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "test_plan_name"
 }
