@@ -337,47 +337,128 @@ doc_events = {
 
 
 
+# fixtures = [
+#     {
+#         "doctype": "Custom Field",
+#         "filters": [
+#             ["dt", "=", "Job Applicant"]
+#         ]
+#     }
+# ]
+
+
+# fixtures = [
+#     {
+#         "doctype": "Custom Field",
+#         "filters": [
+#             ["dt", "in", ["Job Applicant", "Interview"]]
+#         ]
+#     }
+# ]
+
+# fixtures = [
+#     {
+#         "doctype": "Custom Field",
+#         "filters": [
+#             ["dt", "=", "Job Opening"]
+#         ]
+#     }
+# ]
+
+
+# fixtures = [
+#     {"doctype": "Custom Field", "filters": [["dt", "in", [
+#         "Job Opening", 
+#         "Interview"
+#     ]]]},
+#      {"doctype": "Interview Rounds"},
+#     {"doctype": "Job Opening custom doc"},
+#     {"doctype": "Job Title"}
+# ]
+
+
+# fixtures = [
+#     {
+#         "dt": "Web Page",
+#         "filters": [
+#             ["name", "in", [
+#                 "about-us",
+#                 "all-courses",
+#                 "contact",
+#                 "home",
+#                 "statistics",
+#                 "batches",
+#                 "courses",
+#                 "explore",
+#                 "job",
+#                 "career"
+#             ]]
+#         ]
+#     }
+# ]
+
+
+# fixtures = [
+#     {
+#         "dt": "Notification",
+#         "filters": [
+#             ["name", "in", [
+#                 "job offer accepted or rejected mail for applicant",
+#                 "Triger notification for interviewer",
+#                 "Email to the applicant automatically when an interview is scheduled",
+#                 "job application received mail to applicant"
+
+
+#             ]]
+#         ]
+#     }
+# ]
+
+
+
+# fixtures = [
+#     {
+#         "dt": "Website Settings"
+#     }
+# ]
+
+
+# fixtures = [
+#     {
+#         "doctype": "Custom Field",
+#         "filters": [
+#             ["dt", "=", "Job Opening"]
+#         ]
+#     }
+# ]
+
+
+
 fixtures = [
+    # Custom Fields for multiple DocTypes
     {
         "doctype": "Custom Field",
         "filters": [
-            ["dt", "=", "Job Applicant"]
+            ["dt", "in", [
+                "Job Applicant",
+                "Interview",
+                "Job Opening"
+            ]]
         ]
-    }
-]
-
-
-fixtures = [
+    },
+    
+    # Custom DocTypes
     {
-        "doctype": "Custom Field",
-        "filters": [
-            ["dt", "in", ["Job Applicant", "Interview"]]
-        ]
-    }
-]
-
-fixtures = [
+        "doctype": "Interview Rounds"
+    },
     {
-        "doctype": "Custom Field",
-        "filters": [
-            ["dt", "=", "Job Opening"]
-        ]
-    }
-]
+        "doctype": "Job Opening custom doc"
+    },
+    {
+        "doctype": "Job Title"
+    },
 
-
-fixtures = [
-    {"doctype": "Custom Field", "filters": [["dt", "in", [
-        "Job Opening", 
-        "Interview"
-    ]]]},
-     {"doctype": "Interview Rounds"},
-    {"doctype": "Job Opening custom doc"},
-    {"doctype": "Job Title"}
-]
-
-
-fixtures = [
+    # Web Pages
     {
         "dt": "Web Page",
         "filters": [
@@ -394,11 +475,9 @@ fixtures = [
                 "career"
             ]]
         ]
-    }
-]
+    },
 
-
-fixtures = [
+    # Notifications
     {
         "dt": "Notification",
         "filters": [
@@ -407,27 +486,12 @@ fixtures = [
                 "Triger notification for interviewer",
                 "Email to the applicant automatically when an interview is scheduled",
                 "job application received mail to applicant"
-
-
             ]]
         ]
-    }
-]
+    },
 
-
-
-fixtures = [
+    # Website Settings
     {
         "dt": "Website Settings"
-    }
-]
-
-
-fixtures = [
-    {
-        "doctype": "Custom Field",
-        "filters": [
-            ["dt", "=", "Job Opening"]
-        ]
     }
 ]
