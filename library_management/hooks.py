@@ -27,6 +27,10 @@ app_license = "mit"
 # include js, css files in header of desk.html
 # app_include_css = "/assets/library_management/css/library_management.css"
 # app_include_js = "/assets/library_management/js/library_management.js"
+# app_include_js = "/assets/library_management/js/custom_page.js"
+
+
+
 
 # include js, css files in header of web template
 # web_include_css = "/assets/library_management/css/library_management.css"
@@ -47,6 +51,12 @@ app_license = "mit"
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+
+#doctype_js = {
+    #"Job Applicant": "public/js/job_applicant.js"
+#}
+
+
 
 # Svg Icons
 # ------------------
@@ -113,6 +123,82 @@ app_license = "mit"
 
 # notification_config = "library_management.notifications.get_notification_config"
 
+override_whitelisted_methods = {
+    "frappe.desk.form.assigned_to.add": "library_management.overrides.custom_assigned.custom_assigned_to"
+    # "frappe.www.job_opening.get_list_context": "library_management.www.job_opening.get_list_context"
+   
+    }
+
+
+
+# override_doctype_class = {
+#      "Interview": "library_management.api.interview.get_rounds_by_applicant"
+#  }
+
+
+
+
+override_doctype_class = {
+     "Interview": "library_management.overrides.custom_interview.CustomInterview"
+      
+}
+
+ 
+
+
+
+doctype_js = {
+    "Job Applicant": "public/js/job_applicant.js",
+    "Interview": "public/js/interview.js"
+}
+
+# doctype_js = {
+#      "Interview": "public/js/interview.js"
+#  }
+
+
+
+
+permission_query_conditions = {
+    "Interview": "library_management.library_management.doctype.interview.interview.get_permission_query_conditions"
+}
+
+has_permission = {
+    "Interview": "library_management.library_management.doctype.interview.interview.has_permission"
+}
+
+
+# doc_events = {
+#     "Job Offer": {
+#         "after_insert": "library_management.api.job_offer.send_offer_email_on_status",
+#         "on_update": "library_management.api.job_offer.send_offer_email_on_status"
+#     }
+# }
+
+
+
+doc_events = {
+    "Interview": {
+        "on_update": "library_management.api.interview.send_interview_pending_notification"
+    }
+}
+
+
+
+
+
+
+
+# doc_events = {
+#     "Interview": {
+#         "validate": "library_management.library_management.doctype.interview.interview.validate"
+#     }
+# }
+
+
+
+
+
 # Permissions
 # -----------
 # Permissions evaluated in scripted ways
@@ -137,18 +223,21 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
+doc_events = {
 # 	"*": {
 # 		"on_update": "method",
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
-# 	}
-# }
+# 	 }
+   "Article Library":{
+     "Validate":"library_management.utils.test_hook"
+   }
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+
 # 	"all": [
 # 		"library_management.tasks.all"
 # 	],
@@ -164,7 +253,7 @@ app_license = "mit"
 # 	"monthly": [
 # 		"library_management.tasks.monthly"
 # 	],
-# }
+#}
 
 # Testing
 # -------
@@ -241,4 +330,27 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
+ 
+# fixtures=[
+#      "Library member",
+#  ]
 
+
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "=", "Job Applicant"]
+        ]
+    }
+]
+
+
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "in", ["Job Applicant", "Interview"]]
+        ]
+    }
+]
