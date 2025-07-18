@@ -398,3 +398,20 @@ fixtures = [
 ]
 
 
+fixtures = [
+    {
+        "dt": "Notification",
+        "filters": [
+            ["name", "in", [
+                "job offer accepted or rejected mail for applicant",
+                "Triger notification for interviewer",
+                "Email to the applicant automatically when an interview is scheduled",
+                "job application received mail to applicant"
+
+
+            ]]
+        ]
+    }
+]
+
+
