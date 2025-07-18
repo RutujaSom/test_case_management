@@ -377,3 +377,24 @@ fixtures = [
 ]
 
 
+fixtures = [
+    {
+        "dt": "Web Page",
+        "filters": [
+            ["name", "in", [
+                "about-us",
+                "all-courses",
+                "contact",
+                "home",
+                "statistics",
+                "batches",
+                "courses",
+                "explore",
+                "job",
+                "career"
+            ]]
+        ]
+    }
+]
+
+
