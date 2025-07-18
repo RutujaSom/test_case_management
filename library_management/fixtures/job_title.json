@@ -1,0 +1,26 @@
+[
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Job Title",
+  "job_title": "Software Tester",
+  "modified": "2025-06-18 15:07:44.761935",
+  "name": "Software Tester"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Job Title",
+  "job_title": "Python Developer",
+  "modified": "2025-06-18 15:08:16.060019",
+  "name": "Python Developer"
+ },
+ {
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Job Title",
+  "job_title": "ERPnext developer",
+  "modified": "2025-06-18 15:08:42.143838",
+  "name": "ERPnext developer"
+ }
+]

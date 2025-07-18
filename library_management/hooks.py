@@ -336,6 +336,51 @@ doc_events = {
 #  ]
 
 
+<<<<<<< HEAD
+=======
+
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "=", "Job Applicant"]
+        ]
+    }
+]
+
+
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "in", ["Job Applicant", "Interview"]]
+        ]
+    }
+]
+
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "=", "Job Opening"]
+        ]
+    }
+]
+
+
+fixtures = [
+    {"doctype": "Custom Field", "filters": [["dt", "in", [
+        "Job Opening", 
+        "Interview"
+    ]]]},
+     {"doctype": "Interview Rounds"},
+    {"doctype": "Google meet oauth doc"},
+    {"doctype": "Job Opening custom doc"},
+    {"doctype": "Job Title"}
+]
+
+
+>>>>>>> 6873ee4 (Removed OAuth secrets)
 fixtures = [
     {
         "doctype": "Custom Field",

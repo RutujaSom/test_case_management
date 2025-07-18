@@ -1,0 +1,145 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-02 09:41:45.730641",
+  "name": "seq41o6nue",
+  "parent": "HR-OPN-2025-0002",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Automation Testing",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-01 11:51:45.435511",
+  "name": "o2hf27blhv",
+  "parent": "HR-OPN-2025-0004",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Javascript",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-16 15:46:26.133625",
+  "name": "f2h0tf0855",
+  "parent": "HR-OPN-2025-0006",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Python",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-01 11:52:15.642316",
+  "name": "rp5ouc41b7",
+  "parent": "HR-OPN-2025-0008",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Flutter Framework",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-10 16:17:29.347997",
+  "name": "uvkt078ldd",
+  "parent": "HR-OPN-2025-0010",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Data Analysis",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-16 18:06:14.442377",
+  "name": "ucrtvhu5le",
+  "parent": "HR-OPN-2025-0012",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Communication skill",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-02 09:41:45.730641",
+  "name": "seq7qn6l64",
+  "parent": "HR-OPN-2025-0002",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Software Testing",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-01 11:51:45.435511",
+  "name": "d0ichml1jk",
+  "parent": "HR-OPN-2025-0004",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Mysql/Postgres",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-16 15:46:26.133625",
+  "name": "f2hsp9sn9f",
+  "parent": "HR-OPN-2025-0006",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Django Framework",
+  "skill_type": "Optional"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-01 11:52:15.642316",
+  "name": "rp53cghlci",
+  "parent": "HR-OPN-2025-0008",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Flutter SDK",
+  "skill_type": "Optional"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-10 16:17:29.347997",
+  "name": "uvkl141fn8",
+  "parent": "HR-OPN-2025-0010",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Business Model",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-16 18:06:14.442377",
+  "name": "ucr36rsqaj",
+  "parent": "HR-OPN-2025-0012",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "Data Analysis",
+  "skill_type": "Required"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Job Opening custom doc",
+  "modified": "2025-07-01 11:51:45.435511",
+  "name": "gv083gvrqj",
+  "parent": "HR-OPN-2025-0004",
+  "parentfield": "custom_rquired_skills",
+  "parenttype": "Job Opening",
+  "skill": "HTML & CSS",
+  "skill_type": "Required"
+ }
+]
