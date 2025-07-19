@@ -49,7 +49,18 @@ fixtures = [
         "filters": [
             ["name", "=", "Test Case Management"]
         ]
+    },
+
+    
+    {
+        "dt": "Custom Field",
+        "filters": [["dt", "in", ["Test Project", "Test Plan", "Test Case", "Test Run"]]]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [["doc_type", "in", ["Test Project", "Test Plan", "Test Case", "Test Run"]]]
     }
+
 ]
 
 
