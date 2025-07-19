@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-09 15:15:57.495906",
+ "creation": "2025-07-16 15:17:31.195212",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -69,9 +69,23 @@
   }
  ],
  "grid_page_length": 50,
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-07-11 15:52:45.708480",
+ "links": [
+  {
+   "link_doctype": "Test Plan",
+   "link_fieldname": "project"
+  },
+  {
+   "link_doctype": "Test Case",
+   "link_fieldname": "project"
+  },
+  {
+   "link_doctype": "Test Run",
+   "link_fieldname": "project"
+  }
+ ],
+ "modified": "2025-07-19 11:18:03.009866",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Project",

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-07 18:37:37.181402",
+ "creation": "2025-07-16 15:17:30.892513",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -82,8 +82,13 @@
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-07-12 12:58:19.238797",
+ "links": [
+  {
+   "link_doctype": "Test Run",
+   "link_fieldname": "test_plan"
+  }
+ ],
+ "modified": "2025-07-19 11:16:21.663164",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Plan",

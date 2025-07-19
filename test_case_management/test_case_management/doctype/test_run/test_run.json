@@ -51,7 +51,8 @@
    "fieldname": "test_plan",
    "fieldtype": "Link",
    "label": "Test Plan",
-   "options": "Test Plan"
+   "options": "Test Plan",
+   "reqd": 1
   },
   {
    "fieldname": "test_case",
@@ -68,7 +69,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-12 16:31:05.532210",
+ "modified": "2025-07-19 11:19:47.104598",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run",
