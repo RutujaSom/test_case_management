@@ -1,0 +1,6 @@
+[
+  {
+    "from_route": "/jobs",
+    "to_route": "jobs"
+  }
+]
