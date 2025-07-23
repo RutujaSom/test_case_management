@@ -1,0 +1,20 @@
+{
+  "db_name": "_24c6a08723cc2066",
+  "db_password": "GvbEkjZSXEeAjbzD",
+  "db_type": "mariadb",
+  "developer_mode": 1,
+  "encryption_key": "gh2uYn8gG7eG-mPQUx1vtEuHqJmphg4xcJS7DQSjCQ0=",
+  "host_name": "https://localhost:8000",
+  "maintenance_mode": 0,
+  "pause_scheduler": false,
+  "server_script_enabled": true,
+  "user_type_doctype_limit": {
+    "employee_self_service": 40
+  },
+  "installed_apps": [
+    "frappe",
+    "erpnext",
+    "hrms",
+    "library_management"
+  ]
+}

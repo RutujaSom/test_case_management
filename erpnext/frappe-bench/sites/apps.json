@@ -1,0 +1,61 @@
+{
+    "frappe": {
+        "resolution": {
+            "commit_hash": null,
+            "branch": null
+        },
+        "required": [],
+        "idx": 1,
+        "version": "15.69.0"
+    },
+    "payments": {
+        "is_repo": true,
+        "resolution": {
+            "commit_hash": "6012958d2139b7546837189b9615366d3525605b",
+            "branch": "develop"
+        },
+        "required": [],
+        "idx": 2,
+        "version": "0.0.1"
+    },
+    "erpnext": {
+        "is_repo": true,
+        "resolution": {
+            "commit_hash": "52a5cd97026b08adaa7868b640c569ece713a6cd",
+            "branch": "version-15"
+        },
+        "required": [],
+        "idx": 3,
+        "version": "15.62.0"
+    },
+    "hrms": {
+        "is_repo": true,
+        "resolution": {
+            "commit_hash": "4395fa68097cadd2cb6289ad6a26f5d1b8094b48",
+            "branch": "develop"
+        },
+        "required": [],
+        "idx": 4,
+        "version": "16.0.0-dev"
+    },
+    "library_management": {
+        "is_repo": true,
+        "resolution": {
+            "commit_hash": "2f5024f5b030cbf8ea782224dd13808814ecdeb5",
+            "branch": "develop"
+        },
+        "required": [],
+        "idx": 5,
+        "version": "0.0.1"
+    },
+    "rutuja_app": {
+        "is_repo": true,
+        "resolution": {
+            "commit_hash": "14d69a650971c1229b5037209ecf2f32e7184d0c",
+            "branch": "main"
+        },
+        "required": [],
+        "idx": 6,
+        "version": "0.0.1"
+    }
+}

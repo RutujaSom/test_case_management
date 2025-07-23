@@ -1,0 +1,1271 @@
+2025-07-22 09:34:27,237 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1463, in get_connection
+    if connection.can_read():
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 861, in can_read
+    return self._parser.can_read(timeout)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 444, in can_read
+    return self.read_from_socket(timeout=timeout, raise_on_timeout=False)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 455, in read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1467, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 09:35:27,398 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 09:36:27,623 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:15:18,959 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1463, in get_connection
+    if connection.can_read():
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 861, in can_read
+    return self._parser.can_read(timeout)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 444, in can_read
+    return self.read_from_socket(timeout=timeout, raise_on_timeout=False)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 455, in read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1467, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:16:19,227 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:17:19,479 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:18:19,711 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:19:19,898 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:20:20,107 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:21:20,394 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:22:20,661 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:23:20,913 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:24:21,170 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:25:21,418 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:26:21,652 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:27:21,887 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:28:22,163 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:29:22,383 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:30:22,577 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:31:22,850 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:32:23,093 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:33:23,268 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:34:23,509 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:35:23,745 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:36:24,070 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:37:24,345 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:44:16,382 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1463, in get_connection
+    if connection.can_read():
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 861, in can_read
+    return self._parser.can_read(timeout)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 444, in can_read
+    return self.read_from_socket(timeout=timeout, raise_on_timeout=False)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 455, in read_from_socket
+    raise ConnectionError(SERVER_CLOSED_CONNECTION_ERROR)
+redis.exceptions.ConnectionError: Connection closed by server.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1467, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.
+2025-07-22 15:45:16,609 ERROR scheduler Exception in Enqueue Events for Site excellminds.local
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 699, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 700, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1002, in _connect
+    raise err
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 990, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 102, in enqueue_events_for_site
+    enqueue_events(site=site)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/scheduler.py", line 122, in enqueue_events
+    if job_type.enqueue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 74, in enqueue
+    if not self.is_job_in_queue():
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/core/doctype/scheduled_job_type/scheduled_job_type.py", line 95, in is_job_in_queue
+    return is_job_enqueued(self.rq_job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 565, in is_job_enqueued
+    return get_job_status(job_id) in (JobStatus.QUEUED, JobStatus.STARTED)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 570, in get_job_status
+    job = get_job(job_id)
+  File "/home/excellminds/erpnext/frappe-bench/apps/frappe/frappe/utils/background_jobs.py", line 577, in get_job
+    return Job.fetch(create_job_id(job_id), connection=get_redis_conn())
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 591, in fetch
+    job.refresh()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/rq/job.py", line 989, in refresh
+    data = self.connection.hgetall(self.key)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/commands/core.py", line 4887, in hgetall
+    return self.execute_command("HGETALL", name)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 1457, in get_connection
+    connection.connect()
+  File "/home/excellminds/erpnext/frappe-bench/env/lib/python3.10/site-packages/redis/connection.py", line 705, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:11000. Connection refused.

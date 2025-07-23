@@ -1,0 +1,114 @@
+for captcha generation backend script  job_applicant.py
+import frappe
+from frappe.model.document import Document
+from frappe import _
+import random
+
+class JobApplicant(Document):
+
+    def before_insert(self):
+        self.generate_captcha()
+
+    def validate(self):
+        self.validate_captcha()
+
+    def generate_captcha(self):
+        if frappe.session.user != "Guest":
+            return  # Only generate for web submissions
+
+        if self.custom_captcha:
+            return  # Already generated
+
+        num1 = random.randint(1, 9)
+        num2 = random.randint(1, 9)
+        operator = random.choice(['+', '-', '*'])
+
+        self.custom_captcha = f"What is {num1} {operator} {num2}?"
+        self.set("__captcha_num1", num1)
+        self.set("__captcha_num2", num2)
+        self.set("__captcha_operator", operator)
+
+    def validate_captcha(self):
+        if frappe.session.user != "Guest":
+            return
+
+        question = self.custom_captcha
+        user_answer = self.custom_your_answer
+
+        if not question or not user_answer:
+            frappe.throw(_("CAPTCHA is required."))
+
+        try:
+            parts = question.replace("What is", "").replace("?", "").strip().split()
+            num1, operator, num2 = int(parts[0]), parts[1], int(parts[2])
+
+            if operator == '+':
+                correct = num1 + num2
+            elif operator == '-':
+                correct = num1 - num2
+            elif operator == '*':
+                correct = num1 * num2
+            else:
+                frappe.throw(_("Invalid CAPTCHA format."))
+
+            if int(user_answer) != correct:
+                frappe.throw(_("Incorrect CAPTCHA answer. Please try again."))
+
+        except Exception as e:
+            frappe.throw(_("Invalid CAPTCHA format."))
+
+
+
+
+
+
+
+
+
+
+
+website theme
+
+frappe.ready(() => {
+  frappe.call({
+    method: "library_management.api.captcha.get_captcha",
+    callback: function (r) {
+      const question = r.message;
+      const captchaField = document.querySelector('[data-fieldname="custom_captcha"] input');
+
+      if (captchaField) {
+        captchaField.value = question;
+        captchaField.readOnly = true;
+      }
+    }
+  });
+});
+
+
+
+captcha.py
+
+@frappe.whitelist(allow_guest=True)
+def get_captcha():
+    import random
+
+    num1 = random.randint(1, 9)
+    num2 = random.randint(1, 9)
+    operator = random.choice(['+', '-', '*'])
+
+    question = f"What is {num1} {operator} {num2}?"
+    answer = eval(f"{num1}{operator}{num2}")
+
+    frappe.local.session.data['captcha_question'] = question
+    frappe.local.session.data['captcha_answer'] = answer
+    frappe.local.session_obj.update(force=True)
+
+    return question
+
+
+
+
+
+
+
+

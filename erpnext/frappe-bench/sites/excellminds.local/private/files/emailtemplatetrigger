@@ -1,0 +1,123 @@
+<p>Dear {{doc.applicant_name}},</p>
+
+<p>We are pleased to inform you that your interview with Excellent Minds has been scheduled. Below are the details of your interview:</p>
+
+<p><strong>Company Name:</strong>Excellent Minds Software Technologies India Pvt. Ltd.</p>
+
+<p><strong>Scheduled On:</strong> {{doc.scheduled_on}}</p>
+
+<p><strong>Scheduled Time:</strong> {{doc.from_time}} - {{doc.to_time}}
+
+<p><strong>Interview Type:</strong> Online</p>
+
+<p><strong>Interview Link: </strong> {{doc.google_meet_link}}</p>
+
+<p>Please ensure that you are available at the specified time and prepared for the interview. If you have any questions or need to reschedule, please contact us at careers@excellminds.com
+as soon as possible.</p>
+<p>Please Confirm your availability. </p>
+
+<footer>
+<p style="font-weight: bold;" >Best regards,</p>
+<footer>>
+<div>Project Manager</div>
+<div style="color: green;">Excellent Minds Software Technologies India Pvt. Ltd.</div>
+<div style=""font-weight: bold;">Website - <a href="http://www.excellminds.com" style="color: blue;">http://www.excellminds.com</a></div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+{% if doc.email_id %}
+<p>Dear {{ doc.applicant_name }},</p>
+
+<p>We are pleased to inform you that your interview with Excellent Minds has been scheduled. Below are the details of your interview:</p>
+
+<p><strong>Company Name:</strong> Excellent Minds Software Technologies India Pvt. Ltd.</p>
+<p><strong>Scheduled On:</strong> {{ doc.scheduled_on }}</p>
+<p><strong>Scheduled Time:</strong> {{ doc.from_time }} - {{ doc.to_time }}</p>
+<p><strong>Interview Type:</strong> Online</p>
+<p><strong>Interview Link:</strong> {{ doc.google_meet_link }}</p>
+
+<p>Please ensure that you are available at the specified time and prepared for the interview. If you have any questions or need to reschedule, please contact us at <a href="mailto:careers@excellminds.com">careers@excellminds.com</a>.</p>
+<p>Please confirm your availability.</p>
+
+<p style="font-weight: bold;">Best regards,</p>
+<div>Project Manager</div>
+<div style="color: green;">Excellent Minds Software Technologies India Pvt. Ltd.</div>
+<div><strong>Website:</strong> <a href="http://www.excellminds.com" style="color: blue;">www.excellminds.com</a></div>
+<hr>
+{% endif %}
+
+
+{% if doc.interviewers %}
+{% for row in doc.interviewers %}
+<p>Dear {{ row.interviewer_name }},</p>
+
+<p>You have been assigned an interview with the following candidate:</p>
+
+<p><strong>Candidate Name:</strong> {{ doc.applicant_name }}</p>
+<p><strong>Scheduled On:</strong> {{ doc.scheduled_on }}</p>
+<p><strong>Time:</strong> {{ doc.from_time }} - {{ doc.to_time }}</p>
+<p><strong>Interview Type:</strong> Online</p>
+<p><strong>Meeting Link:</strong> {{ doc.google_meet_link }}</p>
+
+<p>Please ensure that you are available on time and well prepared to conduct the interview.</p>
+
+<p style="font-weight: bold;">Best regards,</p>
+<div>HR Department</div>
+<div style="color: green;">Excellent Minds Software Technologies India Pvt. Ltd.</div>
+<div><strong>Website:</strong> <a href="http://www.excellminds.com" style="color: blue;">www.excellminds.com</a></div>
+<hr>
+{% endfor %}
+{% endif %}
+
+
+
+
+
+
+
+{% if doc.email_id %}
+<p>Dear {{ doc.applicant_name or frappe.db.get_value("Job Applicant", doc.job_applicant, "applicant_name") }},</p>
+
+<p>We are pleased to inform you that your interview with Excellent Minds has been scheduled. Below are the details of your interview:</p>
+
+<p><strong>Company Name:</strong> Excellent Minds Software Technologies India Pvt. Ltd.</p>
+<p><strong>Scheduled On:</strong> {{ doc.scheduled_on }}</p>
+<p><strong>Time:</strong> {{ doc.from_time }} - {{ doc.to_time }}</p>
+<p><strong>Interview Type:</strong> Online</p>
+<p><strong>Meeting Link:</strong> {{ doc.google_meet_link }}</p>
+
+<p>Please confirm your availability.</p>
+<hr>
+{% endif %}
+
+{% if doc.interviewers %}
+{% for row in doc.interviewers %}
+{% if row.interviewer_email %}
+<p>Dear {{ row.interviewer_name or "Interviewer" }},</p>
+
+<p>You are scheduled to interview the following candidate:</p>
+
+<p><strong>Candidate Name:</strong> {{ doc.applicant_name or frappe.db.get_value("Job Applicant", doc.job_applicant, "applicant_name") }}</p>
+<p><strong>Scheduled On:</strong> {{ doc.scheduled_on }}</p>
+<p><strong>Time:</strong> {{ doc.from_time }} - {{ doc.to_time }}</p>
+<p><strong>Meeting Link:</strong> {{ doc.google_meet_link }}</p>
+
+<p>Kindly be available and prepared.</p>
+<hr>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<p style="font-weight: bold;">Best regards,</p>
+<div>HR Department</div>
+<div style="color: green;">Excellent Minds Software Technologies India Pvt. Ltd.</div>
+<div><strong>Website:</strong> <a href="http://www.excellminds.com" style="color: blue;">www.excellminds.com</a></div>
+

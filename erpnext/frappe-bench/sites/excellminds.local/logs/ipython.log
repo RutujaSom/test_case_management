@@ -1,0 +1,14 @@
+2025-07-19 14:15:49,567 INFO ipython === bench console session ===
+2025-07-19 14:15:49,567 INFO ipython import frappe, json
+frappe.get_hooks("installed_apps")
+2025-07-19 14:15:49,567 INFO ipython new_apps = ["frappe", "erpnext", "hrms", "library_management"]
+frappe.db.set_value("Site Config", "site_config", "installed_apps", json.dumps(new_apps))
+frappe.db.commit()
+2025-07-19 14:15:49,567 INFO ipython === session end ===
+2025-07-19 14:32:54,244 INFO ipython === bench console session ===
+2025-07-19 14:32:54,244 INFO ipython installed_apps = frappe.get_installed_apps()
+if "rutuja_app" in installed_apps:
+    installed_apps.remove("rutuja_app")
+    frappe.db.set_value("Site Config", "installed_apps", installed_apps)
+    frappe.db.commit()
+2025-07-19 14:32:54,244 INFO ipython === session end ===

@@ -1,0 +1,27 @@
+Job application ge created status will be bydefault Open--when applicant get shortlisted it is changed to Replied
+
+interview round getting scheduled status will be bydefault Pending----when it is scheduled it is changed to Under Review
+
+when interview getting schedued on the basis of interview round the status of intervew round will be pending in job applicant form 
+
+when we change that interview status manually by the HR from pending to cleared it is updated on job appicant form
+
+once interview Round is cleared then updated interview feedback as cleared/rejected
+
+
+
+
+
+
+
+
+
+1.if the candidate is experience
+ add check box-is_experienced
+ 2.if it is expeieced then 
+ experience_details
+Company Name – Data
+Job Title – Data
+From Date – Date
+To Date – Date
+Description – Small Text (Optional)

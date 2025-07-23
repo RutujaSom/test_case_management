@@ -1,0 +1,385 @@
+2025-07-19 13:35:30,767 INFO /usr/local/bin/bench list-apps
+2025-07-19 14:01:26,892 INFO /usr/local/bin/bench start
+2025-07-19 14:01:27,241 INFO /usr/local/bin/bench serve --port 8000
+2025-07-19 14:01:27,247 INFO /usr/local/bin/bench watch
+2025-07-19 14:01:27,256 INFO /usr/local/bin/bench worker
+2025-07-19 14:01:46,916 INFO /usr/local/bin/bench schedule
+2025-07-19 14:01:46,945 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 14:01:46,958 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 14:03:13,571 INFO /usr/local/bin/bench --site excellminds.local clear-cache
+2025-07-19 14:03:28,069 INFO /usr/local/bin/bench --site excellminds.local clear-website-cache
+2025-07-19 14:03:45,869 INFO /usr/local/bin/bench build
+2025-07-19 14:04:33,433 INFO /usr/local/bin/bench restart
+2025-07-19 14:04:36,249 DEBUG cd /home/excellminds/erpnext/frappe-bench && sudo supervisorctl restart frappe-bench-web:
+2025-07-19 14:04:41,013 WARNING cd /home/excellminds/erpnext/frappe-bench && sudo supervisorctl restart frappe-bench-web: executed with exit code 7
+2025-07-19 14:04:41,013 WARNING /usr/local/bin/bench restart executed with exit code 1
+2025-07-19 14:04:41,274 INFO A newer version of bench is available: 5.25.1 → 5.25.9
+2025-07-19 14:12:01,616 INFO /usr/local/bin/bench --site excellminds.local console
+2025-07-19 14:25:22,353 INFO /usr/local/bin/bench clear-cache
+2025-07-19 14:25:41,565 INFO /usr/local/bin/bench clear website-cache
+2025-07-19 14:25:50,006 INFO /usr/local/bin/bench clear-website-cache
+2025-07-19 14:26:10,847 INFO /usr/local/bin/bench --site excellminds.local migrate
+2025-07-19 14:26:17,779 INFO /usr/local/bin/bench build
+2025-07-19 14:29:14,232 INFO /usr/local/bin/bench --site excellminds.local uninstall-app rutuja_app --force
+2025-07-19 14:31:21,807 INFO /usr/local/bin/bench --site excellminds.local list-apps
+2025-07-19 14:32:06,639 INFO /usr/local/bin/bench --site excellminds.local console
+2025-07-19 14:33:29,977 INFO /usr/local/bin/bench --site excellminds.local clear-cache
+2025-07-19 14:33:43,334 INFO /usr/local/bin/bench --site excellminds.local migrate
+2025-07-19 14:33:59,377 INFO /usr/local/bin/bench restart
+2025-07-19 14:34:03,217 DEBUG cd /home/excellminds/erpnext/frappe-bench && sudo supervisorctl restart frappe-bench-web:
+2025-07-19 14:34:06,481 WARNING cd /home/excellminds/erpnext/frappe-bench && sudo supervisorctl restart frappe-bench-web: executed with exit code 7
+2025-07-19 14:34:06,481 WARNING /usr/local/bin/bench restart executed with exit code 1
+2025-07-19 14:34:06,710 INFO A newer version of bench is available: 5.25.1 → 5.25.9
+2025-07-19 14:34:48,059 INFO /usr/local/bin/bench site excellminds.local install-app rutuja_app
+2025-07-19 14:35:03,691 INFO /usr/local/bin/bench --site excellminds.local install-app rutuja_app
+2025-07-19 14:36:17,343 INFO /usr/local/bin/bench --site excellminds.local install-app rutuja_app
+2025-07-19 14:38:32,750 INFO /usr/local/bin/bench get-app https://github.com/RutujaSom/rutuja_app.git
+2025-07-19 14:38:32,759 LOG Getting rutuja_app
+2025-07-19 14:38:32,760 DEBUG cd ./apps && git clone https://github.com/RutujaSom/rutuja_app.git  --depth 1 --origin upstream
+2025-07-19 14:38:33,853 LOG Installing rutuja_app
+2025-07-19 14:38:33,853 DEBUG cd /home/excellminds/erpnext/frappe-bench && /home/excellminds/erpnext/frappe-bench/env/bin/python -m pip install --quiet --upgrade -e /home/excellminds/erpnext/frappe-bench/apps/rutuja_app 
+2025-07-19 14:38:36,630 DEBUG bench build --app rutuja_app
+2025-07-19 14:38:36,777 INFO /usr/local/bin/bench build --app rutuja_app
+2025-07-19 14:38:38,979 DEBUG cd /home/excellminds/erpnext/frappe-bench && sudo supervisorctl restart frappe-bench-web:
+2025-07-19 14:38:44,934 WARNING cd /home/excellminds/erpnext/frappe-bench && sudo supervisorctl restart frappe-bench-web: executed with exit code 7
+2025-07-19 14:38:44,935 WARNING restarting supervisor group `frappe-bench-web:` failed. Use `bench restart` to retry.
+2025-07-19 14:38:44,935 DEBUG cd /home/excellminds/erpnext/frappe-bench && sudo supervisorctl restart frappe-bench-workers:
+2025-07-19 14:38:45,437 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 14:38:45,441 INFO /usr/local/bin/bench schedule
+2025-07-19 14:38:45,446 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 14:38:47,237 INFO A newer version of bench is available: 5.25.1 → 5.25.9
+2025-07-19 14:39:42,581 INFO /usr/local/bin/bench --site excellminds.com install-app rutuja_app
+2025-07-19 14:40:37,080 INFO /usr/local/bin/bench list-site
+2025-07-19 14:40:43,491 INFO /usr/local/bin/bench list-sites
+2025-07-19 14:41:01,439 INFO /usr/local/bin/bench currentsite
+2025-07-19 14:41:21,291 INFO /usr/local/bin/bench list-sites
+2025-07-19 14:41:29,058 INFO /usr/local/bin/bench --site excellminds.com install-app rutuja_app
+2025-07-19 14:41:44,323 INFO /usr/local/bin/bench --site excellminds.local install-app rutuja_app
+2025-07-19 14:42:57,382 INFO /usr/local/bin/bench start
+2025-07-19 14:42:57,644 INFO /usr/local/bin/bench serve --port 8000
+2025-07-19 14:42:57,646 INFO /usr/local/bin/bench worker
+2025-07-19 14:42:57,695 INFO /usr/local/bin/bench watch
+2025-07-19 14:43:28,232 INFO /usr/local/bin/bench start
+2025-07-19 14:43:28,558 INFO /usr/local/bin/bench worker
+2025-07-19 14:43:28,591 INFO /usr/local/bin/bench serve --port 8000
+2025-07-19 14:43:28,599 INFO /usr/local/bin/bench watch
+2025-07-19 14:44:15,197 INFO /usr/local/bin/bench schedule
+2025-07-19 14:44:15,211 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 14:44:15,237 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 14:54:07,358 INFO /usr/local/bin/bench schedule
+2025-07-19 14:54:07,366 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 14:54:07,397 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 15:02:50,033 INFO /usr/local/bin/bench schedule
+2025-07-19 15:02:50,094 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 15:02:50,096 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 15:03:34,510 INFO /usr/local/bin/bench start
+2025-07-19 15:04:58,293 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 15:04:58,345 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 15:04:58,349 INFO /usr/local/bin/bench schedule
+2025-07-19 15:08:27,704 INFO /usr/local/bin/bench start
+2025-07-19 15:08:28,018 INFO /usr/local/bin/bench worker
+2025-07-19 15:08:28,019 INFO /usr/local/bin/bench serve --port 8000
+2025-07-19 15:08:28,032 INFO /usr/local/bin/bench watch
+2025-07-19 15:09:15,077 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 15:09:15,083 INFO /usr/local/bin/bench schedule
+2025-07-19 15:09:15,098 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 15:51:19,950 INFO /usr/local/bin/bench schedule
+2025-07-19 15:51:20,003 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 15:51:20,014 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 15:54:16,628 INFO /usr/local/bin/bench schedule
+2025-07-19 15:54:16,632 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 15:54:16,709 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 16:05:26,760 INFO /usr/local/bin/bench schedule
+2025-07-19 16:05:26,765 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 16:05:26,832 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 16:11:55,012 INFO /usr/local/bin/bench schedule
+2025-07-19 16:11:55,084 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 16:11:55,094 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 16:26:18,153 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 16:26:18,203 INFO /usr/local/bin/bench schedule
+2025-07-19 16:26:18,216 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 16:48:27,480 INFO /usr/local/bin/bench --site excellminds.local export-doc library_management DocType Job Opening Custom Doc
+2025-07-19 16:49:22,037 INFO /usr/local/bin/bench --site excellminds.local export-doc library_management DocType Job Opening custom doc
+2025-07-19 16:50:00,223 INFO /usr/local/bin/bench --site excellminds.local export-doc library_management DocType Job Opening Custom Doc
+2025-07-19 16:50:29,139 INFO /usr/local/bin/bench --site excellminds.local console
+2025-07-19 16:51:25,792 INFO /usr/local/bin/bench --site excellminds.local export-doc library_management DocType Job Opening custom doc
+2025-07-19 16:53:01,635 INFO /usr/local/bin/bench --site excellminds.local export-doc library_management DocType Job_Opening_custom_doc
+2025-07-19 16:57:38,619 INFO /usr/local/bin/bench --site bench --site excellminds.local import-fixtures
+2025-07-19 16:58:08,204 INFO /usr/local/bin/bench --site bench --site excellminds.local export-fixtures
+2025-07-19 16:59:11,570 INFO /usr/local/bin/bench --site bench --site excellminds.local export-fixtures
+2025-07-19 17:06:15,890 INFO /usr/local/bin/bench schedule
+2025-07-19 17:06:15,899 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 17:06:15,971 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 17:10:42,765 INFO /usr/local/bin/bench start
+2025-07-19 17:11:09,277 INFO /usr/local/bin/bench start
+2025-07-19 17:11:09,525 INFO /usr/local/bin/bench serve --port 8000
+2025-07-19 17:11:09,531 INFO /usr/local/bin/bench watch
+2025-07-19 17:11:09,580 INFO /usr/local/bin/bench worker
+2025-07-19 17:11:54,499 INFO /usr/local/bin/bench schedule
+2025-07-19 17:11:54,531 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-19 17:11:54,534 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-19 17:26:50,171 INFO /usr/local/bin/bench --site excellminds.local console
+2025-07-19 17:27:53,705 INFO /usr/local/bin/bench --site excellminds.local import-fixtures
+2025-07-19 17:39:48,107 INFO /usr/local/bin/bench --site excellminds.local export-doc library_management doctype job_opening_custom_doc
+2025-07-19 17:41:00,227 INFO /usr/local/bin/bench --site excellminds.local export-doc doctype Job Opening custom doc job_opening_custom_doc --output apps/library_management
+2025-07-19 17:42:39,324 INFO /usr/local/bin/bench --site excellminds.local export-doc doctype Job Opening custom doc job_opening_custom_doc
+2025-07-19 17:42:57,592 INFO /usr/local/bin/bench --site excellminds.local export-doc doctype Job Opening custom doc
+2025-07-19 18:00:01,896 INFO /usr/local/bin/bench --verbose --site all backup
+2025-07-20 17:33:30,299 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-20 17:33:30,299 INFO /usr/local/bin/bench schedule
+2025-07-20 17:33:30,299 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-20 17:44:31,887 INFO /usr/local/bin/bench start
+2025-07-20 17:45:02,813 INFO /usr/local/bin/bench start
+2025-07-20 17:45:03,195 INFO /usr/local/bin/bench watch
+2025-07-20 17:45:03,202 INFO /usr/local/bin/bench worker
+2025-07-20 17:45:03,235 INFO /usr/local/bin/bench serve --port 8000
+2025-07-20 17:45:50,534 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-20 17:45:50,541 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-20 17:45:50,542 INFO /usr/local/bin/bench schedule
+2025-07-20 17:47:07,694 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-20 17:47:07,694 INFO /usr/local/bin/bench schedule
+2025-07-20 17:47:07,758 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-20 17:56:01,186 INFO /usr/local/bin/bench start
+2025-07-20 17:56:01,422 INFO /usr/local/bin/bench serve --port 8000
+2025-07-20 17:56:01,425 INFO /usr/local/bin/bench watch
+2025-07-20 17:56:01,430 INFO /usr/local/bin/bench worker
+2025-07-20 17:56:47,091 INFO /usr/local/bin/bench schedule
+2025-07-20 17:56:47,111 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-20 17:56:47,137 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-20 18:00:01,442 INFO /usr/local/bin/bench --verbose --site all backup
+2025-07-20 18:16:06,991 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-20 18:16:07,019 INFO /usr/local/bin/bench schedule
+2025-07-20 18:16:07,053 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:32:30,070 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:32:30,488 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:32:35,263 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:32:36,307 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:32:41,116 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:32:42,135 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:32:47,024 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:32:47,029 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:32:51,997 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:32:53,025 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:32:57,912 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:32:58,933 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:03,549 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:04,597 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:09,169 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:10,210 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:14,243 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:15,815 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:19,868 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:21,430 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:25,492 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:27,053 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:30,241 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:32,684 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:35,880 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:38,325 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:41,489 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:43,949 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:47,127 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:49,559 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:52,802 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:33:55,183 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:33:58,428 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:00,810 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:04,054 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:06,450 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:09,698 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:12,071 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:15,323 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:17,690 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:20,959 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:23,327 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:26,593 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:28,981 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:32,253 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:34,595 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:37,867 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:40,247 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:43,492 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:45,869 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:49,123 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 09:34:51,492 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:34:52,931 INFO /usr/local/bin/bench start
+2025-07-21 09:34:53,156 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 09:34:53,209 INFO /usr/local/bin/bench watch
+2025-07-21 09:34:53,209 INFO /usr/local/bin/bench worker
+2025-07-21 09:36:12,789 INFO /usr/local/bin/bench start
+2025-07-21 09:36:13,020 INFO /usr/local/bin/bench worker
+2025-07-21 09:36:13,020 INFO /usr/local/bin/bench watch
+2025-07-21 09:36:13,077 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 09:36:51,960 INFO /usr/local/bin/bench schedule
+2025-07-21 09:36:51,968 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 09:36:51,980 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 10:45:01,801 INFO /usr/local/bin/bench schedule
+2025-07-21 10:45:01,820 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 10:45:01,826 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 11:32:03,756 INFO /usr/local/bin/bench start
+2025-07-21 11:32:03,997 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 11:32:04,001 INFO /usr/local/bin/bench worker
+2025-07-21 11:32:04,049 INFO /usr/local/bin/bench watch
+2025-07-21 11:32:51,190 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 11:32:51,212 INFO /usr/local/bin/bench schedule
+2025-07-21 11:32:51,215 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 11:40:48,778 INFO /usr/local/bin/bench start
+2025-07-21 11:40:49,012 INFO /usr/local/bin/bench worker
+2025-07-21 11:40:49,065 INFO /usr/local/bin/bench watch
+2025-07-21 11:40:49,069 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 11:41:36,639 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 11:41:36,660 INFO /usr/local/bin/bench schedule
+2025-07-21 11:41:36,682 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 11:43:25,795 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 11:43:25,807 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 11:43:25,809 INFO /usr/local/bin/bench schedule
+2025-07-21 11:56:25,457 INFO /usr/local/bin/bench start
+2025-07-21 11:56:25,730 INFO /usr/local/bin/bench worker
+2025-07-21 11:56:25,732 INFO /usr/local/bin/bench watch
+2025-07-21 11:56:25,778 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 11:57:14,564 INFO /usr/local/bin/bench schedule
+2025-07-21 11:57:14,566 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 11:57:14,567 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 12:00:01,692 INFO /usr/local/bin/bench --verbose --site all backup
+2025-07-21 12:25:02,507 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 12:25:02,507 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 12:25:02,508 INFO /usr/local/bin/bench schedule
+2025-07-21 12:27:13,670 INFO /usr/local/bin/bench start
+2025-07-21 12:27:14,172 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 12:27:14,187 INFO /usr/local/bin/bench watch
+2025-07-21 12:27:14,192 INFO /usr/local/bin/bench worker
+2025-07-21 12:28:03,124 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 12:28:03,124 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 12:28:03,125 INFO /usr/local/bin/bench schedule
+2025-07-21 12:32:05,566 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 12:32:05,626 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 12:32:05,636 INFO /usr/local/bin/bench schedule
+2025-07-21 13:09:19,790 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 13:09:19,794 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 13:09:19,853 INFO /usr/local/bin/bench schedule
+2025-07-21 13:10:36,903 INFO /usr/local/bin/bench start
+2025-07-21 13:10:37,128 INFO /usr/local/bin/bench worker
+2025-07-21 13:10:37,131 INFO /usr/local/bin/bench watch
+2025-07-21 13:10:37,132 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 13:11:26,897 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 13:11:26,899 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 13:11:26,937 INFO /usr/local/bin/bench schedule
+2025-07-21 13:31:10,675 INFO /usr/local/bin/bench schedule
+2025-07-21 13:31:10,690 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 13:31:10,693 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 14:22:07,319 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 14:22:07,319 INFO /usr/local/bin/bench schedule
+2025-07-21 14:22:07,402 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 14:37:52,365 INFO /usr/local/bin/bench schedule
+2025-07-21 14:37:52,378 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 14:37:52,440 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 14:44:58,313 INFO /usr/local/bin/bench start
+2025-07-21 14:44:58,545 INFO /usr/local/bin/bench worker
+2025-07-21 14:44:58,568 INFO /usr/local/bin/bench watch
+2025-07-21 14:44:58,568 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 14:45:47,136 INFO /usr/local/bin/bench schedule
+2025-07-21 14:45:47,179 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 14:45:47,183 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 14:51:43,099 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 14:51:43,105 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 14:51:43,168 INFO /usr/local/bin/bench schedule
+2025-07-21 15:04:38,856 INFO /usr/local/bin/bench schedule
+2025-07-21 15:04:38,913 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 15:04:38,914 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 15:06:32,769 INFO /usr/local/bin/bench start
+2025-07-21 15:06:33,003 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 15:06:33,014 INFO /usr/local/bin/bench worker
+2025-07-21 15:06:33,015 INFO /usr/local/bin/bench watch
+2025-07-21 15:06:55,915 INFO /usr/local/bin/bench start
+2025-07-21 15:06:56,138 INFO /usr/local/bin/bench watch
+2025-07-21 15:06:56,168 INFO /usr/local/bin/bench serve --port 8000
+2025-07-21 15:06:56,175 INFO /usr/local/bin/bench worker
+2025-07-21 15:07:38,834 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 15:07:38,874 INFO /usr/local/bin/bench schedule
+2025-07-21 15:07:38,907 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 15:08:54,327 INFO /usr/local/bin/bench schedule
+2025-07-21 15:08:54,345 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-21 15:08:54,407 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-21 18:00:01,405 INFO /usr/local/bin/bench --verbose --site all backup
+2025-07-22 09:36:12,945 INFO /usr/local/bin/bench start
+2025-07-22 09:36:13,244 INFO /usr/local/bin/bench serve --port 8000
+2025-07-22 09:36:13,246 INFO /usr/local/bin/bench watch
+2025-07-22 09:36:13,307 INFO /usr/local/bin/bench worker
+2025-07-22 09:36:48,237 INFO /usr/local/bin/bench start
+2025-07-22 09:36:48,460 INFO /usr/local/bin/bench serve --port 8000
+2025-07-22 09:36:48,466 INFO /usr/local/bin/bench watch
+2025-07-22 09:36:48,476 INFO /usr/local/bin/bench worker
+2025-07-22 09:37:37,267 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 09:37:37,267 INFO /usr/local/bin/bench schedule
+2025-07-22 09:37:37,291 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 09:44:18,027 INFO /usr/local/bin/bench schedule
+2025-07-22 09:44:18,032 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 09:44:18,088 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 10:15:53,221 INFO /usr/local/bin/bench start
+2025-07-22 10:15:53,571 INFO /usr/local/bin/bench serve --port 8000
+2025-07-22 10:15:53,575 INFO /usr/local/bin/bench watch
+2025-07-22 10:15:53,613 INFO /usr/local/bin/bench worker
+2025-07-22 10:16:41,672 INFO /usr/local/bin/bench schedule
+2025-07-22 10:16:41,676 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 10:16:41,679 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 10:19:12,101 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 10:19:12,116 INFO /usr/local/bin/bench schedule
+2025-07-22 10:19:12,146 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 10:43:12,623 INFO /usr/local/bin/bench start
+2025-07-22 10:43:13,102 INFO /usr/local/bin/bench serve --port 8000
+2025-07-22 10:43:13,148 INFO /usr/local/bin/bench watch
+2025-07-22 10:43:13,149 INFO /usr/local/bin/bench worker
+2025-07-22 10:44:00,617 INFO /usr/local/bin/bench schedule
+2025-07-22 10:44:00,636 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 10:44:00,636 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 11:39:15,112 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 11:39:15,112 INFO /usr/local/bin/bench schedule
+2025-07-22 11:39:15,112 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 12:00:01,698 INFO /usr/local/bin/bench --verbose --site all backup
+2025-07-22 14:07:19,044 INFO /usr/local/bin/bench start
+2025-07-22 14:07:19,543 INFO /usr/local/bin/bench watch
+2025-07-22 14:07:19,547 INFO /usr/local/bin/bench serve --port 8000
+2025-07-22 14:07:19,548 INFO /usr/local/bin/bench worker
+2025-07-22 14:08:37,366 INFO /usr/local/bin/bench schedule
+2025-07-22 14:08:37,366 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 14:08:37,368 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 14:11:34,243 INFO /usr/local/bin/bench schedule
+2025-07-22 14:11:34,243 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 14:11:34,243 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 14:21:09,453 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 14:21:09,462 INFO /usr/local/bin/bench schedule
+2025-07-22 14:21:09,462 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 15:39:13,712 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 15:39:13,712 INFO /usr/local/bin/bench schedule
+2025-07-22 15:39:13,712 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 15:47:16,098 INFO /usr/local/bin/bench schedule
+2025-07-22 15:47:16,174 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-22 15:47:16,178 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 18:00:02,407 INFO /usr/local/bin/bench --verbose --site all backup
+2025-07-22 19:01:06,626 INFO /usr/local/bin/bench start
+2025-07-22 19:01:07,041 INFO /usr/local/bin/bench watch
+2025-07-22 19:01:07,053 INFO /usr/local/bin/bench worker
+2025-07-22 19:01:07,070 INFO /usr/local/bin/bench serve --port 8000
+2025-07-22 19:01:54,636 INFO /usr/local/bin/bench schedule
+2025-07-22 19:01:54,665 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-22 19:01:54,666 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-23 09:52:40,669 INFO /usr/local/bin/bench start
+2025-07-23 09:52:40,890 INFO /usr/local/bin/bench watch
+2025-07-23 09:52:40,894 INFO /usr/local/bin/bench worker
+2025-07-23 09:52:40,946 INFO /usr/local/bin/bench serve --port 8000
+2025-07-23 09:53:20,632 INFO /usr/local/bin/bench start
+2025-07-23 09:53:20,856 INFO /usr/local/bin/bench watch
+2025-07-23 09:53:20,877 INFO /usr/local/bin/bench serve --port 8000
+2025-07-23 09:53:20,889 INFO /usr/local/bin/bench worker
+2025-07-23 09:54:38,283 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-23 09:54:38,307 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-23 09:54:38,308 INFO /usr/local/bin/bench schedule
+2025-07-23 10:46:10,863 INFO /usr/local/bin/bench --site excellminds.local export-fixtures
+2025-07-23 10:46:41,124 INFO /usr/local/bin/bench --site excellminds.local export-fixtures
+2025-07-23 10:52:51,902 INFO /usr/local/bin/bench --site excellminds.local export-fixtures
+2025-07-23 11:42:06,599 INFO /usr/local/bin/bench schedule
+2025-07-23 11:42:06,603 INFO /usr/local/bin/bench worker --queue short,default
+2025-07-23 11:42:06,613 INFO /usr/local/bin/bench worker --queue long,default,short
+2025-07-23 11:48:09,048 INFO /usr/local/bin/bench --site excellminds.local export-fixtures
+2025-07-23 11:53:43,041 INFO /usr/local/bin/bench --site excellminds.local export-fixtures
+2025-07-23 11:54:42,953 INFO /usr/local/bin/bench --site excellminds.local export-fixtures

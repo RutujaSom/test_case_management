@@ -1,0 +1,99 @@
+#######job Opening#######
+
+*On job opening i have created one child table doc-job opening custom doc 
+1.skill-link-skill
+2.skill Type-select-Required/opional
+
+created one custom table on job opening doctype-Skills
+which include reference option of job opening custom doc 
+1.skill-link-skill
+2.skill type-select-skill type
+
+
+#######interview#######
+*on interview i have created one chil table doc -interview custom
+1.skill-link-skill
+2.skill type-select-skill type
+3.rating-rating
+
+created one custom table on interview doctype -Intervew Skills
+which include reference option of interview custom
+
+*i have added one client script to render skill and skill type from job opening to interview form
+
+frappe.ui.form.on('Interview', {
+    onload: function(frm) {
+        if (frm.doc.job_opening && frm.is_new()) {
+            populate_interview_skills(frm);
+        }
+    },
+
+    job_opening: function(frm) {
+        if (frm.doc.job_opening) {
+            populate_interview_skills(frm);
+        }
+    }
+});
+
+function populate_interview_skills(frm) {
+    frappe.call({
+        method: "frappe.client.get",
+        args: {
+            doctype: "Job Opening",
+            name: frm.doc.job_opening
+        },
+        callback: function(r) {
+            if (r.message && r.message.custom_rquired_skills && r.message.custom_rquired_skills.length > 0) {
+                // Clear previous rows
+                frm.clear_table('custom_interview_skills');
+
+                // Copy skill and skill_type from Job Opening to Interview
+                r.message.custom_rquired_skills.forEach(skill_row => {
+                    let row = frm.add_child('custom_interview_skills');
+                    row.skill = skill_row.skill;
+                    row.skill_type = skill_row.skill_type;
+                    // rating to be entered manually
+                });
+
+                frm.refresh_field('custom_interview_skills');
+            } else {
+                frappe.msgprint(" No skills found in the selected Job Opening.");
+            }
+        }
+    });
+}
+
+
+######Notification for trigering interview##############
+
+i have created notification-Email to the applicant automatically when an interview is scheduled
+ on interview form i have created ne custiom Applicant _email field  and one applicant_name field 
+ on the basis of job Applicant Applicant email  and Applicant name should autopopulated.
+ 
+ 
+ 
+Trigger Notifcation for interviewer
+
+
+########Job Applicant Added Shortlisted Status############
+By using Property Setter i have aded Shortlisted status.
+
+on the basis of shortlisted field i have trigger mail to the applicant.
+
+
+
+#######Interview Round###########
+on the basis of interview round respecive opening will assign to respective interviewer.
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+

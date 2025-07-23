@@ -1,0 +1,104 @@
+set -o pipefail; /usr/bin/mariadb-dump --user=_05daee257faea6f4 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _05daee257faea6f4 | /usr/bin/gzip >> ./Example.local/private/backups/20250719_180003-Example_local-database.sql.gz
+
+Backup Summary for Example.local at 2025-07-19 18:00:05.268675
+Config  : ./Example.local/private/backups/20250719_180003-Example_local-site_config_backup.json 94.0B
+Database: ./Example.local/private/backups/20250719_180003-Example_local-database.sql.gz         224.1KiB
+Backup for Site Example.local has been successfully completed
+File ./excellminds.local/private/backups/20250718_180003-excellminds_local-site_config_backup.json is recent
+File ./excellminds.local/private/backups/20250719_120004-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250719_120004-excellminds_local-site_config_backup.json is recent
+File ./excellminds.local/private/backups/20250718_120003-excellminds_local-database.sql.gz is older than 24 hours
+File ./excellminds.local/private/backups/20250718_120003-excellminds_local-site_config_backup.json is older than 24 hours
+File ./excellminds.local/private/backups/20250718_180003-excellminds_local-database.sql.gz is recent
+set -o pipefail; /usr/bin/mariadb-dump --user=_24c6a08723cc2066 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _24c6a08723cc2066 | /usr/bin/gzip >> ./excellminds.local/private/backups/20250719_180005-excellminds_local-database.sql.gz
+
+Backup Summary for excellminds.local at 2025-07-19 18:00:11.283554
+Config  : ./excellminds.local/private/backups/20250719_180005-excellminds_local-site_config_backup.json 476.0B
+Database: ./excellminds.local/private/backups/20250719_180005-excellminds_local-database.sql.gz         2.1MiB
+Backup for Site excellminds.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_05daee257faea6f4 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _05daee257faea6f4 | /usr/bin/gzip >> ./Example.local/private/backups/20250720_180003-Example_local-database.sql.gz
+
+Backup Summary for Example.local at 2025-07-20 18:00:07.777908
+Config  : ./Example.local/private/backups/20250720_180003-Example_local-site_config_backup.json 94.0B
+Database: ./Example.local/private/backups/20250720_180003-Example_local-database.sql.gz         224.1KiB
+Backup for Site Example.local has been successfully completed
+File ./excellminds.local/private/backups/20250718_180003-excellminds_local-site_config_backup.json is older than 24 hours
+File ./excellminds.local/private/backups/20250719_120004-excellminds_local-database.sql.gz is older than 24 hours
+File ./excellminds.local/private/backups/20250719_120004-excellminds_local-site_config_backup.json is older than 24 hours
+File ./excellminds.local/private/backups/20250719_180005-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250718_180003-excellminds_local-database.sql.gz is older than 24 hours
+File ./excellminds.local/private/backups/20250719_180005-excellminds_local-site_config_backup.json is recent
+set -o pipefail; /usr/bin/mariadb-dump --user=_24c6a08723cc2066 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _24c6a08723cc2066 | /usr/bin/gzip >> ./excellminds.local/private/backups/20250720_180007-excellminds_local-database.sql.gz
+
+Backup Summary for excellminds.local at 2025-07-20 18:00:22.082905
+Config  : ./excellminds.local/private/backups/20250720_180007-excellminds_local-site_config_backup.json 476.0B
+Database: ./excellminds.local/private/backups/20250720_180007-excellminds_local-database.sql.gz         2.1MiB
+Backup for Site excellminds.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_05daee257faea6f4 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _05daee257faea6f4 | /usr/bin/gzip >> ./Example.local/private/backups/20250721_120003-Example_local-database.sql.gz
+
+Backup Summary for Example.local at 2025-07-21 12:00:04.987538
+Config  : ./Example.local/private/backups/20250721_120003-Example_local-site_config_backup.json 94.0B
+Database: ./Example.local/private/backups/20250721_120003-Example_local-database.sql.gz         224.1KiB
+Backup for Site Example.local has been successfully completed
+File ./excellminds.local/private/backups/20250720_180007-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250719_180005-excellminds_local-database.sql.gz is older than 24 hours
+File ./excellminds.local/private/backups/20250720_180007-excellminds_local-site_config_backup.json is recent
+File ./excellminds.local/private/backups/20250719_180005-excellminds_local-site_config_backup.json is older than 24 hours
+set -o pipefail; /usr/bin/mariadb-dump --user=_24c6a08723cc2066 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _24c6a08723cc2066 | /usr/bin/gzip >> ./excellminds.local/private/backups/20250721_120005-excellminds_local-database.sql.gz
+
+Backup Summary for excellminds.local at 2025-07-21 12:00:09.224268
+Config  : ./excellminds.local/private/backups/20250721_120005-excellminds_local-site_config_backup.json 476.0B
+Database: ./excellminds.local/private/backups/20250721_120005-excellminds_local-database.sql.gz         2.1MiB
+Backup for Site excellminds.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_05daee257faea6f4 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _05daee257faea6f4 | /usr/bin/gzip >> ./Example.local/private/backups/20250721_180002-Example_local-database.sql.gz
+
+Backup Summary for Example.local at 2025-07-21 18:00:02.926885
+Config  : ./Example.local/private/backups/20250721_180002-Example_local-site_config_backup.json 94.0B
+Database: ./Example.local/private/backups/20250721_180002-Example_local-database.sql.gz         224.1KiB
+Backup for Site Example.local has been successfully completed
+File ./excellminds.local/private/backups/20250720_180007-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250721_120005-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250720_180007-excellminds_local-site_config_backup.json is recent
+File ./excellminds.local/private/backups/20250721_120005-excellminds_local-site_config_backup.json is recent
+set -o pipefail; /usr/bin/mariadb-dump --user=_24c6a08723cc2066 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _24c6a08723cc2066 | /usr/bin/gzip >> ./excellminds.local/private/backups/20250721_180002-excellminds_local-database.sql.gz
+
+Backup Summary for excellminds.local at 2025-07-21 18:00:07.978085
+Config  : ./excellminds.local/private/backups/20250721_180002-excellminds_local-site_config_backup.json 476.0B
+Database: ./excellminds.local/private/backups/20250721_180002-excellminds_local-database.sql.gz         2.1MiB
+Backup for Site excellminds.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_05daee257faea6f4 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _05daee257faea6f4 | /usr/bin/gzip >> ./Example.local/private/backups/20250722_120002-Example_local-database.sql.gz
+
+Backup Summary for Example.local at 2025-07-22 12:00:04.204062
+Config  : ./Example.local/private/backups/20250722_120002-Example_local-site_config_backup.json 94.0B
+Database: ./Example.local/private/backups/20250722_120002-Example_local-database.sql.gz         224.1KiB
+Backup for Site Example.local has been successfully completed
+File ./excellminds.local/private/backups/20250720_180007-excellminds_local-database.sql.gz is older than 24 hours
+File ./excellminds.local/private/backups/20250721_120005-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250721_180002-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250721_180002-excellminds_local-site_config_backup.json is recent
+File ./excellminds.local/private/backups/20250720_180007-excellminds_local-site_config_backup.json is older than 24 hours
+File ./excellminds.local/private/backups/20250721_120005-excellminds_local-site_config_backup.json is recent
+set -o pipefail; /usr/bin/mariadb-dump --user=_24c6a08723cc2066 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _24c6a08723cc2066 | /usr/bin/gzip >> ./excellminds.local/private/backups/20250722_120004-excellminds_local-database.sql.gz
+
+Backup Summary for excellminds.local at 2025-07-22 12:00:10.804205
+Config  : ./excellminds.local/private/backups/20250722_120004-excellminds_local-site_config_backup.json 476.0B
+Database: ./excellminds.local/private/backups/20250722_120004-excellminds_local-database.sql.gz         2.1MiB
+Backup for Site excellminds.local has been successfully completed
+set -o pipefail; /usr/bin/mariadb-dump --user=_05daee257faea6f4 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _05daee257faea6f4 | /usr/bin/gzip >> ./Example.local/private/backups/20250722_180003-Example_local-database.sql.gz
+
+Backup Summary for Example.local at 2025-07-22 18:00:08.621841
+Config  : ./Example.local/private/backups/20250722_180003-Example_local-site_config_backup.json 94.0B
+Database: ./Example.local/private/backups/20250722_180003-Example_local-database.sql.gz         224.1KiB
+Backup for Site Example.local has been successfully completed
+File ./excellminds.local/private/backups/20250722_120004-excellminds_local-database.sql.gz is recent
+File ./excellminds.local/private/backups/20250722_120004-excellminds_local-site_config_backup.json is recent
+File ./excellminds.local/private/backups/20250721_120005-excellminds_local-database.sql.gz is older than 24 hours
+File ./excellminds.local/private/backups/20250721_180002-excellminds_local-database.sql.gz is older than 24 hours
+File ./excellminds.local/private/backups/20250721_180002-excellminds_local-site_config_backup.json is older than 24 hours
+File ./excellminds.local/private/backups/20250721_120005-excellminds_local-site_config_backup.json is older than 24 hours
+set -o pipefail; /usr/bin/mariadb-dump --user=_24c6a08723cc2066 --host=127.0.0.1 --port=3306 --password=********** --single-transaction --quick --lock-tables=false _24c6a08723cc2066 | /usr/bin/gzip >> ./excellminds.local/private/backups/20250722_180008-excellminds_local-database.sql.gz
+
+Backup Summary for excellminds.local at 2025-07-22 18:00:20.607903
+Config  : ./excellminds.local/private/backups/20250722_180008-excellminds_local-site_config_backup.json 476.0B
+Database: ./excellminds.local/private/backups/20250722_180008-excellminds_local-database.sql.gz         2.1MiB
+Backup for Site excellminds.local has been successfully completed
