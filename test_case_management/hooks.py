@@ -50,8 +50,6 @@ fixtures = [
             ["name", "=", "Test Case Management"]
         ]
     },
-
-    
     {
         "dt": "Custom Field",
         "filters": [["dt", "in", ["Test Project", "Test Plan", "Test Case", "Test Run"]]]
@@ -68,6 +66,10 @@ doctype_js = {
     "Test Plan": "public/js/test_plan.js",
     "Test Project": "public/js/test_project.js",
     "Test Run": "public/js/test_run.js"
+}
+
+doctype_list_js = {
+    "Test Case Bank": "public/js/test_case_bank_list.js",
 }
 
 doc_type_dashboards = {
