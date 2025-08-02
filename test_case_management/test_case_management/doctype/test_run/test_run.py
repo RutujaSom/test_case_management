@@ -76,16 +76,18 @@ class TestRun(Document):
                     continue
 
                 if not row.test_case_step_states:
+                    test_case_title = frappe.get_value("Test Case", row.test_case, "title") or row.test_case
                     frappe.throw(
-                        _("No step completion data found for Test Case: {0}").format(row.test_case),
+                        _("No step completion data found for Test Case: {0}").format(test_case_title),
                         title=_("Test Case Steps Mandatory")
                     )
 
                 try:
                     step_states = json.loads(row.test_case_step_states)
                 except Exception:
+                    test_case_title = frappe.get_value("Test Case", row.test_case, "title") or row.test_case
                     frappe.throw(
-                        _("Invalid step state format for Test Case: {0}").format(row.test_case)
+                        _("Invalid step state format for Test Case: {0}").format(test_case_title)
                     )
 
                 # Check if all steps are marked completed
@@ -96,8 +98,9 @@ class TestRun(Document):
 
                 # Throw error if any step is incomplete when status is Passed or Failed
                 if not all_completed:
+                    test_case_title = frappe.get_value("Test Case", row.test_case, "title") or row.test_case
                     frappe.throw(
-                        _("All steps must be completed for Test Case: {0} with status {1}").format(row.test_case, row.status),
+                        _("All steps must be completed for Test Case: {0} with status {1}").format(test_case_title, row.status),
                         title=_("Test Case Steps Mandatory")
                     )
 
