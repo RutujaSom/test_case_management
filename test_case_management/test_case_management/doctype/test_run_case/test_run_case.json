@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-12 15:51:52.920938",
+ "creation": "2025-08-02 14:25:19.639094",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -9,7 +9,10 @@
   "test_case",
   "status",
   "is_steps_done",
-  "remark"
+  "remark",
+  "view_steps",
+  "test_case_steps_view",
+  "test_case_step_states"
  ],
  "fields": [
   {
@@ -30,24 +33,42 @@
    "default": "0",
    "fieldname": "is_steps_done",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Steps Completed"
   },
   {
    "fieldname": "remark",
    "fieldtype": "Text",
    "label": "Remark"
+  },
+  {
+   "fieldname": "view_steps",
+   "fieldtype": "Button",
+   "label": "View Steps"
+  },
+  {
+   "fieldname": "test_case_steps_view",
+   "fieldtype": "HTML",
+   "label": "Test Case Steps View"
+  },
+  {
+   "fieldname": "test_case_step_states",
+   "fieldtype": "Text",
+   "hidden": 1,
+   "label": "Test Case Step States"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-12 16:13:12.131200",
+ "modified": "2025-08-02 15:28:08.991777",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run Case",
  "owner": "Administrator",
  "permissions": [],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
