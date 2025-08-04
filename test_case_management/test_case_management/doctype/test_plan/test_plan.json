@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-16 15:17:30.892513",
+ "creation": "2025-08-02 14:25:19.909842",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -12,9 +12,7 @@
   "end_date",
   "description",
   "status",
-  "test_case_steps_manadatory",
-  "test_cases",
-  "configuration"
+  "test_case_steps_manadatory"
  ],
  "fields": [
   {
@@ -66,18 +64,6 @@
    "fieldname": "test_case_steps_manadatory",
    "fieldtype": "Check",
    "label": "Test Case Steps Manadatory"
-  },
-  {
-   "fieldname": "test_cases",
-   "fieldtype": "Table",
-   "label": "Test Case",
-   "options": "Test Plan Cases"
-  },
-  {
-   "fieldname": "configuration",
-   "fieldtype": "Table",
-   "label": "Configuration",
-   "options": "Selected Group Children"
   }
  ],
  "grid_page_length": 50,
@@ -88,7 +74,7 @@
    "link_fieldname": "test_plan"
   }
  ],
- "modified": "2025-07-19 11:16:21.663164",
+ "modified": "2025-08-04 11:46:59.682688",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Plan",
@@ -107,6 +93,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "test_plan_name",
  "show_title_field_in_link": 1,
  "sort_field": "modified",

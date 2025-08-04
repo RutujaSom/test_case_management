@@ -56,35 +56,30 @@ def validate(self):
 def get_test_cases_query(doctype, txt, searchfield, start, page_len, filters):
     import json
 
-    # Convert filters from JSON string to dictionary if needed
     if isinstance(filters, str):
         filters = json.loads(filters)
 
-    conditions = []      # Stores SQL WHERE conditions
+    conditions = []
     query_filters = {
-        "txt": f"%{txt}%",  # Partial match on test_case_id or title
-        "start": start,
-        "page_len": page_len
+        "txt": f"%{txt}%",
     }
 
-    # Dynamically build filter conditions from passed filters
     for key, value in filters.items():
         if isinstance(value, list) and len(value) == 2:
             operator, val = value
             if isinstance(val, (str, int, float)):
-                conditions.append(f"`{key}` {operator} %({key})s")
+                conditions.append(f"{key} {operator} %({key})s")
                 query_filters[key] = val
         elif isinstance(value, (str, int, float)):
-            conditions.append(f"`{key}` = %({key})s")
+            conditions.append(f"{key} = %({key})s")
             query_filters[key] = value
 
-    # Combine all conditions with AND
     where_clause = " AND ".join(conditions)
     if where_clause:
         where_clause = " AND " + where_clause
 
-    # Execute dynamic SQL query with filters and pagination
-    return frappe.db.sql(f"""
+    # 🚨 Note: LIMIT values are directly injected, NOT parameterized
+    query = f"""
         SELECT
             name,
             test_case_id,
@@ -94,5 +89,7 @@ def get_test_cases_query(doctype, txt, searchfield, start, page_len, filters):
             (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
             {where_clause}
         ORDER BY creation DESC
-        LIMIT %(start)s, %(page_len)s
-    """, query_filters, as_dict=True)
+        LIMIT {int(start)}, {int(page_len)}
+    """
+
+    return frappe.db.sql(query, query_filters, as_dict=True)

@@ -16,7 +16,17 @@ doc_events = {
     "Test Plan": {
         "on_submit": "test_case_management.test_case_management.doctype.test_plan.test_plan.TestPlan.after_insert"
     }
+    
 }
+
+
+
+
+
+
+
+
+
 
 
 fixtures = [
@@ -34,7 +44,9 @@ fixtures = [
                 "Configuration",
                 "Selected Group Children",
                 "Group Child",
-                "Test Run Case"
+                "Test Run Case",
+                "Test Run Case Step",
+                "Test Case Module"
             ]]
         ]
     },

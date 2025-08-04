@@ -1,12 +1,12 @@
-frappe.ui.form.on('Test Plan', {
-    refresh(frm) {
-        if (!frm.is_new()) {
-            frm.add_custom_button('Add Test Cases', () => {
-                show_test_case_selector(frm);
-            });
-        }
-    }
-});
+// frappe.ui.form.on('Test Plan', {
+//     refresh(frm) {
+//         if (!frm.is_new()) {
+//             frm.add_custom_button('Add Test Cases', () => {
+//                 show_test_case_selector(frm);
+//             });
+//         }
+//     }
+// });
 
 // function show_test_case_selector(frm) {
 //     const existing_test_cases = (frm.doc.test_cases || []).map(row => row.test_case);
@@ -111,157 +111,157 @@ frappe.ui.form.on('Test Plan', {
 //     }, 200);
 // }
 
-function show_test_case_selector(frm) {
-    const existing_test_cases = (frm.doc.test_cases || []).map(row => row.test_case);
-    const checked_values = existing_test_cases.map(name => ({ name }));
-    const multi_select_dialog = new frappe.ui.form.MultiSelectDialog({
-        doctype: "Test Case",
-        target: frm,
-        size: 'large',
-        setters: {
-            project: frm.doc.project || ''
-        },
-        add_filters_group: 1,
-        date_field: "creation",
-        primary_action_label: "Add Test Cases",  // ✅ Required to get full objects in selections
-        columns: ["test_case_id", "title"],
-        default_values: existing_test_cases,  // ✅ Pre-select already added test cases
-        get_query() {
-            return {
-                query: "test_case_management.api.test_case.get_test_cases_query",
-                filters: {
-                    project: frm.doc.project || ''
-                }
-            };
-        },
+// function show_test_case_selector(frm) {
+//     const existing_test_cases = (frm.doc.test_cases || []).map(row => row.test_case);
+//     const checked_values = existing_test_cases.map(name => ({ name }));
+//     const multi_select_dialog = new frappe.ui.form.MultiSelectDialog({
+//         doctype: "Test Case",
+//         target: frm,
+//         size: 'large',
+//         setters: {
+//             project: frm.doc.project || ''
+//         },
+//         add_filters_group: 1,
+//         date_field: "creation",
+//         primary_action_label: "Add Test Cases",  // ✅ Required to get full objects in selections
+//         columns: ["test_case_id", "title"],
+//         default_values: existing_test_cases,  // ✅ Pre-select already added test cases
+//         get_query() {
+//             return {
+//                 query: "test_case_management.api.test_case.get_test_cases_query",
+//                 filters: {
+//                     project: frm.doc.project || ''
+//                 }
+//             };
+//         },
 
-        action(selections) {
-            // ✅ Now selections contain objects like { name, title, test_case_id }
-            const to_add = selections.filter(tc => !existing_test_cases.includes(tc));
+//         action(selections) {
+//             // ✅ Now selections contain objects like { name, title, test_case_id }
+//             const to_add = selections.filter(tc => !existing_test_cases.includes(tc));
 
-            if (to_add.length === 0) {
-                frappe.msgprint("No new Test Cases selected.");
-                return;
-            }
+//             if (to_add.length === 0) {
+//                 frappe.msgprint("No new Test Cases selected.");
+//                 return;
+//             }
 
-            to_add.forEach(name => {
-                frappe.db.get_value("Test Case", name, "title").then(res => {
-                    const title = res.message.title;
+//             to_add.forEach(name => {
+//                 frappe.db.get_value("Test Case", name, "title").then(res => {
+//                     const title = res.message.title;
 
-                    frm.add_child("test_cases", {
-                        test_case: name,
-                        test_case_title: title
-                    });
+//                     frm.add_child("test_cases", {
+//                         test_case: name,
+//                         test_case_title: title
+//                     });
 
-                    remaining--;
+//                     remaining--;
 
-                    if (remaining === 0) {
-                        frm.refresh_field("test_cases");
-                        frappe.msgprint(`${to_add.length} Test Case(s) added.`);
-                    }
-                });
-            });
+//                     if (remaining === 0) {
+//                         frm.refresh_field("test_cases");
+//                         frappe.msgprint(`${to_add.length} Test Case(s) added.`);
+//                     }
+//                 });
+//             });
 
-            frm.refresh_field("test_cases");
-            frappe.msgprint(`${to_add.length} Test Case(s) added.`);
-        }
-    });
+//             frm.refresh_field("test_cases");
+//             frappe.msgprint(`${to_add.length} Test Case(s) added.`);
+//         }
+//     });
 
-    multi_select_dialog.on_page_show = () => {
-        alert('....')
-        multi_select_dialog.set_checked_values(checked_values);
-        console.log("✅ Pre-selected test cases after data load.");
-    };
+//     multi_select_dialog.on_page_show = () => {
+//         alert('....')
+//         multi_select_dialog.set_checked_values(checked_values);
+//         console.log("✅ Pre-selected test cases after data load.");
+//     };
 
-}
-
-
-
-frappe.ui.form.on('Test Plan', {
-    refresh(frm) {
-        if (!frm.is_new()) {
-            frm.add_custom_button('Import Test Cases', () => {
-                open_import_dialog(frm);
-            });
-        }
-    }
-});
-
-function open_import_dialog(frm) {
-    const d = new frappe.ui.Dialog({
-        title: 'Import Test Cases',
-        fields: [
-            {
-                label: 'File Type',
-                fieldname: 'file_type',
-                fieldtype: 'Select',
-                options: ['CSV', 'Excel'],
-                reqd: 1
-            },
-            {
-                label: 'File',
-                fieldname: 'file_url',
-                fieldtype: 'Attach',
-                reqd: 1
-            }
-        ],
-        primary_action_label: 'Import',
-        primary_action(values) {
-            frappe.call({
-                method: 'test_case_management.api.test_plan.import_test_cases_from_file',
-                args: {
-                    test_plan: frm.doc.name,
-                    file_url: values.file_url,
-                    file_type: values.file_type
-                },
-                callback(r) {
-                    if (r.message) {
-                        frappe.msgprint(r.message);
-                        frm.reload_doc();
-                    }
-                    d.hide();
-                }
-            });
-        }
-    });
-
-    d.show();
-}
+// }
 
 
 
-frappe.ui.form.on('Test Plan', {
-    refresh(frm) {
-        if (!frm.is_new()) {
-            frm.add_custom_button("Export Template", () => {
-                let dialog = new frappe.ui.Dialog({
-                    title: "Export Template",
-                    fields: [
-                        {
-                            label: 'File Type',
-                            fieldname: 'file_type',
-                            fieldtype: 'Select',
-                            options: ['Excel', 'CSV'],
-                            default: 'Excel',
-                            reqd: 1
-                        }
-                    ],
-                    primary_action_label: 'Download',
-                    primary_action(values) {
-                        // Direct download via GET (file will be returned by frappe.response)
-                        const file_type = values.file_type;
-                        const url = `/api/method/test_case_management.api.test_plan.download_template?file_type=${file_type}`;
-                        window.open(url, '_blank');
-                        dialog.hide();
-                    }
-                });
+// frappe.ui.form.on('Test Plan', {
+//     refresh(frm) {
+//         if (!frm.is_new()) {
+//             frm.add_custom_button('Import Test Cases', () => {
+//                 open_import_dialog(frm);
+//             });
+//         }
+//     }
+// });
 
-                dialog.show();
-            });
+// function open_import_dialog(frm) {
+//     const d = new frappe.ui.Dialog({
+//         title: 'Import Test Cases',
+//         fields: [
+//             {
+//                 label: 'File Type',
+//                 fieldname: 'file_type',
+//                 fieldtype: 'Select',
+//                 options: ['CSV', 'Excel'],
+//                 reqd: 1
+//             },
+//             {
+//                 label: 'File',
+//                 fieldname: 'file_url',
+//                 fieldtype: 'Attach',
+//                 reqd: 1
+//             }
+//         ],
+//         primary_action_label: 'Import',
+//         primary_action(values) {
+//             frappe.call({
+//                 method: 'test_case_management.api.test_plan.import_test_cases_from_file',
+//                 args: {
+//                     test_plan: frm.doc.name,
+//                     file_url: values.file_url,
+//                     file_type: values.file_type
+//                 },
+//                 callback(r) {
+//                     if (r.message) {
+//                         frappe.msgprint(r.message);
+//                         frm.reload_doc();
+//                     }
+//                     d.hide();
+//                 }
+//             });
+//         }
+//     });
 
-        }
-    }
-});
+//     d.show();
+// }
+
+
+
+// frappe.ui.form.on('Test Plan', {
+//     refresh(frm) {
+//         if (!frm.is_new()) {
+//             frm.add_custom_button("Export Template", () => {
+//                 let dialog = new frappe.ui.Dialog({
+//                     title: "Export Template",
+//                     fields: [
+//                         {
+//                             label: 'File Type',
+//                             fieldname: 'file_type',
+//                             fieldtype: 'Select',
+//                             options: ['Excel', 'CSV'],
+//                             default: 'Excel',
+//                             reqd: 1
+//                         }
+//                     ],
+//                     primary_action_label: 'Download',
+//                     primary_action(values) {
+//                         // Direct download via GET (file will be returned by frappe.response)
+//                         const file_type = values.file_type;
+//                         const url = `/api/method/test_case_management.api.test_plan.download_template?file_type=${file_type}`;
+//                         window.open(url, '_blank');
+//                         dialog.hide();
+//                     }
+//                 });
+
+//                 dialog.show();
+//             });
+
+//         }
+//     }
+// });
 
 
 
