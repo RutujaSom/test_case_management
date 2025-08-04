@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-08-02 14:25:19.639094",
+ "creation": "2025-08-04 15:51:27.816788",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -54,7 +54,6 @@
   {
    "fieldname": "test_case_step_states",
    "fieldtype": "Text",
-   "hidden": 1,
    "label": "Test Case Step States"
   }
  ],
@@ -62,7 +61,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-08-02 15:28:08.991777",
+ "modified": "2025-08-04 17:06:24.914096",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run Case",
