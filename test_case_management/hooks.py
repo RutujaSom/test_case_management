@@ -28,6 +28,7 @@ doc_events = {
 
 
 
+
 fixtures = [
     {
         "dt": "DocType",
@@ -44,7 +45,8 @@ fixtures = [
                 "Selected Group Children",
                 "Group Child",
                 "Test Run Case",
-                "Test Run Case Step"
+                "Test Run Case Step",
+                "Test Case Module"
             ]]
         ]
     },
