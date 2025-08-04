@@ -84,7 +84,7 @@ def get_test_cases_query(doctype, txt, searchfield, start, page_len, filters):
             name,
             test_case_id,
             title
-        FROM tabTest Case
+        FROM `tabTest Case`
         WHERE
             (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
             {where_clause}
