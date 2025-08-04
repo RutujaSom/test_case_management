@@ -54,6 +54,7 @@
   {
    "fieldname": "test_case_step_states",
    "fieldtype": "Text",
+   "hidden": 1,
    "label": "Test Case Step States"
   }
  ],
@@ -61,7 +62,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-08-04 17:06:24.914096",
+ "modified": "2025-08-04 17:11:14.844716",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run Case",
