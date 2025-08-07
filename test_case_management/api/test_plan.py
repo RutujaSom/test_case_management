@@ -125,7 +125,7 @@ def download_template(file_type="Excel"):
     headers = [
         "test_case_id", "test_case", "steps",
         "pre_conditions", "expected_result", "status",
-        "priority", "type"
+        "priority", "type", "module"
     ]
     df = pd.DataFrame(columns=headers)
 
