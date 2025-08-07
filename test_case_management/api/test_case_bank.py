@@ -98,10 +98,12 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
         expected_result = (row.get("expected_result") or "").strip()
         status = (row.get("status") or "Open").strip()
         pre_conditions = (row.get("pre_conditions") or "").strip()
-        test_case_id = (row.get("test_case_id") or "").strip()
+        test_case_id = (row.get("test_case_id") or "").__str__()
         priority = (row.get('priority') or "").strip()
         type = (row.get('type') or "").strip()
-
+        module = (row.get("module") or "").strip()
+        raw_steps = (row.get("steps") or "").strip()
+        
         # Skip if required 'type' is missing
         if not type:
             print(f"Skipping row due to missing type (required): {row}")
@@ -115,6 +117,14 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
 
         # Steps can be a string like: "Step 1||Step 2"
         raw_steps = (row.get("steps") or "").strip()
+        
+        # Resolve custom_module from "Test Case Module"
+        module_def_name = None
+        if module:
+            module_def_name = frappe.db.get_value("Test Case Module", {"module_name": module})
+            if not module_def_name:
+                print(f"Skipping row: Module '{module}' not found in Test Case Module.")
+                continue
 
         # Skip if title or expected result is missing
         if not title or not expected_result:
@@ -131,6 +141,8 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
         test_case.status = status
         test_case.priority = priority
         test_case.test_case_type = type_doc_name
+        test_case.custom_module = module_def_name
+
 
         # Add steps to child table
         test_case.append("case_steps", {
