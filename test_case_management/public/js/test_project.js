@@ -11,27 +11,38 @@ frappe.ui.form.on('Test Project', {
 });
 
 
+function show_test_case_selector(frm) {
+    const multi_select_dialog = new frappe.ui.form.MultiSelectDialog({
+        doctype: "Test Case",
+        target: frm,
+        setters: {
+            project: frm.doc.name || '',
+            custom_module: frm.doc.custom_module || ''
+        },
+        add_filters_group: 1,
+        date_field: "creation",
+        primary_action_label: "Add Test Cases",
+        columns: ["test_case_id", "title"],
+        get_query() {
+            const dialog = multi_select_dialog.dialog;
+            const project = dialog.fields_dict.project?.get_value();
+            const custom_module = dialog.fields_dict.custom_module?.get_value();
+
+            return {
+                query: "test_case_management.api.test_case_bank.get_test_cases_query_for_project",
+                filters: {
+                    ...(project && { project }),
+                    ...(custom_module && { custom_module })
+                }
+            };
+        },
+
 /**
  * Opens a MultiSelectDialog to select Test Cases from the Test Case Bank
  * and creates corresponding Test Case documents linked to the current Test Project.
  */
-function show_test_case_selector(frm) {
-    new frappe.ui.form.MultiSelectDialog({
-        doctype: "Test Case Bank",
-        target: frm,
-        size: 'large',
-        add_filters_group: 1,  // Allows filtering inside the dialog
-        setters: {},  // No initial filters
-
-        // Columns to display in selection dialog
-        columns: ["test_case_id", "title"],
-
-        // Custom query to fetch relevant Test Case Bank records
-        get_query() {
-            return {
-                query: "test_case_management.api.test_case_bank.get_test_cases_query_for_project"
-            };
-        },
+// 
+ 
 
         // Action to perform after selecting one or more test cases
         async action(selections) {
@@ -102,6 +113,25 @@ function show_test_case_selector(frm) {
             frappe.msgprint(`${created} Test Case(s) created under project '${frm.doc.title}'.`);
         }
     });
+    frappe.after_ajax(() => {
+        const dialog = multi_select_dialog.dialog;
+        if (!dialog.fields_dict) return;
+
+        const module_field = dialog.fields_dict.custom_module;
+        if (module_field) {
+            module_field.df.onchange = () => multi_select_dialog.get_results();
+            module_field.$input.on('keydown', e => {
+                if (e.key === "Enter") multi_select_dialog.get_results();
+            });
+        }
+
+        const project_field = dialog.fields_dict.project;
+        if (project_field) {
+            project_field.df.read_only = 1;
+            project_field.refresh();
+        }
+    });
+
 }
 
 
@@ -195,3 +225,4 @@ frappe.ui.form.on('Test Project', {
         }
     }
 });
+

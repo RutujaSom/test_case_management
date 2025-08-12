@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-07 18:37:37.259375",
+ "creation": "2025-08-07 11:40:08.562598",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -15,7 +15,9 @@
   "status",
   "test_case_type",
   "estimated_time",
-  "attachment"
+  "attachment",
+  "custom_module",
+  "label"
  ],
  "fields": [
   {
@@ -88,12 +90,24 @@
    "fieldname": "attachment",
    "fieldtype": "Attach",
    "label": "Attachment"
+  },
+  {
+   "fieldname": "custom_module",
+   "fieldtype": "Link",
+   "label": "Module",
+   "options": "Test Case Module"
+  },
+  {
+   "fieldname": "label",
+   "fieldtype": "Link",
+   "label": "Label",
+   "options": "Test Case Module"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-07-11 11:15:48.259743",
+ "modified": "2025-08-07 14:45:51.660105",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case",
@@ -112,6 +126,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "title",
  "show_title_field_in_link": 1,
  "sort_field": "modified",
