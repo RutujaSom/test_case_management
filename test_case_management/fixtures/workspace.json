@@ -1,7 +1,7 @@
 [
  {
   "charts": [],
-  "content": "[{\"id\":\"Sk93UHwRnW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Test Case Management</span>\",\"col\":12}},{\"id\":\"JPmaKkGxMU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Zujb9KZ9YP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Configuration\",\"col\":3}},{\"id\":\"Ch2R8XxrXw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Project\",\"col\":3}},{\"id\":\"Byb_RBfBYo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Plan\",\"col\":3}},{\"id\":\"fDBbi6gnDX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Case Type\",\"col\":3}},{\"id\":\"JSNPOaGpN8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Case Bank\",\"col\":3}},{\"id\":\"ZA8O8osjH-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Case\",\"col\":3}},{\"id\":\"IynSzf9G6Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Run\",\"col\":3}}]",
+  "content": "[{\"id\":\"Sk93UHwRnW\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Test Case Management</span>\",\"col\":12}},{\"id\":\"JPmaKkGxMU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Zujb9KZ9YP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Configuration\",\"col\":3}},{\"id\":\"WbmEpySsPy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Case Module\",\"col\":3}},{\"id\":\"Ch2R8XxrXw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Project\",\"col\":3}},{\"id\":\"Byb_RBfBYo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Plan\",\"col\":3}},{\"id\":\"fDBbi6gnDX\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Case Type\",\"col\":3}},{\"id\":\"JSNPOaGpN8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Case Bank\",\"col\":3}},{\"id\":\"ZA8O8osjH-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Case\",\"col\":3}},{\"id\":\"IynSzf9G6Q\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Test Run\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -12,7 +12,7 @@
   "is_hidden": 0,
   "label": "Test Case Management",
   "links": [],
-  "modified": "2025-07-30 15:16:58.947938",
+  "modified": "2025-08-08 10:16:40.068162",
   "module": null,
   "name": "Test Case Management",
   "number_cards": [],
@@ -23,6 +23,23 @@
   "roles": [],
   "sequence_id": 2.0,
   "shortcuts": [
+   {
+    "color": "Grey",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Test Case Module",
+    "link_to": "Test Case Module",
+    "parent": "Test Case Management",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": "[]",
+    "type": "DocType",
+    "url": null
+   },
    {
     "color": "Grey",
     "doc_view": "List",

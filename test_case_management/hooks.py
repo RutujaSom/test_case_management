@@ -90,7 +90,7 @@ doc_type_dashboards = {
 
 
 
-# app_include_css = "/assets/test_case_management/css/custom_theme.css"
+app_include_css = "/assets/test_case_management/css/custom_theme.css"
 
 
 
