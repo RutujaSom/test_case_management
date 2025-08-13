@@ -70,11 +70,13 @@ frappe.ui.form.on('Test Plan', {
                 });
 
                 if (added_count > 0) {
+                    // run_doc.test_cases = run_doc.test_cases.filter(tc => tc && tc.test_case);
+
                     frappe.call({
                         method: "frappe.client.save",
                         args: { doc: run_doc }
                     }).then(() => {
-                        frappe.msgprint(`✅ Updated Test Run <a href="/app/test-run/${run_doc.name}" target="_blank">${run_doc.name}</a> with ${added_count} new Test Cases.`);
+                         frappe.msgprint(`✅ Updated Test Run <a href="/app/test-run/${run_doc.name}" target="_blank">${run_doc.name}</a> with ${added_count} new Test Cases.`);
                     });
                 }
             });

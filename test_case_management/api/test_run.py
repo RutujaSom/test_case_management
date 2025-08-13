@@ -39,3 +39,6 @@ def add_test_cases_to_existing_run(configurations, test_cases, test_plan):
             frappe.msgprint(f"ℹ No new Test Cases for Test Run {test_run.name}")
 
     frappe.db.commit()
+
+
+
