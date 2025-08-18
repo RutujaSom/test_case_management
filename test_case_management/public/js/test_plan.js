@@ -1,5 +1,3 @@
-
-// update test case name and title
 frappe.ui.form.on('Test Plan', {
     refresh(frm) {
         if (!frm.is_new()) {
@@ -14,83 +12,10 @@ frappe.ui.form.on('Test Plan', {
             }
         }
     },
-
-    after_save(frm) {
-    // Only run if there are test cases
-    if (!(frm.doc.test_cases || []).length) {
-        return;
+    before_save(frm){
+        frm.doc._temp_test_case = frm.test_case_obj;
     }
-
-    frappe.call({
-        method: "frappe.client.get_list",
-        args: {
-            doctype: "Test Run",
-            filters: { test_plan: frm.doc.name },
-            fields: ["name"],
-            limit_page_length: 1
-        }
-    }).then(res => {
-        if (res.message?.length) {
-            // ✅ Update existing Test Run
-            const run_name = res.message[0].name;
-            frappe.call({
-                method: "frappe.client.get",
-                args: { doctype: "Test Run", name: run_name }
-            }).then(run_res => {
-                let run_doc = run_res.message;
-                if (!Array.isArray(run_doc.test_case)) {
-                    run_doc.test_case = [];
-                }
-
-                let existing_keys = new Set(
-                    run_doc.test_case.map(row =>
-                        `${(row.test_case || "").trim()}__${(row.configuration || "").trim()}`
-                    )
-                );
-            
-
-                let added_count = 0;
-                (frm.doc.test_cases || []).forEach(tc => {
-                    const key = `${(tc.test_case || "").trim()}__${(tc.configuration || "").trim()}`;
-                    
-                    if (!existing_keys.has(key)) {
-                        run_doc.test_case.push({
-                            doctype: "Test Run Case",
-                            parent: run_doc.name,
-                            parenttype: "Test Run",
-                            parentfield: "test_case",
-                            test_case: tc.test_case,
-                            test_case_title: tc.test_case_title,
-                            configuration: tc.configuration,
-                            status: "Pending"
-                        });
-                        existing_keys.add(key);
-                        added_count++;
-                    }
-                });
-
-                if (added_count > 0) {
-                    // run_doc.test_cases = run_doc.test_cases.filter(tc => tc && tc.test_case);
-
-                    frappe.call({
-                        method: "frappe.client.save",
-                        args: { doc: run_doc }
-                    }).then(() => {
-                         frappe.msgprint(`✅ Updated Test Run <a href="/app/test-run/${run_doc.name}" target="_blank">${run_doc.name}</a> with ${added_count} new Test Cases.`);
-                    });
-                }
-            });
-        } else {
-            frappe.msgprint("⚠ No Test Run found for this Test Plan. Please create it first via 'Select Configurations'.");
-        }
-    });
-}
-
-                });
-            
-        
-
-
+});
 
 // ---------------------- Configuration Selection ----------------------
 function show_configurations_dialog(frm) {
@@ -122,7 +47,10 @@ function show_configurations_dialog(frm) {
 
                     frm.refresh_field("configuration");
                     d.hide();
-                    frm.save().then(() => frm.reload_doc());
+                    frappe.show_alert({ 
+                        message: `Configurations updated. Please save Test Plan to generate Test Runs.`,
+                        indicator: 'blue' 
+                    });
                 }
             });
 
@@ -249,42 +177,23 @@ function show_test_case_selector(frm) {
                     fields: ["name", "title"]
                 },
                 callback: function (res) {
-                    const test_case_map = {};
                     (res.message || []).forEach(tc => {
-                        test_case_map[tc.name] = tc.title;
-                    });
-
-                    selections.forEach(tc_name => {
-                        const title = test_case_map[tc_name] || "";
-                        selected_configurations.forEach(cfg => {
-                            frm.add_child("test_cases", {
-                                test_case: tc_name,
-                                test_case_title: title,
-                                configuration: cfg
-                            });
-                        });
+                        let row = frm.add_child("test_cases");
+                        row.test_case = tc.name;
+                        row.test_case_title = tc.title;
                     });
 
                     frm.refresh_field("test_cases");
-                    frappe.show_alert({ message: `${selections.length} Test Case(s) added.`, indicator: 'green' });
-
-                    // Push to backend so Test Run also gets updated
-                    frappe.call({
-                        method: "test_case_management.api.test_run.add_test_cases_to_existing_run",
-                        args: {
-                            configurations: selected_configurations,
-                            test_cases: selections,
-                            test_plan:""
-                        }
-                    });
-
                     multi_select_dialog.dialog.hide();
+
+                    frappe.show_alert({
+                        message: `${res.message.length} Test Case(s) added.`,
+                        indicator: 'green'
+                    });
                 }
             });
         }
     });
-
-
 
     frappe.after_ajax(() => {
         const dialog = multi_select_dialog.dialog;
