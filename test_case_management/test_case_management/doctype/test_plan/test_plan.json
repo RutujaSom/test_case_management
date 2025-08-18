@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-08-04 15:51:28.129221",
+ "creation": "2025-08-07 11:40:08.443179",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -13,8 +13,9 @@
   "description",
   "status",
   "test_case_steps_manadatory",
+  "test_cases",
   "configuration",
-  "test_cases"
+  "test_runs"
  ],
  "fields": [
   {
@@ -78,10 +79,16 @@
    "fieldtype": "Table",
    "label": "Test Case",
    "options": "Test Plan Cases"
+  },
+  {
+   "fieldname": "test_runs",
+   "fieldtype": "Table",
+   "label": "Test Runs",
+   "options": "Test Run Reference",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
- "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [
   {
@@ -89,7 +96,7 @@
    "link_fieldname": "test_plan"
   }
  ],
- "modified": "2025-08-06 15:52:11.334228",
+ "modified": "2025-08-13 11:21:58.133369",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Plan",

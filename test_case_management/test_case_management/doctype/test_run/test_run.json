@@ -6,13 +6,13 @@
  "engine": "InnoDB",
  "field_order": [
   "title",
-  "project",
+  "tag",
   "start_date",
-  "end_date",
   "tester",
+  "project",
   "test_plan",
-  "test_case",
-  "tag"
+  "end_date",
+  "test_case"
  ],
  "fields": [
   {
@@ -50,6 +50,9 @@
   {
    "fieldname": "test_plan",
    "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Test Plan",
    "options": "Test Plan",
    "reqd": 1
@@ -70,7 +73,7 @@
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-05 10:25:23.771702",
+ "modified": "2025-08-14 11:53:29.759393",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run",

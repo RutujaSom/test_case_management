@@ -1,0 +1,40 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-13 11:18:23.307964",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "test_run",
+  "test_run_title"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_run",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Run "
+  },
+  {
+   "fieldname": "test_run_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Test Run Title"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-08-13 11:37:28.778434",
+ "modified_by": "Administrator",
+ "module": "Test Case Management",
+ "name": "Test Run Reference",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
