@@ -5,24 +5,16 @@ from openpyxl import load_workbook
 import pandas as pd 
 
 
+
+
+
 @frappe.whitelist()
 def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len, filters):
     """
     Custom query to fetch Test Case Bank entries for use in dialogs (e.g., MultiSelectDialog).
-
-    Args:
-        doctype (str): The DocType being queried (not used here but required by Frappe's API).
-        txt (str): Search text input for filtering by test_case_id or title.
-        searchfield (str): The field being searched (not used directly).
-        start (int): Offset for pagination.
-        page_len (int): Number of records per page.
-        filters (dict): Additional filters (not used here, but included for API compatibility).
-
-    Returns:
-        List[Dict]: A list of dictionaries containing `name`, `test_case_id`, and `title`.
     """
-
-    # SQL query to filter records where either test_case_id or title matches the search text
+    module = filters.get('custom_module') or ''
+    
     return frappe.db.sql("""
         SELECT
             name,
@@ -30,21 +22,16 @@ def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len,
             title
         FROM `tabTest Case Bank`
         WHERE
-            test_case_id LIKE %(txt)s OR title LIKE %(txt)s
+            (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
+            AND module LIKE %(module)s
         ORDER BY creation DESC
         LIMIT %(start)s, %(page_len)s
     """, {
-        "txt": f"%{txt}%",        # Enables partial match search
-        "start": start,           # Offset for pagination
-        "page_len": page_len      # Limit number of records returned
-    }, as_dict=True)             # Return results as list of dictionaries
-
-
-
-
-
-
-
+        "txt": f"%{txt}%",
+        "module": f"%{module}%",
+        "start": start,
+        "page_len": page_len
+    }, as_dict=True)
 
 
 
@@ -98,10 +85,12 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
         expected_result = (row.get("expected_result") or "").strip()
         status = (row.get("status") or "Open").strip()
         pre_conditions = (row.get("pre_conditions") or "").strip()
-        test_case_id = (row.get("test_case_id") or "").strip()
+        test_case_id = (row.get("test_case_id") or "").__str__()
         priority = (row.get('priority') or "").strip()
         type = (row.get('type') or "").strip()
-
+        module = (row.get("module") or "").strip()
+        raw_steps = (row.get("steps") or "").strip()
+        
         # Skip if required 'type' is missing
         if not type:
             print(f"Skipping row due to missing type (required): {row}")
@@ -115,6 +104,14 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
 
         # Steps can be a string like: "Step 1||Step 2"
         raw_steps = (row.get("steps") or "").strip()
+        
+        # Resolve custom_module from "Test Case Module"
+        module_def_name = None
+        if module:
+            module_def_name = frappe.db.get_value("Test Case Module", {"module_name": module})
+            if not module_def_name:
+                print(f"Skipping row: Module '{module}' not found in Test Case Module.")
+                continue
 
         # Skip if title or expected result is missing
         if not title or not expected_result:
@@ -131,6 +128,8 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
         test_case.status = status
         test_case.priority = priority
         test_case.test_case_type = type_doc_name
+        test_case.custom_module = module_def_name
+
 
         # Add steps to child table
         test_case.append("case_steps", {
