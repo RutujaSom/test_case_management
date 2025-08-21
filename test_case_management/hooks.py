@@ -46,7 +46,8 @@ fixtures = [
                 "Group Child",
                 "Test Run Case",
                 "Test Run Case Step",
-                "Test Case Module"
+                "Test Case Module",
+                "Test Run Reference"
             ]]
         ]
     },
