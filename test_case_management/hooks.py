@@ -16,7 +16,6 @@ doc_events = {
     "Test Plan": {
         "on_submit": "test_case_management.test_case_management.doctype.test_plan.test_plan.TestPlan.after_insert"
     }
-    
 }
 
 

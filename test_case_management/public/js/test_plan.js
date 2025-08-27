@@ -1,10 +1,12 @@
 frappe.ui.form.on('Test Plan', {
     refresh(frm) {
         if (!frm.is_new()) {
+            // Button to select configurations
             frm.add_custom_button("Select Configurations", () => {
                 show_configurations_dialog(frm);
             });
 
+            // Button to add test cases only if configurations exist
             if ((frm.doc.configuration || []).length > 0) {
                 frm.add_custom_button("Add Test Cases", () => {
                     show_test_case_selector(frm);
@@ -12,112 +14,146 @@ frappe.ui.form.on('Test Plan', {
             }
         }
     },
-    before_save(frm){
+
+    before_save(frm) {
+        // Temporary object to store selected test cases if needed
         frm.doc._temp_test_case = frm.test_case_obj;
     }
 });
 
 // ---------------------- Configuration Selection ----------------------
 function show_configurations_dialog(frm) {
-    const existingTitles = (frm.doc.configuration || []).map(row => row.title);
-
+    // Step 1: Get all Test Runs linked to this Test Plan
     frappe.call({
         method: "frappe.client.get_list",
         args: {
-            doctype: "Configuration",
-            fields: ["name", "title"]
+            doctype: "Test Run",
+            filters: { test_plan: frm.doc.name },
+            fields: ["name"] // Only fetch main field
         },
-        callback: function (r) {
-            const configs = r.message;
+        callback: function(run_list) {
+            const run_names = (run_list.message || []).map(r => r.name);
 
-            const d = new frappe.ui.Dialog({
-                title: 'Select Configurations and Children',
-                fields: [{ fieldtype: 'HTML', fieldname: 'config_section' }],
-                primary_action_label: 'OK',
-                primary_action() {
-                    frm.clear_table("configuration");
-
-                    d.$wrapper.find('.group-child-checkbox:checked').each(function () {
-                        const title = $(this).data('title');
-                        const config_name = $(this).data('config');
-                        let row = frm.add_child("configuration");
-                        row.title = title;
-                        row.configuration = config_name;
-                    });
-
-                    frm.refresh_field("configuration");
-                    d.hide();
-                    frappe.show_alert({ 
-                        message: `Configurations updated. Please save Test Plan to generate Test Runs.`,
-                        indicator: 'blue' 
-                    });
-                }
-            });
-
-            d.show();
-
-            const configPromises = configs.map(cfg =>
+            // Fetch all configurations used in each Test Run
+            const usedConfigurationsPromises = run_names.map(run_name => 
                 frappe.call({
                     method: "frappe.client.get",
-                    args: { doctype: "Configuration", name: cfg.name }
-                }).then(res => ({
-                    config: cfg,
-                    children: res.message.group_child || []
-                }))
+                    args: { doctype: "Test Run", name: run_name }
+                }).then(res => {
+                    return (res.message.configuration || []).map(row => row.configuration);
+                })
             );
 
-            Promise.all(configPromises).then(results => {
-                const html = results.map(({ config, children }) => {
-                    const allSelected = children.length > 0 && children.every(child =>
-                        existingTitles.includes(child.title)
-                    );
+            Promise.all(usedConfigurationsPromises).then(results => {
+                const usedConfigurations = [].concat(...results);
 
-                    const config_checkbox = `
-                        <div>
-                            <label>
-                                <input type="checkbox" class="config-checkbox" data-config="${config.name}"
-                                    ${allSelected ? 'checked' : ''}>
-                                <strong>${config.title || config.name}</strong>
-                            </label>
-                        </div>
-                    `;
+                // Step 2: Get all configurations
+                frappe.call({
+                    method: "frappe.client.get_list",
+                    args: {
+                        doctype: "Configuration",
+                        fields: ["name", "title"]
+                    },
+                    callback: function (r) {
+                        const configs = r.message;
 
-                    const children_html = children.map(child => {
-                        const isChecked = existingTitles.includes(child.title);
-                        return `
-                            <div style="margin-left: 20px;">
-                                <input type="checkbox" class="group-child-checkbox"
-                                    data-title="${child.title}"
-                                    data-config="${config.name}"
-                                    id="chk-${config.name}-${child.title}"
-                                    ${isChecked ? 'checked' : ''}>
-                                <label for="chk-${config.name}-${child.title}">${child.title}</label>
-                            </div>
-                        `;
-                    }).join("");
+                        const d = new frappe.ui.Dialog({
+                            title: 'Select Configurations and Children',
+                            fields: [{ fieldtype: 'HTML', fieldname: 'config_section' }],
+                            primary_action_label: 'OK',
+                            primary_action() {
+                                frm.clear_table("configuration");
 
-                    return `
-                        <div style="margin-bottom: 15px;">
-                            ${config_checkbox}
-                            <div class="child-container" id="children-${config.name}">
-                                ${children_html}
-                            </div>
-                        </div>
-                    `;
-                }).join("");
+                                // Add checked child configurations
+                                d.$wrapper.find('.group-child-checkbox:checked:not(:disabled)').each(function () {
+                                    const title = $(this).data('title');
+                                    const config_name = $(this).data('config');
+                                    let row = frm.add_child("configuration");
+                                    row.title = title;
+                                    row.configuration = config_name;
+                                });
 
-                d.get_field('config_section').$wrapper.html(html);
+                                frm.refresh_field("configuration");
+                                d.hide();
+                                frappe.show_alert({ 
+                                    message: `Configurations updated. Please save Test Plan to generate Test Runs.`,
+                                    indicator: 'blue' 
+                                });
+                            }
+                        });
 
-                d.$wrapper.on('change', '.config-checkbox', function () {
-                    const config_name = $(this).data('config');
-                    $(`#children-${config_name} .group-child-checkbox`).prop('checked', this.checked);
-                });
+                        d.show();
 
-                d.$wrapper.on('change', '.group-child-checkbox', function () {
-                    const config_name = $(this).data('config');
-                    const all_children = $(`#children-${config_name} .group-child-checkbox`);
-                    const all_checked = all_children.length === all_children.filter(':checked').length;
-                    $(`.config-checkbox[data-config="${config_name}"]`).prop('checked', all_checked);
+                        // Get children for each configuration
+                        const configPromises = configs.map(cfg =>
+                            frappe.call({
+                                method: "frappe.client.get",
+                                args: { doctype: "Configuration", name: cfg.name }
+                            }).then(res => ({
+                                config: cfg,
+                                children: res.message.group_child || []
+                            }))
+                        );
+
+                        Promise.all(configPromises).then(results => {
+                            const html = results.map(({ config, children }) => {
+                                // Disabled if used in any Test Run
+                                const isUsed = usedConfigurations.includes(config.name);
+
+                                const config_checkbox = `
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" class="config-checkbox" data-config="${config.name}"
+                                                ${isUsed ? 'disabled' : ''}>
+                                            <strong>${config.title || config.name} ${isUsed ? '(Used)' : ''}</strong>
+                                        </label>
+                                    </div>
+                                `;
+
+                                const children_html = children.map(child => {
+                                    // Always unchecked if no Test Run exists
+                                    const isChecked = false;
+
+                                    return `
+                                        <div style="margin-left: 20px;">
+                                            <input type="checkbox" class="group-child-checkbox"
+                                                data-title="${child.title}"
+                                                data-config="${config.name}"
+                                                id="chk-${config.name}-${child.title}"
+                                                ${isChecked ? 'checked' : ''}
+                                                ${isUsed ? 'disabled' : ''}>
+                                            <label for="chk-${config.name}-${child.title}">${child.title}</label>
+                                        </div>
+                                    `;
+                                }).join("");
+
+                                return `
+                                    <div style="margin-bottom: 15px;">
+                                        ${config_checkbox}
+                                        <div class="child-container" id="children-${config.name}">
+                                            ${children_html}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join("");
+
+                            d.get_field('config_section').$wrapper.html(html);
+
+                            // Sync parent checkbox with children
+                            d.$wrapper.on('change', '.config-checkbox', function () {
+                                const config_name = $(this).data('config');
+                                $(`#children-${config_name} .group-child-checkbox:not(:disabled)`).prop('checked', this.checked);
+                            });
+
+                            // Sync children checkboxes with parent
+                            d.$wrapper.on('change', '.group-child-checkbox:not(:disabled)', function () {
+                                const config_name = $(this).data('config');
+                                const all_children = $(`#children-${config_name} .group-child-checkbox:not(:disabled)`);
+                                const all_checked = all_children.length === all_children.filter(':checked').length;
+                                $(`.config-checkbox[data-config="${config_name}"]:not(:disabled)`).prop('checked', all_checked);
+                            });
+                        });
+                    }
                 });
             });
         }
@@ -166,7 +202,7 @@ function show_test_case_selector(frm) {
                 return;
             }
 
-            // Clear the table so we only keep the newly selected ones
+            // Clear existing test cases before adding new ones
             frm.clear_table("test_cases");
 
             frappe.call({
@@ -187,7 +223,7 @@ function show_test_case_selector(frm) {
                     multi_select_dialog.dialog.hide();
 
                     frappe.show_alert({
-                        message: `${res.message.length} Test Case(s) added.`,
+                        // message: `${res.message.length} Test Case(s) added.`,
                         indicator: 'green'
                     });
                 }
@@ -214,4 +250,3 @@ function show_test_case_selector(frm) {
         }
     });
 }
-

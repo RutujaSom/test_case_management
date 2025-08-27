@@ -71,15 +71,21 @@ function show_test_case_selector(frm) {
                         };
                     });
 
+                    
+
+
+                    
+
                     // Build a new Test Case document from the bank case
                     const new_test_case_doc = {
                         doctype: "Test Case",
                         title: details.title,
                         test_case_id: details.test_case_id,
                         priority: details.priority || "Medium",
+                        
                         pre_conditions: details.pre_conditions || "",
                         expected_results: details.expected_results || "",
-                        status: details.status || "Draft",
+                        status:"Draft",
                         test_case_type: details.test_case_type || "",
                         estimated_time: details.estimated_time || "",
                         attachment: details.attachment || "",
