@@ -116,36 +116,81 @@ def import_test_cases_from_file(file_url, test_plan, file_type):
     return f"{count} Test Case(s) imported and linked to Test Plan."
 
 
+# @frappe.whitelist()
+# def download_template(file_type="Excel"):
+#     """
+#     Provide a blank template (CSV or Excel) with required headers for importing test cases.
+#     """
+
+#     headers = [
+#         "test_case_id", "test_case", "steps",
+#         "pre_conditions", "expected_result",
+#         "priority", "type", "module"
+#     ]
+    
+#     df = pd.DataFrame(columns=headers)
+
+#     if file_type == "CSV":
+#         # Generate CSV file content
+#         output = io.StringIO()
+#         df.to_csv(output, index=False)
+#         content = output.getvalue()
+
+#         # Set response metadata for file download
+#         frappe.response.filename = "test_case_template.csv"
+#         frappe.response.filecontent = content
+#         frappe.response.type = "binary"
+#     else:
+#         # Generate Excel file content
+#         output = io.BytesIO()
+#         with pd.ExcelWriter(output, engine="openpyxl") as writer:
+#             df.to_excel(writer, index=False)
+
+#         # Set response metadata for file download
+#         frappe.response.filename = "test_case_template.xlsx"
+#         frappe.response.filecontent = output.getvalue()
+#         frappe.response.type = "binary"
+
+
+
 @frappe.whitelist()
 def download_template(file_type="Excel"):
     """
     Provide a blank template (CSV or Excel) with required headers for importing test cases.
+    Includes default priority values: High, Medium, Low
     """
 
     headers = [
         "test_case_id", "test_case", "steps",
-        "pre_conditions", "expected_result", "status",
+        "pre_conditions", "expected_result",
         "priority", "type", "module"
     ]
-    df = pd.DataFrame(columns=headers)
+
+    # Add default priority values
+    sample_data = [
+        {"test_case_id": "", "test_case": "", "steps": "", "pre_conditions": "",
+         "expected_result": "", "priority": "High", "type": "", "module": ""},
+        {"test_case_id": "", "test_case": "", "steps": "", "pre_conditions": "",
+         "expected_result": "", "priority": "Medium", "type": "", "module": ""},
+        {"test_case_id": "", "test_case": "", "steps": "", "pre_conditions": "",
+         "expected_result": "", "priority": "Low", "type": "", "module": ""}
+    ]
+
+    df = pd.DataFrame(sample_data, columns=headers)
 
     if file_type == "CSV":
-        # Generate CSV file content
         output = io.StringIO()
         df.to_csv(output, index=False)
         content = output.getvalue()
 
-        # Set response metadata for file download
         frappe.response.filename = "test_case_template.csv"
         frappe.response.filecontent = content
         frappe.response.type = "binary"
     else:
-        # Generate Excel file content
         output = io.BytesIO()
         with pd.ExcelWriter(output, engine="openpyxl") as writer:
             df.to_excel(writer, index=False)
 
-        # Set response metadata for file download
         frappe.response.filename = "test_case_template.xlsx"
         frappe.response.filecontent = output.getvalue()
         frappe.response.type = "binary"

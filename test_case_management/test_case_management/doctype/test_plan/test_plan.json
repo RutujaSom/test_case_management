@@ -84,8 +84,7 @@
    "fieldname": "test_runs",
    "fieldtype": "Table",
    "label": "Test Runs",
-   "options": "Test Run Reference",
-   "read_only": 1
+   "options": "Test Run Reference"
   }
  ],
  "grid_page_length": 50,
@@ -96,7 +95,7 @@
    "link_fieldname": "test_plan"
   }
  ],
- "modified": "2025-08-13 11:21:58.133369",
+ "modified": "2025-08-26 16:14:40.818467",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Plan",

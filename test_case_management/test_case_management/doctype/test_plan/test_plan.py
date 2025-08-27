@@ -1,108 +1,79 @@
-# from frappe.model.document import Document
-# from itertools import product
-# import frappe
-
-# class TestPlan(Document):
-#     def on_update(self):
-#         # only when configurations exist
-#         if not self.configuration:
-#             # frappe.msgprint("⚠️ No configurations selected.")
-#             return
-
-#         # Step 1: build config_map
-#         config_map = {}
-#         for child in self.configuration:
-#             if child.configuration and child.title:
-#                 config_map.setdefault(child.configuration, []).append(child.title)
-
-#         if not config_map:
-#             frappe.msgprint("⚠️ No valid configuration data found.")
-#             return
-
-#         # Step 2: generate config combinations
-#         combos = list(product(*config_map.values()))
-
-#         for combo in combos:
-#             run_title = " - ".join(combo)
-
-#             # Step 3: check if run already exists
-#             existing_run = frappe.get_all(
-#                 "Test Run",
-#                 filters={"test_plan": self.name, "title": run_title},
-#                 limit=1,
-#                 pluck="name"
-#             )
-
-#             if existing_run:
-#                 test_run = frappe.get_doc("Test Run", existing_run[0])
-#             else:
-#                 test_run = frappe.new_doc("Test Run")
-#                 test_run.test_plan = self.name
-#                 test_run.project = self.project
-#                 test_run.title = run_title
-
-#             # Step 4: attach test cases (old + new)
-#             existing_cases = {row.test_case for row in test_run.test_case}
-
-#             for tc in self.test_cases or []:
-#                 if tc.test_case not in existing_cases:
-#                     test_run.append("test_case", {
-#                         "test_case": tc.test_case,
-#                         "test_case_title": tc.test_case_title,
-#                         "status": "Pending"
-#                     })
-
-#             test_run.save(ignore_permissions=True)
-
-#         frappe.msgprint(f"✅ Synced {len(combos)} Test Run(s) with mapped Test Cases.")
-
-
-
+import frappe
 from frappe.model.document import Document
 from itertools import product
-import frappe
 
 class TestPlan(Document):
     def on_update(self):
-        if not self.configuration:
-            return
+        # Generate runs only for new configurations (first-time only)
+        if getattr(self, "configuration", None):
+            self.generate_or_sync_runs()
 
-        # Step 1: build config_map
+        # Map test cases to existing runs
+        if getattr(self, "test_cases", None):
+            self.map_test_cases_to_runs()
+
+    def generate_or_sync_runs(self):
+        """Generate Test Runs ONLY if none exist. 
+        If deleted manually, they will never be recreated."""
+        self._new_runs = []
+
+        # If any Test Runs already exist, skip creation completely
+        existing_runs = frappe.get_all(
+            "Test Run",
+            filters={"test_plan": self.name},
+            fields=["name", "title"]
+        )
+        if existing_runs:
+            return  # ✅ Don't recreate anything
+
+        # Build configuration map
         config_map = {}
-        for child in self.configuration:
+        for child in getattr(self, "configuration", []):
             if child.configuration and child.title:
                 config_map.setdefault(child.configuration, []).append(child.title)
 
         if not config_map:
             return
 
-        # Step 2: generate config combinations
         combos = list(product(*config_map.values()))
+        all_titles = [" - ".join(combo) for combo in combos]
 
-        created_runs = []
+        # Create fresh runs only once
+        for run_title in all_titles:
+            run = frappe.get_doc({
+                "doctype": "Test Run",
+                "test_plan": self.name,
+                "project": getattr(self, "project", None),
+                "title": run_title
+            })
+            run.insert(ignore_permissions=True)
 
-        for combo in combos:
-            run_title = " - ".join(combo)
+            # Append reference in child table
+            self.append("test_runs", {
+                "test_run": run.name,
+                "test_run_title": run_title
+            })
+            self._new_runs.append(run.name)
 
-            # Step 3: check if run already exists
-            existing_run = frappe.get_all(
-                "Test Run",
-                filters={"test_plan": self.name, "title": run_title},
-                limit=1,
-                pluck="name"
-            )
+        self.db_update_all()
+        frappe.db.commit()
 
-            if existing_run:
-                test_run = frappe.get_doc("Test Run", existing_run[0])
-            else:
-                test_run = frappe.new_doc("Test Run")
-                test_run.test_plan = self.name
-                test_run.project = self.project
-                test_run.title = run_title
+    def map_test_cases_to_runs(self):
+        """Add new test cases to existing runs, skip newly created runs in same transaction"""
+        runs = frappe.get_all(
+            "Test Run",
+            filters={"test_plan": self.name},
+            pluck="name"
+        )
 
-            # Step 4: attach test cases (old + new)
+        for run_name in runs:
+            if hasattr(self, "_new_runs") and run_name in self._new_runs:
+                continue
+
+            test_run = frappe.get_doc("Test Run", run_name)
             existing_cases = {row.test_case for row in test_run.test_case}
-            for tc in self.test_cases or []:
+
+            for tc in getattr(self, "test_cases", []):
                 if tc.test_case not in existing_cases:
                     test_run.append("test_case", {
                         "test_case": tc.test_case,
@@ -111,20 +82,3 @@ class TestPlan(Document):
                     })
 
             test_run.save(ignore_permissions=True)
-            created_runs.append(test_run.name)
-
-        # Step 5: update Test Plan’s child table "test_runs"
-        self.set("test_runs", [])
-        for run_name in created_runs:
-            run_doc = frappe.get_doc("Test Run", run_name)
-            self.append("test_runs", {
-                "test_run": run_doc.name,
-                "test_run_title": run_doc.title
-            })
-
-        # save silently (avoid recursion by not calling self.save again in on_update)
-        frappe.db.commit()
-
-        frappe.msgprint(f"✅ Synced {len(combos)} Test Run(s) with mapped Test Cases.")
-
-
