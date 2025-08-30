@@ -69,7 +69,13 @@ fixtures = [
     {
         "dt": "Property Setter",
         "filters": [["doc_type", "in", ["Test Project", "Test Plan", "Test Case", "Test Run"]]]
+    },
+    
+    {
+        "dt": "Page",
+        "filters": [["name", "=", "test_management_dashboard"]]  
     }
+    
 
 ]
 

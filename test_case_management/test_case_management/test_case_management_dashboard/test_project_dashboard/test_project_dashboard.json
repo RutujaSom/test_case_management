@@ -1,7 +1,15 @@
 {
- "cards": [],
+ "cards": [
+  {
+   "card": "Test Plan Summary-1"
+  }
+ ],
  "charts": [
   {
+   "width": "Half"
+  },
+  {
+   "chart": "Test Case Summary",
    "width": "Half"
   }
  ],
@@ -12,7 +20,7 @@
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "modified": "2025-08-26 16:56:40.646509",
+ "modified": "2025-08-29 11:08:24.825039",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Project Dashboard",
