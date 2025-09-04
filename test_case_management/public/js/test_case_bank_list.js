@@ -10,7 +10,6 @@ frappe.listview_settings['Test Case Bank'] = {
     }
 };
 
-
 function open_import_dialog() {
     const d = new frappe.ui.Dialog({
         title: 'Import Test Cases',
@@ -40,7 +39,7 @@ function open_import_dialog() {
                 callback(r) {
                     if (r.message) {
                         frappe.msgprint(r.message);
-                        frappe.listview.refresh();  // refresh the list view
+                        listview.refresh();
                     }
                     d.hide();
                 }
@@ -51,9 +50,7 @@ function open_import_dialog() {
     d.show();
 }
 
-
-
-function open_export_dialog(){
+function open_export_dialog() {
     const dialog = new frappe.ui.Dialog({
         title: "Export Template",
         fields: [
@@ -76,4 +73,4 @@ function open_export_dialog(){
     });
 
     dialog.show();
-};
+}
