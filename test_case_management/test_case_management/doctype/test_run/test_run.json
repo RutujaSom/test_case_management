@@ -12,6 +12,7 @@
   "project",
   "test_plan",
   "end_date",
+  "custom_module",
   "test_case"
  ],
  "fields": [
@@ -67,13 +68,19 @@
    "fieldname": "tag",
    "fieldtype": "Data",
    "label": "Tag"
+  },
+  {
+   "fieldname": "custom_module",
+   "fieldtype": "Link",
+   "label": "Module",
+   "options": "Test Case Module"
   }
  ],
  "grid_page_length": 50,
  "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-14 11:53:29.759393",
+ "modified": "2025-08-30 15:07:41.192703",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run",
