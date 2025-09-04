@@ -1,3 +1,5 @@
+
+
 frappe.pages['test_management_dashboard'].on_page_load = function(wrapper) {
     var page = frappe.ui.make_app_page({
         parent: wrapper,
@@ -5,22 +7,21 @@ frappe.pages['test_management_dashboard'].on_page_load = function(wrapper) {
         single_column: true
     });
 
-    // Dashboard container
     let dashboard = $(`<div class="dashboard-container container mt-4">`).appendTo(page.body);
 
     // --- Filters Row ---
     let filter_row = $(`
         <div class="row filters-row mb-4">
             <div class="col-md-3">
-                <label>User</label>
-                <select id="filter-user" class="form-control">
-                    <option value="">All Users</option>
-                </select>
-            </div>
-            <div class="col-md-3">
                 <label>Project</label>
                 <select id="filter-project" class="form-control">
                     <option value="">All Projects</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label>User</label>
+                <select id="filter-user" class="form-control">
+                    <option value="">All Users</option>
                 </select>
             </div>
             <div class="col-md-2 d-flex align-items-end">
@@ -57,80 +58,56 @@ frappe.pages['test_management_dashboard'].on_page_load = function(wrapper) {
         <div id="test-run-bar" style="height: 300px;"></div>
     `);
 
-    // --- Global chart references ---
     let testCaseStatusChart = null;
     let testCasePriorityChart = null;
     let testRunChart = null;
 
-    // --- Load filter options (Users + Projects) ---
     function loadFilters() {
-        // Users
+        loadProjects();
+        loadUsers("");
+
+        $("#filter-project").on("change", function() {
+            let selectedProject = $(this).val();
+            loadUsers(selectedProject);
+            loadDashboardData("", selectedProject);
+        });
+    }
+
+    function loadProjects() {
+        let $proj = $("#filter-project");
+        $proj.empty().append(`<option value="">All Projects</option>`);
         frappe.call({
             method: "frappe.client.get_list",
             args: {
-                doctype: "User",
-                fields: ["name"],
-                filters: { enabled: 1 }
+                doctype: "Test Project",
+                fields: ["name","title"]
             },
             callback: function(r) {
                 if (r.message) {
-                    let $user = $("#filter-user");
-                    r.message.forEach(u => {
-                        $user.append(`<option value="${u.name}">${u.name}</option>`);
-                    });
-
-                    // When user changes, reload projects accordingly
-                    $user.on("change", function() {
-                        let selectedUser = $(this).val();
-                        loadProjects(selectedUser);
+                    r.message.forEach(p => {
+                        $proj.append(`<option value="${p.name}">${p.title}</option>`);
                     });
                 }
             }
         });
-
-        // Initial load → all projects
-        loadProjects();
     }
 
-    // --- Load Projects ---
-    function loadProjects(user) {
-        let $proj = $("#filter-project");
-        $proj.empty();
-        $proj.append(`<option value="">All Projects</option>`);
-
-        if (!user || user === "Administrator") {
-            // Show all projects
-            frappe.call({
-                method: "frappe.client.get_list",
-                args: {
-                    doctype: "Test Project",
-                    fields: ["name","title"]
-                },
-                callback: function(r) {
-                    if (r.message) {
-                        r.message.forEach(p => {
-                            $proj.append(`<option value="${p.name}">${p.title}</option>`);
-                        });
-                    }
+    function loadUsers(project) {
+        let $user = $("#filter-user");
+        $user.empty().append(`<option value="">All Users</option>`);
+        frappe.call({
+            method: "test_case_management.test_case_management.page.test_management_dashboard.test_management_dashboard.get_project_users",
+            args: { project: project || "" },
+            callback: function(r) {
+                if (r.message) {
+                    r.message.forEach(u => {
+                        $user.append(`<option value="${u.tester}">${u.full_name}</option>`);
+                    });
                 }
-            });
-        } else {
-            // Show only projects linked to that user
-            frappe.call({
-                method: "test_case_management.test_case_management.page.test_management_dashboard.test_management_dashboard.get_user_projects",
-                args: { user: user },
-                callback: function(r) {
-                    if (r.message) {
-                        r.message.forEach(p => {
-                            $proj.append(`<option value="${p.project}">${p.title || p.project}</option>`);
-                        });
-                    }
-                }
-            });
-        }
+            }
+        });
     }
 
-    // --- Load Dashboard Data ---
     function loadDashboardData(user, project) {
         frappe.call({
             method: "test_case_management.test_case_management.page.test_management_dashboard.test_management_dashboard.get_dashboard_data",
@@ -139,10 +116,10 @@ frappe.pages['test_management_dashboard'].on_page_load = function(wrapper) {
                 if (!r.message) return;
                 let data = r.message;
 
-                // --- Test Plan Summary ---
+                // --- Test Plan Summary Cards ---
                 $('#test-plan-cards').html(`
                     <div class="col-md-4">
-                        <div class="card shadow-sm p-3 mb-3 text-center dashboard-card" data-doctype="Test Plan">
+                        <div class="card shadow-sm p-3 mb-3 text-center dashboard-card" data-doctype="Test Plan" data-status="">
                             <h6>Total Plans</h6>
                             <h3 class="text-primary">${data.test_plan_summary.total}</h3>
                         </div>
@@ -161,7 +138,7 @@ frappe.pages['test_management_dashboard'].on_page_load = function(wrapper) {
                     </div>
                 `);
 
-                // --- Make cards clickable ---
+                // --- Make Cards Clickable ---
                 $('.dashboard-card').off("click").on("click", function() {
                     let doctype = $(this).data("doctype");
                     let status = $(this).data("status");
@@ -170,9 +147,8 @@ frappe.pages['test_management_dashboard'].on_page_load = function(wrapper) {
                     let user = $('#filter-user').val();
 
                     if (project) filters["project"] = project;
-                    if (status) filters["status"] = status;
+                    if (status) filters["status"] = status; // only apply if not total
 
-                    // If user is selected, apply filtered_plan_names
                     if (user && data.filtered_plan_names && data.filtered_plan_names.length) {
                         filters["name"] = ["in", data.filtered_plan_names];
                     }
@@ -180,102 +156,54 @@ frappe.pages['test_management_dashboard'].on_page_load = function(wrapper) {
                     frappe.set_route("List", doctype, filters);
                 });
 
-                // --- Test Case Summary (Status Pie) ---
+                // --- Test Case Summary (Charts) ---
                 let s = data.test_case_summary.status || {};
                 if (testCaseStatusChart) testCaseStatusChart.destroy();
                 if (Object.keys(s).length) {
                     testCaseStatusChart = new frappe.Chart("#test-case-status-pie", {
-                        data: {
-                            labels: Object.keys(s),
-                            datasets: [{ name: "Test Cases", values: Object.values(s) }]
-                        },
+                        data: { labels: Object.keys(s), datasets: [{ name: "Test Cases", values: Object.values(s) }] },
                         type: 'pie',
-                        height: 300,
-                        colors: ['#28a745', '#dc3545', '#6c757d', '#ffc107']
-                    });
-
-                    testCaseStatusChart.parent.addEventListener('data-select', (e) => {
-                        let status = Object.keys(s)[e.index];
-                        let filters = {};
-                        let project = $('#filter-project').val();
-                        if (project) filters["project"] = project;
-                        filters["status"] = status;
-                        frappe.set_route("List", "Test Case", filters);
+                        height: 300
                     });
                 } else {
                     $("#test-case-status-pie").html("<p class='text-muted'>No Data</p>");
                 }
 
-                // --- Test Case Summary (Priority Pie) ---
                 let p = data.test_case_summary.priority || {};
                 if (testCasePriorityChart) testCasePriorityChart.destroy();
                 if (Object.keys(p).length) {
                     testCasePriorityChart = new frappe.Chart("#test-case-priority-pie", {
-                        data: {
-                            labels: Object.keys(p),
-                            datasets: [{ name: "Test Cases", values: Object.values(p) }]
-                        },
+                        data: { labels: Object.keys(p), datasets: [{ name: "Test Cases", values: Object.values(p) }] },
                         type: 'pie',
-                        height: 300,
-                        colors: ['#dc3545', '#ffc107', '#6c757d']
-                    });
-
-                    testCasePriorityChart.parent.addEventListener('data-select', (e) => {
-                        let priority = Object.keys(p)[e.index];
-                        let filters = {};
-                        let project = $('#filter-project').val();
-                        if (project) filters["project"] = project;
-                        filters["priority"] = priority;
-                        frappe.set_route("List", "Test Case", filters);
+                        height: 300
                     });
                 } else {
                     $("#test-case-priority-pie").html("<p class='text-muted'>No Data</p>");
                 }
 
-                // --- Test Run Summary (Bar Chart) ---
+                // --- Test Run Summary (Bar) ---
                 let runs = data.test_run_summary || {};
                 if (testRunChart) testRunChart.destroy();
-
                 if (runs.labels && runs.values && runs.values.length) {
                     testRunChart = new frappe.Chart("#test-run-bar", {
-                        data: {
-                            labels: runs.labels,
-                            datasets: [
-                                {
-                                    name: "Test Runs",
-                                    values: runs.values
-                                }
-                            ]
-                        },
+                        data: { labels: runs.labels, datasets: [{ name: "Test Runs", values: runs.values }] },
                         type: 'bar',
-                        height: 250,
-                        colors: ['#28a745', '#dc3545', '#6c757d']
-                    });
-
-                    testRunChart.parent.addEventListener('data-select', (e) => {
-                        let selectedPlan = runs.labels[e.index];
-                        let filters = {};
-                        let project = $('#filter-project').val();
-                        if (project) filters["project"] = project;
-                        filters["test_plan"] = selectedPlan;
-                        frappe.set_route("List", "Test Run", filters);
+                        height: 250
                     });
                 } else {
                     $("#test-run-bar").html("<p class='text-muted'>No Runs Found</p>");
                 }
-
             }
         });
     }
 
-    // --- Apply Filters ---
     $('#apply-filters').on('click', function() {
         let user = $('#filter-user').val();
         let project = $('#filter-project').val();
         loadDashboardData(user, project);
     });
 
-    // Load filters & Initial Dashboard Data
     loadFilters();
     loadDashboardData();
 };
+
