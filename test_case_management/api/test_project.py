@@ -1,4 +1,5 @@
 
+
 import frappe
 import csv
 import io
@@ -11,6 +12,7 @@ def import_test_cases_from_file_for_project(file_url, project, file_type):
     """
     Import Test Cases from CSV/Excel into the Test Case DocType,
     and link them to a given Test Project.
+    Only assigns a module if it already exists (does NOT auto-create new modules).
     """
     file_doc = frappe.get_doc("File", {"file_url": file_url})
     file_content = file_doc.get_content()
@@ -70,8 +72,8 @@ def import_test_cases_from_file_for_project(file_url, project, file_type):
             pre_conditions = (row.get("pre_conditions") or "").strip()
             test_case_id = (row.get("test_case_id") or "").__str__()
             priority = (row.get("priority") or "").strip()
-            type = (row.get("type") or "").strip()
-            module = (row.get("module") or "").strip()
+            type_name = (row.get("type") or "").strip()
+            module_name = (row.get("module") or "").strip()
             raw_steps = (row.get("steps") or "").strip()
 
             # --- normalize status ---
@@ -80,20 +82,31 @@ def import_test_cases_from_file_for_project(file_url, project, file_type):
                 status = "Draft"
 
             # --- validate type ---
-            if not type:
+            if not type_name:
                 skipped.append(f"Row {idx}: Missing type")
                 continue
-            type_doc_name = frappe.db.get_value("Test Case Type", {"title": type})
+            type_doc_name = frappe.db.get_value("Test Case Type", {"title": type_name})
             if not type_doc_name:
-                skipped.append(f"Row {idx}: Invalid type '{type}'")
-                continue
+                # auto-create type if missing
+                new_type = frappe.get_doc({
+                    "doctype": "Test Case Type",
+                    "title": type_name
+                })
+                new_type.insert(ignore_permissions=True)
+                type_doc_name = new_type.name
 
-            # --- handle module gracefully ---
-            module_def_name = None
-            if module:
-                module_def_name = frappe.db.get_value("Test Case Module", {"module_name": module})
-                if not module_def_name:
-                    skipped.append(f"Row {idx}: Module '{module}' not found → Test Case created without module")
+            # --- handle module only if it exists ---
+            module_value = None
+            if module_name:
+                module_field = frappe.get_meta("Test Case").get_field("custom_module")
+                if module_field and module_field.fieldtype == "Link" and module_field.options == "Test Case Module":
+                    # only link if module exists
+                    module_def_name = frappe.db.get_value("Test Case Module", {"module_name": module_name})
+                    if module_def_name:
+                        module_value = module_def_name
+                else:
+                    # if field is Data, assign value directly
+                    module_value = module_name
 
             # --- validate required fields ---
             if not title or not expected_result:
@@ -111,13 +124,14 @@ def import_test_cases_from_file_for_project(file_url, project, file_type):
             test_case.status = status
             test_case.priority = priority
             test_case.test_case_type = type_doc_name
-            test_case.custom_module = module_def_name
+            test_case.custom_module = module_value  # assign only if valid
 
             # Add steps
-            test_case.append("case_steps", {
-                "title": raw_steps,
-                "step_completed": 0
-            })
+            if raw_steps:
+                test_case.append("case_steps", {
+                    "title": raw_steps,
+                    "step_completed": 0
+                })
 
             test_case.insert(ignore_permissions=True)
             count += 1
@@ -136,3 +150,4 @@ def import_test_cases_from_file_for_project(file_url, project, file_type):
 ⚠️ Skipped Rows: {len(skipped)}  
 {chr(10).join(skipped)}
     """
+
