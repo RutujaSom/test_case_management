@@ -1,9 +1,11 @@
+
+
+
 import frappe
 import csv
 import io
 from openpyxl import load_workbook
-import pandas as pd 
-
+import pandas as pd
 
 @frappe.whitelist()
 def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len, filters):
@@ -17,7 +19,7 @@ def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len,
         FROM `tabTest Case Bank`
         WHERE
             (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
-            AND module LIKE %(module)s
+            AND (custom_module LIKE %(module)s OR %(module)s = '')
         ORDER BY creation DESC
         LIMIT %(start)s, %(page_len)s
     """, {
@@ -32,12 +34,13 @@ def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len,
 def import_test_cases_from_file_for_bank(file_url, file_type):
     """
     Import test cases from uploaded CSV or Excel file into Test Case Bank
+    Only assign module if it already exists in Test Case Module.
     """
     file_doc = frappe.get_doc("File", {"file_url": file_url})
     file_content = file_doc.get_content()
     filename = file_doc.file_name.lower()
 
-    # validate extension
+    # Validate extension
     if file_type == "CSV" and not filename.endswith(".csv"):
         frappe.throw("Selected file type is CSV but uploaded file is not a .csv file.")
     elif file_type == "Excel" and not filename.endswith(".xlsx"):
@@ -94,7 +97,7 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
             if status not in VALID_STATUSES:
                 status = "Draft"
 
-            # --- validation ---
+            # --- validation for type ---
             if not type:
                 skipped.append(f"Row {idx}: Missing type")
                 continue
@@ -103,13 +106,10 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
                 skipped.append(f"Row {idx}: Invalid type '{type}'")
                 continue
 
-            # --- handle module gracefully ---
-            module_def_name = None
-            if module:
-                module_def_name = frappe.db.get_value("Test Case Module", {"module_name": module})
-                if not module_def_name:
-                    skipped.append(f"Row {idx}: Module '{module}' not found → Test Case created without module")
+            # --- check module (only assign if exists, else blank) ---
+            module_def_name = frappe.db.get_value("Test Case Module", {"module_name": module}) if module else None
 
+            # --- required fields ---
             if not title or not expected_result:
                 skipped.append(f"Row {idx}: Missing title/expected_result")
                 continue
@@ -124,12 +124,14 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
             test_case.status = status
             test_case.priority = priority
             test_case.test_case_type = type_doc_name
-            test_case.custom_module = module_def_name
+            test_case.module = module_def_name  # blank if module doesn't exist
 
-            test_case.append("case_steps", {
-                "title": raw_steps,
-                "step_completed": 0
-            })
+            # --- add steps (if any) ---
+            if raw_steps:
+                test_case.append("case_steps", {
+                    "title": raw_steps,
+                    "step_completed": 0
+                })
 
             test_case.insert(ignore_permissions=True)
             count += 1
@@ -148,4 +150,3 @@ def import_test_cases_from_file_for_bank(file_url, file_type):
 ⚠️ Skipped Rows: {len(skipped)}  
 {chr(10).join(skipped)}
     """
-
