@@ -32,7 +32,7 @@ function show_test_case_selector(frm) {
                 query: "test_case_management.api.test_case_bank.get_test_cases_query_for_project",
                 filters: {
                     ...(project && { project }),
-                    ...(custom_module && { custom_module })
+                    ...(custom_module && {module:custom_module })
                 }
             };
         },
