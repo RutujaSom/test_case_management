@@ -7,10 +7,15 @@ import io
 from openpyxl import load_workbook
 import pandas as pd
 
+
 @frappe.whitelist()
 def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len, filters):
-    module = filters.get('custom_module') or ''
+    module = filters.get('module') or ''
     
+    # Ensure start and page_len are integers
+    start = int(start)
+    page_len = int(page_len)
+
     return frappe.db.sql("""
         SELECT
             name,
@@ -19,7 +24,7 @@ def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len,
         FROM `tabTest Case Bank`
         WHERE
             (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
-            AND (custom_module LIKE %(module)s OR %(module)s = '')
+            AND (module LIKE %(module)s OR %(module)s = '')
         ORDER BY creation DESC
         LIMIT %(start)s, %(page_len)s
     """, {
