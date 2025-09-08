@@ -16,7 +16,6 @@ doc_events = {
     "Test Plan": {
         "on_submit": "test_case_management.test_case_management.doctype.test_plan.test_plan.TestPlan.after_insert"
     }
-    
 }
 
 
@@ -46,7 +45,8 @@ fixtures = [
                 "Group Child",
                 "Test Run Case",
                 "Test Run Case Step",
-                "Test Case Module"
+                "Test Case Module",
+                "Test Run Reference"
             ]]
         ]
     },
@@ -69,7 +69,13 @@ fixtures = [
     {
         "dt": "Property Setter",
         "filters": [["doc_type", "in", ["Test Project", "Test Plan", "Test Case", "Test Run"]]]
+    },
+    
+    {
+        "dt": "Page",
+        "filters": [["name", "=", "test_management_dashboard"]]  
     }
+    
 
 ]
 

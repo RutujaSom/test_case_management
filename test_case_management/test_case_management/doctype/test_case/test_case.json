@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-08-07 11:40:08.562598",
+ "creation": "2025-08-28 16:24:01.391030",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -94,6 +94,7 @@
   {
    "fieldname": "custom_module",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Module",
    "options": "Test Case Module"
   },
@@ -107,7 +108,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-07 14:45:51.660105",
+ "modified": "2025-09-04 18:37:42.586392",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case",

@@ -1,50 +1,79 @@
+import frappe
 from frappe.model.document import Document
 from itertools import product
-import frappe
 
 class TestPlan(Document):
     def on_update(self):
-        # only when configurations exist
-        if not self.configuration:
-            # frappe.msgprint("⚠️ No configurations selected.")
-            return
+        # Generate runs only for new configurations (first-time only)
+        if getattr(self, "configuration", None):
+            self.generate_or_sync_runs()
 
-        # Step 1: build config_map
+        # Map test cases to existing runs
+        if getattr(self, "test_cases", None):
+            self.map_test_cases_to_runs()
+
+    def generate_or_sync_runs(self):
+        """Generate Test Runs ONLY if none exist. 
+        If deleted manually, they will never be recreated."""
+        self._new_runs = []
+
+        # If any Test Runs already exist, skip creation completely
+        existing_runs = frappe.get_all(
+            "Test Run",
+            filters={"test_plan": self.name},
+            fields=["name", "title"]
+        )
+        if existing_runs:
+            return  # ✅ Don't recreate anything
+
+        # Build configuration map
         config_map = {}
-        for child in self.configuration:
+        for child in getattr(self, "configuration", []):
             if child.configuration and child.title:
                 config_map.setdefault(child.configuration, []).append(child.title)
 
         if not config_map:
-            frappe.msgprint("⚠️ No valid configuration data found.")
             return
 
-        # Step 2: generate config combinations
         combos = list(product(*config_map.values()))
+        all_titles = [" - ".join(combo) for combo in combos]
 
-        for combo in combos:
-            run_title = " - ".join(combo)
+        # Create fresh runs only once
+        for run_title in all_titles:
+            run = frappe.get_doc({
+                "doctype": "Test Run",
+                "test_plan": self.name,
+                "project": getattr(self, "project", None),
+                "title": run_title
+            })
+            run.insert(ignore_permissions=True)
 
-            # Step 3: check if run already exists
-            existing_run = frappe.get_all(
-                "Test Run",
-                filters={"test_plan": self.name, "title": run_title},
-                limit=1,
-                pluck="name"
-            )
+            # Append reference in child table
+            self.append("test_runs", {
+                "test_run": run.name,
+                "test_run_title": run_title
+            })
+            self._new_runs.append(run.name)
 
-            if existing_run:
-                test_run = frappe.get_doc("Test Run", existing_run[0])
-            else:
-                test_run = frappe.new_doc("Test Run")
-                test_run.test_plan = self.name
-                test_run.project = self.project
-                test_run.title = run_title
+        self.db_update_all()
+        frappe.db.commit()
 
-            # Step 4: attach test cases (old + new)
+    def map_test_cases_to_runs(self):
+        """Add new test cases to existing runs, skip newly created runs in same transaction"""
+        runs = frappe.get_all(
+            "Test Run",
+            filters={"test_plan": self.name},
+            pluck="name"
+        )
+
+        for run_name in runs:
+            if hasattr(self, "_new_runs") and run_name in self._new_runs:
+                continue
+
+            test_run = frappe.get_doc("Test Run", run_name)
             existing_cases = {row.test_case for row in test_run.test_case}
 
-            for tc in self.test_cases or []:
+            for tc in getattr(self, "test_cases", []):
                 if tc.test_case not in existing_cases:
                     test_run.append("test_case", {
                         "test_case": tc.test_case,
@@ -53,7 +82,3 @@ class TestPlan(Document):
                     })
 
             test_run.save(ignore_permissions=True)
-
-        frappe.msgprint(f"✅ Synced {len(combos)} Test Run(s) with mapped Test Cases.")
-
-
