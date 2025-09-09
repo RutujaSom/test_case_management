@@ -17,7 +17,7 @@ function show_test_case_selector(frm) {
         target: frm,
         setters: {
             project: frm.doc.name || '',
-            custom_module: frm.doc.custom_module || ''
+            custom_module:''
         },
         add_filters_group: 1,
         date_field: "creation",
