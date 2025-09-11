@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-08-07 11:40:08.443179",
+ "autoname": "TPL-.YYYY.-.####",
+ "creation": "2025-08-28 16:24:01.230210",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -95,10 +96,11 @@
    "link_fieldname": "test_plan"
   }
  ],
- "modified": "2025-08-26 16:14:40.818467",
+ "modified": "2025-09-10 11:17:52.858587",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Plan",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

@@ -9,6 +9,30 @@ import pandas as pd
 
 
 @frappe.whitelist()
+# def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len, filters):
+#     module = filters.get('module') or ''
+    
+#     # Ensure start and page_len are integers
+#     start = int(start)
+#     page_len = int(page_len)
+
+#     return frappe.db.sql("""
+#         SELECT
+#             name,
+#             test_case_id,
+#             title
+#         FROM `tabTest Case Bank`
+#         WHERE
+#             (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
+#             AND (module LIKE %(module)s OR %(module)s = '')
+#         ORDER BY creation DESC
+#         LIMIT %(start)s, %(page_len)s
+#     """, {
+#         "txt": f"%{txt}%",
+#         "module": f"%{module}%",
+#         "start": start,
+#         "page_len": page_len
+#     }, as_dict=True)
 def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len, filters):
     module = filters.get('module') or ''
     
@@ -16,20 +40,27 @@ def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len,
     start = int(start)
     page_len = int(page_len)
 
-    return frappe.db.sql("""
+    # Base query
+    query = """
         SELECT
             name,
             test_case_id,
-            title
+            title,
+            module
         FROM `tabTest Case Bank`
         WHERE
             (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
-            AND (module LIKE %(module)s OR %(module)s = '')
-        ORDER BY creation DESC
-        LIMIT %(start)s, %(page_len)s
-    """, {
+    """
+
+    # Add module filter only if module is provided
+    if module:
+        query += " AND module = %(module)s"
+
+    query += " ORDER BY creation DESC LIMIT %(start)s, %(page_len)s"
+
+    return frappe.db.sql(query, {
         "txt": f"%{txt}%",
-        "module": f"%{module}%",
+        "module": module,  # exact match
         "start": start,
         "page_len": page_len
     }, as_dict=True)

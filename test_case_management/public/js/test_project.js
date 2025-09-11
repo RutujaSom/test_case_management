@@ -90,7 +90,9 @@ function show_test_case_selector(frm) {
                         estimated_time: details.estimated_time || "",
                         attachment: details.attachment || "",
                         project: frm.doc.name,
-                        case_steps: steps
+                        case_steps: steps,
+                        custom_module: details.module || ""
+                         
                     };
 
                     // Insert the new Test Case using frappe.client.insert
@@ -116,8 +118,11 @@ function show_test_case_selector(frm) {
             frm.refresh_field("test_cases");
 
             // Show success message
-            frappe.msgprint(`${created} Test Case(s) created under project '${frm.doc.title}'.`);
+            // frappe.msgprint(`${created} Test Case(s) created under project '${frm.doc.title}'.`);
+            frappe.msgprint(`${created} Test Case(s) created under project '${frm.doc.title}' with module field copied.`);
+            multi_select_dialog.dialog.hide();
         }
+        
     });
     frappe.after_ajax(() => {
         const dialog = multi_select_dialog.dialog;
@@ -137,7 +142,7 @@ function show_test_case_selector(frm) {
             project_field.refresh();
         }
     });
-
+     
 }
 
 

@@ -50,3 +50,28 @@ class TestCase(Document):
                         f"Cannot change status. 'Test Case Steps Mandatory' is set in Test Plan '{plan_name}', "
                         "so all steps must be marked as done."
                     )
+    def validate(self):
+        # Check in Test Case Bank
+        exists_in_bank = frappe.db.exists(
+            'Test Case Bank',
+            {
+                'test_case_id': self.test_case_id,
+                'project': self.project
+            }
+        )
+
+        if exists_in_bank:
+            frappe.throw(f'Test Case ID "{self.test_case_id}" already exists in the Test Case Bank for this project.')
+
+        # Check in Test Case itself (exclude self for updates)
+        exists_in_case = frappe.db.exists(
+            'Test Case',
+            {
+                'test_case_id': self.test_case_id,
+                'project': self.project,
+                'name': ['!=', self.name]
+            }
+        )
+
+        if exists_in_case:
+            frappe.throw(f'Test Case ID "{self.test_case_id}" already exists in Test Cases for this project.')
