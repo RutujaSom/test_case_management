@@ -23,13 +23,13 @@
   "doctype_or_field": "DocField",
   "field_name": "test_case_id",
   "is_system_generated": 0,
-  "modified": "2025-09-04 18:19:52.387180",
+  "modified": "2025-09-10 12:41:15.728353",
   "module": null,
   "name": "Test Case-test_case_id-in_list_view",
   "property": "in_list_view",
   "property_type": "Check",
   "row_name": null,
-  "value": "0"
+  "value": "1"
  },
  {
   "default_value": null,
@@ -183,7 +183,7 @@
   "doctype_or_field": "DocField",
   "field_name": "title",
   "is_system_generated": 1,
-  "modified": "2025-09-04 18:39:14.681996",
+  "modified": "2025-09-10 12:41:15.650888",
   "module": null,
   "name": "Test Case-title-in_list_view",
   "property": "in_list_view",
@@ -215,7 +215,7 @@
   "doctype_or_field": "DocField",
   "field_name": "priority",
   "is_system_generated": 1,
-  "modified": "2025-09-04 18:39:14.717702",
+  "modified": "2025-09-10 12:41:15.695395",
   "module": null,
   "name": "Test Case-priority-in_list_view",
   "property": "in_list_view",
@@ -231,7 +231,7 @@
   "doctype_or_field": "DocField",
   "field_name": "project",
   "is_system_generated": 1,
-  "modified": "2025-09-04 18:39:14.734182",
+  "modified": "2025-09-10 12:41:15.712077",
   "module": null,
   "name": "Test Case-project-in_list_view",
   "property": "in_list_view",
@@ -270,5 +270,21 @@
   "property_type": "Check",
   "row_name": null,
   "value": "0"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Test Case",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "custom_module",
+  "is_system_generated": 1,
+  "modified": "2025-09-10 12:41:15.676032",
+  "module": null,
+  "name": "Test Case-custom_module-in_list_view",
+  "property": "in_list_view",
+  "property_type": "Check",
+  "row_name": null,
+  "value": "1"
  }
 ]
