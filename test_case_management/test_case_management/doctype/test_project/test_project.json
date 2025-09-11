@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-07-16 15:17:31.195212",
+ "autoname": "TP-.YYYY.-.####",
+ "creation": "2025-08-28 16:24:01.665097",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -85,10 +86,11 @@
    "link_fieldname": "project"
   }
  ],
- "modified": "2025-07-19 11:18:03.009866",
+ "modified": "2025-09-10 15:17:36.018963",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Project",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -104,6 +106,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "search_fields": "title",
  "show_title_field_in_link": 1,
  "sort_field": "modified",

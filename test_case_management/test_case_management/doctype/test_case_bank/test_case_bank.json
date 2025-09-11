@@ -1,7 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-08-07 11:40:08.679231",
+ "autoname": "TCB-.YYYY.-.####",
+ "creation": "2025-08-28 16:24:01.543188",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -84,6 +85,7 @@
   {
    "fieldname": "module",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "Module",
    "options": "Test Case Module"
   },
@@ -97,10 +99,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-07 14:47:25.362577",
+ "modified": "2025-09-10 15:18:14.654171",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case Bank",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

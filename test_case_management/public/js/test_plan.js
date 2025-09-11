@@ -222,10 +222,10 @@ function show_test_case_selector(frm) {
                     frm.refresh_field("test_cases");
                     multi_select_dialog.dialog.hide();
 
-                    frappe.show_alert({
-                        // message: `${res.message.length} Test Case(s) added.`,
-                        indicator: 'green'
-                    });
+                    // frappe.show_alert({
+                    //      message: `${res.message.length} Test Case(s) added.`,
+                    //     indicator: 'green'
+                    // });
                 }
             });
         }
