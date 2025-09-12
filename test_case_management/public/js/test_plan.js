@@ -183,7 +183,7 @@ function show_test_case_selector(frm) {
         primary_action_label: "Add Test Cases",
 
         get_query() {
-            const dialog = multi_select_dialog.dialog;
+            const dialog = this.dialog;
             const project = dialog.fields_dict.project?.get_value() || frm.doc.project;
             const custom_module = dialog.fields_dict.custom_module?.get_value() || frm.doc.custom_module;
 
@@ -222,10 +222,10 @@ function show_test_case_selector(frm) {
                     frm.refresh_field("test_cases");
                     multi_select_dialog.dialog.hide();
 
-                    // frappe.show_alert({
-                    //      message: `${res.message.length} Test Case(s) added.`,
-                    //     indicator: 'green'
-                    // });
+                    frappe.show_alert({
+                         message: `${res.message.length} Test Case(s) added.`,
+                        indicator: 'green'
+                    });
                 }
             });
         }

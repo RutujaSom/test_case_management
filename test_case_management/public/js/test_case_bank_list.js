@@ -39,7 +39,10 @@ function open_import_dialog() {
                 callback(r) {
                     if (r.message) {
                         frappe.msgprint(r.message);
+                        // listview.refresh();
+                        onhide: () => {
                         listview.refresh();
+                    }
                     }
                     d.hide();
                 }
