@@ -43,7 +43,7 @@ function show_test_case_selector(frm) {
         columns: ["test_case_id", "title"],
 
         get_query() {
-            const dialog = multi_select_dialog.dialog;
+            const dialog = this.dialog;
             const project = dialog.fields_dict.project?.get_value();
             const custom_module = dialog.fields_dict.custom_module?.get_value();
             return {
@@ -73,13 +73,19 @@ function show_test_case_selector(frm) {
                         test_case_title: res.message.title,
                         status: "Pending"
                     });
+                    
 
                     remaining--;
 
                     if (remaining === 0) {
-                        // frm.refresh_field("title");
+                         frm.refresh_field("test_case");
+                       
                         frappe.msgprint(`${to_add.length} Test Case(s) added.`);
+                        this.dialog.hide();
+                    
                     }
+            
+                     
                 });
             });
         }

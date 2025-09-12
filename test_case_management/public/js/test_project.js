@@ -24,7 +24,7 @@ function show_test_case_selector(frm) {
         primary_action_label: "Add Test Cases",
         columns: ["test_case_id", "title"],
         get_query() {
-            const dialog = multi_select_dialog.dialog;
+            const dialog = this.dialog;
             const project = dialog.fields_dict.project?.get_value();
             const custom_module = dialog.fields_dict.custom_module?.get_value();
 
@@ -236,4 +236,10 @@ frappe.ui.form.on('Test Project', {
         }
     }
 });
+
+
+
+
+
+
 
