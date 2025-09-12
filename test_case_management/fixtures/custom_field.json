@@ -200,12 +200,12 @@
   "insert_after": "is_active",
   "is_system_generated": 0,
   "is_virtual": 0,
-  "label": null,
+ 
   "length": 0,
   "link_filters": null,
   "mandatory_depends_on": null,
   "modified": "2025-08-28 16:24:02.299619",
-  "module": null,
+  
   "name": "Test Project-custom_column_break_h4wjp",
   "no_copy": 0,
   "non_negative": 0,
