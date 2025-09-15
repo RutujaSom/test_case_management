@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TPL-.YYYY.-.####",
+ "creation": "2025-08-28 16:24:01.230210",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_plan_name",
+  "project",
+  "version",
+  "start_date",
+  "end_date",
+  "description",
+  "status",
+  "test_case_steps_manadatory",
+  "test_cases",
+  "configuration",
+  "test_runs"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_plan_name",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "Test Project",
+   "reqd": 1
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Link",
+   "label": "Version",
+   "options": "Testing Version"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nCompleted\nArchived",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "test_case_steps_manadatory",
+   "fieldtype": "Check",
+   "label": "Test Case Steps Manadatory"
+  },
+  {
+   "fieldname": "configuration",
+   "fieldtype": "Table",
+   "label": "Configuration",
+   "options": "Selected Group Children"
+  },
+  {
+   "fieldname": "test_cases",
+   "fieldtype": "Table",
+   "label": "Test Case",
+   "options": "Test Plan Cases"
+  },
+  {
+   "fieldname": "test_runs",
+   "fieldtype": "Table",
+   "label": "Test Runs",
+   "options": "Test Run Reference"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Test Run",
+   "link_fieldname": "test_plan"
+  }
+ ],
+ "modified": "2025-09-10 11:17:52.858587",
+ "modified_by": "Administrator",
+ "module": "Test Case Management",
+ "name": "Test Plan",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "test_plan_name",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "test_plan_name"
+}

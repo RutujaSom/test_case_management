@@ -1,0 +1,20 @@
+{
+    "label": "Test Case Management",
+    "module": "Test Case Management",
+    "name": "test-case-management",
+    "type": "module",
+    "public": 1,
+    "links": [
+      {
+        "label": "Test Plan",
+        "type": "DocType",
+        "name": "Test Plan"
+      },
+      {
+        "label": "Test Case",
+        "type": "DocType",
+        "name": "Test Case"
+      }
+    ]
+}
+  

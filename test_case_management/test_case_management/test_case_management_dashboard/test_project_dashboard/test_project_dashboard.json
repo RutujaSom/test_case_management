@@ -1,0 +1,28 @@
+{
+ "cards": [
+  {
+   "card": "Test Plan Summary-1"
+  }
+ ],
+ "charts": [
+  {
+   "width": "Half"
+  },
+  {
+   "chart": "Test Case Summary",
+   "width": "Half"
+  }
+ ],
+ "creation": "2025-07-11 19:06:12.645318",
+ "dashboard_name": "Test Project Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2025-08-29 11:08:24.825039",
+ "modified_by": "Administrator",
+ "module": "Test Case Management",
+ "name": "Test Project Dashboard",
+ "owner": "Administrator"
+}

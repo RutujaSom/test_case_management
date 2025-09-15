@@ -8,7 +8,11 @@ on:
   pull_request:
 
 concurrency:
+<<<<<<< HEAD
   group: develop-library_management-${{ github.event.number }}
+=======
+  group: develop-test_case_management-${{ github.event.number }}
+>>>>>>> 0479305915b5b5b16b03ae45332e5f7946ba18fb
   cancel-in-progress: true
 
 jobs:
@@ -89,10 +93,17 @@ jobs:
       - name: Install
         working-directory: /home/runner/frappe-bench
         run: |
+<<<<<<< HEAD
           bench get-app library_management $GITHUB_WORKSPACE
           bench setup requirements --dev
           bench new-site --db-root-password root --admin-password admin test_site
           bench --site test_site install-app library_management
+=======
+          bench get-app test_case_management $GITHUB_WORKSPACE
+          bench setup requirements --dev
+          bench new-site --db-root-password root --admin-password admin test_site
+          bench --site test_site install-app test_case_management
+>>>>>>> 0479305915b5b5b16b03ae45332e5f7946ba18fb
           bench build
         env:
           CI: 'Yes'
@@ -101,6 +112,10 @@ jobs:
         working-directory: /home/runner/frappe-bench
         run: |
           bench --site test_site set-config allow_tests true
+<<<<<<< HEAD
           bench --site test_site run-tests --app library_management
+=======
+          bench --site test_site run-tests --app test_case_management
+>>>>>>> 0479305915b5b5b16b03ae45332e5f7946ba18fb
         env:
           TYPE: server

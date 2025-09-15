@@ -1,0 +1,19 @@
+[
+ {
+  "content": null,
+  "docstatus": 0,
+  "doctype": "Page",
+  "icon": null,
+  "modified": "2025-09-09 16:06:41.063812",
+  "module": "Test Case Management",
+  "name": "test_management_dashboard",
+  "page_name": "test_management_dashboard",
+  "restrict_to_domain": null,
+  "roles": [],
+  "script": null,
+  "standard": "Yes",
+  "style": null,
+  "system_page": 0,
+  "title": "Test Management Dashboard"
+ }
+]

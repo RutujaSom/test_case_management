@@ -1,0 +1,140 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "TC-.YYYY.-.####",
+ "creation": "2025-08-28 16:24:01.391030",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_case_id",
+  "title",
+  "priority",
+  "project",
+  "pre_conditions",
+  "case_steps",
+  "expected_results",
+  "status",
+  "test_case_type",
+  "estimated_time",
+  "attachment",
+  "custom_module",
+  "label"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project",
+   "options": "Test Project",
+   "reqd": 1
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Priority",
+   "options": "Low\nMedium\nHigh\nCritical",
+   "reqd": 1
+  },
+  {
+   "fieldname": "pre_conditions",
+   "fieldtype": "Text Editor",
+   "label": "Pre Conditions"
+  },
+  {
+   "fieldname": "expected_results",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Expected Result",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nApproved\nObsolete",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_steps",
+   "fieldtype": "Table",
+   "label": "Test Case Steps",
+   "options": "Test Case Steps"
+  },
+  {
+   "fieldname": "test_case_id",
+   "fieldtype": "Data",
+   "label": "Test Case Id",
+   "reqd": 1
+  },
+  {
+   "fieldname": "test_case_type",
+   "fieldtype": "Link",
+   "label": "Type",
+   "options": "Test Case Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "estimated_time",
+   "fieldtype": "Data",
+   "label": "Estimated Time"
+  },
+  {
+   "fieldname": "attachment",
+   "fieldtype": "Attach",
+   "label": "Attachment"
+  },
+  {
+   "fieldname": "custom_module",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Module",
+   "options": "Test Case Module"
+  },
+  {
+   "fieldname": "label",
+   "fieldtype": "Link",
+   "label": "Label",
+   "options": "Test Case Module"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-09-10 15:12:12.797777",
+ "modified_by": "Administrator",
+ "module": "Test Case Management",
+ "name": "Test Case",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "title",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}

@@ -1,0 +1,40 @@
+.btn.btn-primary.btn-sm.primary-action {
+  background-color: #007BFF !important;  /* Blue clinic */
+  border-color: #0056b3 !important;      /* Darker blue */
+  color: white !important;
+}
+
+.btn.btn-primary.btn-sm.primary-action:hover {
+  background-color: #0056b3 !important;  /* Darker blue */
+  border-color: #004085 !important;
+  color: white !important;
+}
+
+.ellipsis.title-text {
+  color: #0056b3 !important;  /* Blue text */
+
+  /* Add a vertical line on the left */
+  border-left: 3px solid #0056b3; /* Blue vertical line */
+  padding-left: 10px; /* space between line and text */
+}
+
+
+
+
+
+
+
+.sidebar-item-icon {
+  color: #3f83ab; /* Example lighter blue */
+}
+
+
+.icon.icon-sm {
+  color: #3f83ab; /* your desired color */
+}
+
+.avatar-frame {
+  border: 2px solid #3f83ab; /* example blue border */
+}
+
+
