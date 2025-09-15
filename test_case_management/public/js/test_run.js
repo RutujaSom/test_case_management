@@ -24,7 +24,7 @@ frappe.ui.form.on('Test Run', {
     }
 });
 
-
+//update test run file with test case table test case title
 function show_test_case_selector(frm) {
     // Get existing test_case names in child table
     const existing_test_cases = (frm.doc.test_case || []).map(row => row.test_case);
