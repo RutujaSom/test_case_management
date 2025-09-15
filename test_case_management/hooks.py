@@ -29,27 +29,7 @@ doc_events = {
 
 
 fixtures = [
-    {
-        "dt": "DocType",
-        "filters": [
-            ["name", "in", [
-                "Testing Version",
-                "Test Plan",
-                "Test Case",
-                "Test Plan Case",
-                "Test Case Bank",
-                "Test Project",
-                "Test Case Type",
-                "Configuration",
-                "Selected Group Children",
-                "Group Child",
-                "Test Run Case",
-                "Test Run Case Step",
-                "Test Case Module",
-                "Test Run Reference"
-            ]]
-        ]
-    },
+   
     {
         "dt": "Workspace",
         "filters": [
@@ -61,21 +41,7 @@ fixtures = [
         "filters": [
             ["name", "=", "Test Case Management"]
         ]
-    },
-    {
-        "dt": "Custom Field",
-        "filters": [["dt", "in", ["Test Project", "Test Plan", "Test Case", "Test Run"]]]
-    },
-    {
-        "dt": "Property Setter",
-        "filters": [["doc_type", "in", ["Test Project", "Test Plan", "Test Case", "Test Run"]]]
-    },
-    
-    {
-        "dt": "Page",
-        "filters": [["name", "=", "test_management_dashboard"]]  
     }
-    
 
 ]
 
