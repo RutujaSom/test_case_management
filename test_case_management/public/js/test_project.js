@@ -51,7 +51,7 @@ function show_test_case_selector(frm) {
                 return;
             }
 
-            frappe.show_progress("Creating Test Cases", 0, selections.length);
+            // frappe.show_progress("Creating Test Cases", 0, selections.length);
             let created = 0;
 
             // Loop over selected test cases
@@ -111,7 +111,7 @@ function show_test_case_selector(frm) {
                 }
 
                 // Update progress bar
-                frappe.show_progress("Creating Test Cases", i + 1, selections.length);
+                // frappe.show_progress("Creating Test Cases", i + 1, selections.length);
             }
 
             // Refresh the test_cases child table on the form
