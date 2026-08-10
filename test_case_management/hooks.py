@@ -31,7 +31,7 @@ doc_events = {
 fixtures = [
      {
         "doctype": "Workflow",
-        "filters": [["document_type", "in", ("SO Approval Transaction")]]
+        "filters": [["document_type", "in", ("Test Case")]]
     },
 
     {"doctype": "Workflow State"},
