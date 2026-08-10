@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "TP-.YYYY.-.####",
- "creation": "2025-09-12 17:41:07.502998",
+ "creation": "2025-09-12 19:03:03.349523",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -86,7 +86,7 @@
    "link_fieldname": "project"
   }
  ],
- "modified": "2025-09-12 17:53:31.050560",
+ "modified": "2026-08-07 16:02:51.713999",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Project",
@@ -102,6 +102,40 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Tester",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Team Lead",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Project Manager",
+   "select": 1,
    "share": 1,
    "write": 1
   }

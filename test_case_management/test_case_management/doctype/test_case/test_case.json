@@ -1,8 +1,9 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "TC-.YYYY.-.####",
- "creation": "2025-08-28 16:24:01.391030",
+ "creation": "2025-09-12 19:03:03.207942",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -18,7 +19,8 @@
   "estimated_time",
   "attachment",
   "custom_module",
-  "label"
+  "label",
+  "amended_from"
  ],
  "fields": [
   {
@@ -60,14 +62,15 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Draft\nApproved\nObsolete",
+   "options": "Draft\nApproved\nObsolete\nCancelled",
    "reqd": 1
   },
   {
    "fieldname": "case_steps",
    "fieldtype": "Table",
    "label": "Test Case Steps",
-   "options": "Test Case Steps"
+   "options": "Test Case Steps",
+   "reqd": 1
   },
   {
    "fieldname": "test_case_id",
@@ -105,12 +108,23 @@
    "fieldtype": "Link",
    "label": "Label",
    "options": "Test Case Module"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Test Case",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2025-09-10 15:12:12.797777",
+ "modified": "2026-08-10 16:10:18.066847",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case",
@@ -118,15 +132,69 @@
  "owner": "Administrator",
  "permissions": [
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "System Manager",
+   "role": "Tester",
+   "select": 1,
    "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Team Lead",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Project Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],
@@ -136,5 +204,6 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "title"
+ "title_field": "title",
+ "track_changes": 1
 }

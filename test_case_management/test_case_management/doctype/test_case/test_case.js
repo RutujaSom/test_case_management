@@ -6,3 +6,13 @@
 
 // 	},
 // });
+
+// Client Script on Test Case
+frappe.ui.form.on('Test Case', {
+    after_workflow_action(frm) {
+        // Fires after any workflow transition completes
+        if (frm.doc.docstatus === 2 && frm.doc.workflow_state === 'Cancelled') {
+            frm.amend_doc();
+        }
+    }
+});
