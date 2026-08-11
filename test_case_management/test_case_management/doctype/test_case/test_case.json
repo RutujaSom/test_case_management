@@ -124,7 +124,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-10 16:10:18.066847",
+ "modified": "2026-08-10 17:57:21.205468",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case",
@@ -195,6 +195,18 @@
    "select": 1,
    "share": 1,
    "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Testcase Writer",
+   "select": 1,
+   "share": 1,
    "write": 1
   }
  ],

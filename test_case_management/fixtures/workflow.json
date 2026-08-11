@@ -4,7 +4,7 @@
   "doctype": "Workflow",
   "document_type": "Test Case",
   "is_active": 1,
-  "modified": "2026-08-10 16:09:51.663562",
+  "modified": "2026-08-11 10:28:18.180208",
   "name": "Test Case Approval",
   "override_status": 0,
   "send_email_alert": 0,
@@ -58,7 +58,7 @@
     "workflow_builder_id": null
    },
    {
-    "allow_edit": "Team Lead",
+    "allow_edit": "All",
     "avoid_status_override": 0,
     "doc_status": "0",
     "is_optional_state": 0,
@@ -87,22 +87,6 @@
     "state": "Approved",
     "update_field": "status",
     "update_value": "Approved",
-    "workflow_builder_id": null
-   },
-   {
-    "allow_edit": "Project Manager",
-    "avoid_status_override": 0,
-    "doc_status": "0",
-    "is_optional_state": 0,
-    "message": null,
-    "next_action_email_template": null,
-    "parent": "Test Case Approval",
-    "parentfield": "states",
-    "parenttype": "Workflow",
-    "send_email": 1,
-    "state": "Rejected",
-    "update_field": "status",
-    "update_value": "Obsolete",
     "workflow_builder_id": null
    },
    {
@@ -257,6 +241,19 @@
     "parenttype": "Workflow",
     "send_email_to_creator": 0,
     "state": "Approved",
+    "workflow_builder_id": null
+   },
+   {
+    "action": "Submit For Approval",
+    "allow_self_approval": 1,
+    "allowed": "All",
+    "condition": null,
+    "next_state": "Pending",
+    "parent": "Test Case Approval",
+    "parentfield": "transitions",
+    "parenttype": "Workflow",
+    "send_email_to_creator": 0,
+    "state": "Rejected",
     "workflow_builder_id": null
    }
   ],

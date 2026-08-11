@@ -9,20 +9,6 @@
  {
   "docstatus": 0,
   "doctype": "Workflow Action Master",
-  "modified": "2026-08-10 15:42:18.323109",
-  "name": "Submit For Approval",
-  "workflow_action_name": "Submit For Approval"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
-  "modified": "2026-08-10 15:57:15.993391",
-  "name": "Update Approved Data",
-  "workflow_action_name": "Update Approved Data"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow Action Master",
   "modified": "2025-09-12 11:15:50.689720",
   "name": "Approve",
   "workflow_action_name": "Approve"
@@ -33,5 +19,19 @@
   "modified": "2025-09-12 11:15:50.690761",
   "name": "Reject",
   "workflow_action_name": "Reject"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-08-10 15:42:18.323109",
+  "name": "Submit For Approval",
+  "workflow_action_name": "Submit For Approval"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow Action Master",
+  "modified": "2026-08-10 15:57:15.993391",
+  "name": "Update Approved Data",
+  "workflow_action_name": "Update Approved Data"
  }
 ]

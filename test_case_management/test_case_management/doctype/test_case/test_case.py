@@ -12,7 +12,8 @@ class TestCase(Document):
             {
                 'test_case_id': self.test_case_id,
                 'project': self.project,
-                'name': ['!=', self.name]
+                'name': ['!=', self.name],
+                'docstatus': ["!=",2]
             }
         )
         if exists_in_case:
