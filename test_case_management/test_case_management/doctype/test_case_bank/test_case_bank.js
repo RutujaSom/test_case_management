@@ -6,3 +6,12 @@
 
 // 	},
 // });
+
+frappe.ui.form.on('Test Case Bank', {
+    after_workflow_action(frm) {
+        // Fires after any workflow transition completes
+        if (frm.doc.docstatus === 2 && frm.doc.workflow_state === 'Cancelled') {
+            frm.amend_doc();
+        }
+    }
+});
