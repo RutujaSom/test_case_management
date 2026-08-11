@@ -44,7 +44,8 @@ class TestPlan(Document):
                 "doctype": "Test Run",
                 "test_plan": self.name,
                 "project": getattr(self, "project", None),
-                "title": run_title
+                "title": run_title,
+                "start_date":self.start_date
             })
             run.insert(ignore_permissions=True)
 

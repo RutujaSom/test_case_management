@@ -50,6 +50,8 @@ def get_test_cases_query_for_project(doctype, txt, searchfield, start, page_len,
         FROM `tabTest Case Bank`
         WHERE
             (test_case_id LIKE %(txt)s OR title LIKE %(txt)s)
+            AND docstatus = 1
+
     """
 
     # Add module filter only if module is provided

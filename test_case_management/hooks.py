@@ -60,7 +60,6 @@ fixtures = [
 
 
 doctype_js = {
-    "Test Project": "public/js/test_project.js",
     "Test Run": "public/js/test_run.js"
 }
 

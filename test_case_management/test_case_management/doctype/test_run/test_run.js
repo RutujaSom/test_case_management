@@ -7,6 +7,18 @@
 // 	},
 // });
 
+frappe.ui.form.on("Test Run", {
+    refresh(frm) {
+        frm.set_query("test_case", "test_case", function(doc, cdt, cdn) {
+            return {
+                filters: {
+                    docstatus: 1,              // static filter
+                    project: frm.doc.project   // dynamic filter from parent
+                }
+            };
+        });
+    }
+});
 
 
 
