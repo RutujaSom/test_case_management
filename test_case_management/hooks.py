@@ -19,19 +19,14 @@ doc_events = {
 }
 
 
-
-
-
-
-
-
-
-
-
 fixtures = [
+    {
+        "doctype": "Role",
+        "filters": [["name", "in", ["Tester", "Team Lead", "Project Manager", "Testcase Writer"]]]
+    },
      {
         "doctype": "Workflow",
-        "filters": [["document_type", "in", ("Test Case")]]
+        "filters": [["document_type", "in", ("Test Case","Test Case Bank")]]
     },
 
     {"doctype": "Workflow State"},

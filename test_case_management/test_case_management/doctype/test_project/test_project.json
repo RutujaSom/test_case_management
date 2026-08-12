@@ -86,7 +86,7 @@
    "link_fieldname": "project"
   }
  ],
- "modified": "2026-08-07 16:02:51.713999",
+ "modified": "2026-08-11 19:30:36.157164",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Project",
@@ -138,6 +138,16 @@
    "select": 1,
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Testcase Writer",
+   "select": 1,
+   "share": 1
   }
  ],
  "row_format": "Dynamic",
