@@ -1,7 +1,18 @@
 
 frappe.ui.form.on('Test Run', {
+    // refresh(frm) {
+    //     if (!frm.is_new()) {
+    //         frm.add_custom_button('Add Test Cases', () => {
+    //             show_test_case_selector(frm);
+    //         });
+    //     }
+    // },
+
     refresh(frm) {
-        if (!frm.is_new()) {
+        const allowed_roles = ['Team Lead', 'Project Manager', 'System Manager'];
+        const has_access = allowed_roles.some(role => frappe.user.has_role(role));
+
+        if (!frm.is_new() && has_access) {
             frm.add_custom_button('Add Test Cases', () => {
                 show_test_case_selector(frm);
             });
@@ -50,6 +61,7 @@ function show_test_case_selector(frm) {
             return {
                 query: "test_case_management.api.test_case.get_test_cases_query",
                 filters: {
+                    docstatus:1,
                     ...(project && { project }),
                     ...(custom_module && { custom_module })
                 }
