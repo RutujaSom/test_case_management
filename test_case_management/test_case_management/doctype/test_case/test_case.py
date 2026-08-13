@@ -45,3 +45,34 @@ class TestCase(Document):
                         f"Cannot change status. 'Test Case Steps Mandatory' is set in Test Plan '{plan_name}', "
                         "so all steps must be marked as done."
                     )
+
+    def on_update(self):
+        # Only act when workflow_state is Approved and test_run is set
+        if self.workflow_state != "Approved":
+            return
+
+        if not self.test_run:
+            return
+
+        test_run = frappe.get_doc("Test Run", self.test_run)
+
+        # Avoid duplicate entries - check if this test case is already in the child table
+        already_added = any(
+            row.test_case == self.name for row in test_run.test_case
+        )
+
+        if already_added:
+            return
+
+        test_run.append("test_case", {
+            "test_case": self.name,
+            "status": "Pending"
+        })
+
+        test_run.save(ignore_permissions=True)
+        frappe.db.commit()
+
+        frappe.msgprint(
+            f"Test Case {self.name} added to Test Run {test_run.name}",
+            alert=True
+        )

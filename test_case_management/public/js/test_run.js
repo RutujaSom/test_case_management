@@ -1,12 +1,5 @@
 
 frappe.ui.form.on('Test Run', {
-    // refresh(frm) {
-    //     if (!frm.is_new()) {
-    //         frm.add_custom_button('Add Test Cases', () => {
-    //             show_test_case_selector(frm);
-    //         });
-    //     }
-    // },
 
     refresh(frm) {
         const allowed_roles = ['Team Lead', 'Project Manager', 'System Manager'];
@@ -17,6 +10,23 @@ frappe.ui.form.on('Test Run', {
                 show_test_case_selector(frm);
             });
         }
+ 
+        // Hide the default "Add Row" button
+        frm.fields_dict['test_case'].grid.cannot_add_rows = true;
+        frm.fields_dict['test_case'].grid.refresh();
+
+        // Add your custom button
+        frm.fields_dict['test_case'].grid.add_custom_button(
+            __('+ Create Test Case'),
+            function() {
+                frappe.new_doc('Test Case', {
+                    project: frm.doc.project,
+                    test_run: frm.doc.name
+                });
+            }
+        );
+
+        toggle_test_case_readonly(frm);
     },
 
     test_plan(frm) {
@@ -35,6 +45,22 @@ frappe.ui.form.on('Test Run', {
         }
     }
 });
+
+
+
+frappe.ui.form.on('Test Run Case', { // replace with actual child doctype name
+    form_render: function(frm, cdt, cdn) {
+        toggle_test_case_readonly(frm);
+    }
+});
+
+function toggle_test_case_readonly(frm) {
+    let is_tester = frappe.session.user === "Tester"; // this is likely your bug — see note below
+    frm.fields_dict['test_case'].grid.update_docfield_property(
+        'test_case', 'read_only', is_tester
+    );
+    frm.fields_dict['test_case'].grid.refresh();
+}
 
 //update test run file with test case table test case title
 function show_test_case_selector(frm) {

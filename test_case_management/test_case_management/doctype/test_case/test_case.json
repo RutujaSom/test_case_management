@@ -20,7 +20,8 @@
   "attachment",
   "custom_module",
   "label",
-  "amended_from"
+  "amended_from",
+  "test_run"
  ],
  "fields": [
   {
@@ -118,13 +119,20 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "test_run",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Test Run",
+   "options": "Test Run"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-12 19:26:15.016983",
+ "modified": "2026-08-13 11:33:15.671909",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case",
