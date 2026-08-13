@@ -19,7 +19,7 @@ doc_events = {
 }
 
 after_migrate = [
-    "test_case_management.test_case_management.setup.reload_permissions"
+    "test_case_management.api.setup.reload_permissions"
 ]
 
 
