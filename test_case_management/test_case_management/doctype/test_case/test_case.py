@@ -5,6 +5,9 @@ class TestCase(Document):
 
     def validate(self):
 
+        if self.workflow_state == "Rejected" and not self.remark:
+            frappe.throw("Remark is mandatory when rejecting")
+
 
         # 1. Check uniqueness in Test Case itself (project-wise, excluding self in update)
         exists_in_case = frappe.db.exists(
@@ -47,9 +50,10 @@ class TestCase(Document):
                     )
 
     def on_update(self):
+        status = "Draft"
         # Only act when workflow_state is Approved and test_run is set
-        if self.workflow_state != "Approved":
-            return
+        if self.workflow_state == "Approved":
+            status = "Pending"
 
         if not self.test_run:
             return
