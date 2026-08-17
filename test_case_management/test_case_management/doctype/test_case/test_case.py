@@ -54,6 +54,7 @@ class TestCase(Document):
         # Only act when workflow_state is Approved and test_run is set
         if self.workflow_state == "Approved":
             status = "Pending"
+            return
 
         if not self.test_run:
             return
