@@ -6,4 +6,7 @@ from frappe.model.document import Document
 import frappe
 
 class TestCaseBank(Document):
-	pass
+	
+	def validate(self):
+		if self.workflow_state == "Rejected" and not self.remark:
+			frappe.throw("Remark is mandatory when rejecting")
