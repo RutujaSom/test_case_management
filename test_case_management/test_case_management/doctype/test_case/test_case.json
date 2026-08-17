@@ -16,9 +16,10 @@
   "amended_from",
   "column_break_slzz",
   "title",
-  "estimated_time",
   "priority",
   "label",
+  "remark",
+  "estimated_time",
   "section_break_dqan",
   "test_run",
   "case_steps",
@@ -136,13 +137,20 @@
   {
    "fieldname": "column_break_slzz",
    "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.workflow_state !== \"Draft\"",
+   "fieldname": "remark",
+   "fieldtype": "Small Text",
+   "label": "Remark",
+   "read_only_depends_on": "eval:doc.remark && doc.workflow_state !== \"Pending\""
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-08-14 15:55:43.073981",
+ "modified": "2026-08-14 16:13:29.961023",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Case",

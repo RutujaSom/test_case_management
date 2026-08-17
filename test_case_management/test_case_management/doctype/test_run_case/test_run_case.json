@@ -22,14 +22,16 @@
    "label": "Test Case",
    "options": "Test Case",
    "permlevel": 1,
-   "read_only_depends_on": "frappe.user_roles.includes(\"Tester\")"
+   "read_only_depends_on": "eval:doc.status==\"Draft\" || doc.status==\"Waiting for Approval\"",
+   "reqd": 1
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Pending\nPassed\nFailed"
+   "options": "Pending\nPassed\nFailed\nBlocked\nN/A\nDraft\nWaiting For Approval",
+   "reqd": 1
   },
   {
    "default": "0",
@@ -64,7 +66,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-08-13 11:48:14.051295",
+ "modified": "2026-08-14 19:24:33.408223",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run Case",
