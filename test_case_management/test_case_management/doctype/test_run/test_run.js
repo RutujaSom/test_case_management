@@ -7,6 +7,9 @@
 // 	},
 // });
 
+const LOCKED_STATUSES = ["Draft", "Waiting For Approval"];
+
+
 frappe.ui.form.on("Test Run", {
     refresh(frm) {
         frm.set_query("test_case", "test_case", function(doc, cdt, cdn) {
@@ -17,6 +20,8 @@ frappe.ui.form.on("Test Run", {
                 }
             };
         });
+
+        apply_all_row_rules(frm);
     }
 });
 
@@ -103,16 +108,43 @@ frappe.ui.form.on('Test Run Case', {
                 }
             }
         });
-    }
+    },
+
+    form_render(frm, cdt, cdn) {
+        apply_row_rules(frm, cdt, cdn);
+    },
 });
 
 
+function apply_all_row_rules(frm) {
+    const grid = frm.fields_dict["test_case"].grid;
+    (grid.data || []).forEach((row) => {
+        apply_row_rules(frm, row.doctype, row.name);
+    });
+}
 
+function apply_row_rules(frm, cdt, cdn) {
+    const row = locals[cdt][cdn];
+    const grid = frm.fields_dict["test_case"].grid;
+    const grid_row = grid.grid_rows_by_docname
+        ? grid.grid_rows_by_docname[cdn]
+        : grid.grid_rows.find((r) => r.doc.name === cdn);
 
+    if (!grid_row) return;
 
+    const is_locked = LOCKED_STATUSES.includes(row.status);
 
+    // 1. If NOT locked, strip the reserved statuses from the dropdown options
+    const status_df = (grid_row.docfields || []).find((df) => df.fieldname === "status");
+    if (status_df) {
+        const base_options = frappe.meta
+            .get_docfield(row.doctype, "status", row.parent)
+            .options.split("\n")
+            .filter(Boolean);
 
-
-
-
+        status_df.options = is_locked
+            ? base_options.join("\n")
+            : base_options.filter((opt) => !LOCKED_STATUSES.includes(opt)).join("\n");
+    }
+}
 

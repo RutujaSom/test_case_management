@@ -9,19 +9,38 @@
 frappe.ui.form.on('Test Plan', {
     refresh(frm) {
         if (!frm.is_new()) {
-            // Button to select configurations
-            frm.add_custom_button("Select Configurations", () => {
-                show_configurations_dialog(frm);
-            });
 
-            // Button to add test cases only if configurations exist
-            if ((frm.doc.configuration || []).length > 0) {
-                frm.add_custom_button("Add Test Cases", () => {
-                    show_test_case_selector(frm);
+            const restricted_roles = ["Tester", "Testcase Writer"];
+            const has_restricted_role = restricted_roles.some((role) =>
+                frappe.user.has_role(role)
+            );
+
+            if (has_restricted_role) {
+                
+                // Timeout handles Frappe's asynchronous dashboard rendering
+                setTimeout(() => {
+                    //  Hide the entire connections section completely
+                    $(".transactions").addClass("hidden"); 
+                }, 50);
+            }
+
+            if (!has_restricted_role) {
+                // Button to select configurations
+                frm.add_custom_button("Select Configurations", () => {
+                    show_configurations_dialog(frm);
                 });
+
+                // Button to add test cases only if configurations exist
+                if ((frm.doc.configuration || []).length > 0) {
+                    frm.add_custom_button("Add Test Cases", () => {
+                        show_test_case_selector(frm);
+                    });
+                }
             }
         }
     },
+
+    
 
     before_save(frm) {
         // Temporary object to store selected test cases if needed

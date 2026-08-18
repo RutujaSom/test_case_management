@@ -11,11 +11,31 @@
 // Triggered when the Test Project form is loaded or refreshed
 frappe.ui.form.on('Test Project', {
     refresh(frm) {
+
+        
         // Show the button only if the document is not new
         if (!frm.is_new()) {
-            frm.add_custom_button('Add Test Cases from Bank', () => {
-                show_test_case_selector(frm);
-            });
+
+            const restricted_roles = ["Tester", "Testcase Writer"];
+            const has_restricted_role = restricted_roles.some((role) =>
+                frappe.user.has_role(role)
+            );
+
+            if (has_restricted_role) {
+                
+                // Timeout handles Frappe's asynchronous dashboard rendering
+                setTimeout(() => {
+                    //  Hide the entire connections section completely
+                    $(".transactions").addClass("hidden"); 
+                }, 50);
+            }
+
+            if (!has_restricted_role) {
+
+                frm.add_custom_button('Add Test Cases from Bank', () => {
+                    show_test_case_selector(frm);
+                });
+            }
         }
     }
 });
