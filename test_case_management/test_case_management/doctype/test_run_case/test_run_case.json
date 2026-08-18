@@ -31,6 +31,7 @@
    "in_list_view": 1,
    "label": "Status",
    "options": "Pending\nPassed\nFailed\nBlocked\nN/A\nDraft\nWaiting For Approval",
+   "read_only_depends_on": "eval:[\"Draft\",\"Waiting For Approval\"].includes(doc.status)",
    "reqd": 1
   },
   {
@@ -66,7 +67,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-08-14 19:24:33.408223",
+ "modified": "2026-08-18 12:04:56.117402",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run Case",

@@ -3,8 +3,13 @@ from frappe import _
 from frappe.model.document import Document
 import json
 
+LOCKED_STATUSES = {"Draft", "Waiting For Approval"}
+
 class TestRun(Document):
+
     def validate(self):
+        self.guard_locked_test_case_status()
+
         if not self.test_plan:
             return
 
@@ -58,6 +63,29 @@ class TestRun(Document):
             frappe.log_error(f"Failed to remove Test Run {self.name} from Test Plan {self.test_plan}: {e}")
 
 
+
+    def guard_locked_test_case_status(self):
+        # Allow the automated sync (Test Case -> Test Run) to bypass the lock
+        if self.flags.get("ignore_status_lock"):
+            return
+
+        if not self.get("__islocal"):
+            old_doc = self.get_doc_before_save()
+        else:
+            old_doc = None
+
+        if not old_doc:
+            return
+
+        old_status_by_row = {row.name: row.status for row in old_doc.test_case}
+
+        for row in self.test_case:
+            old_status = old_status_by_row.get(row.name)
+            if old_status in LOCKED_STATUSES and row.status != old_status:
+                frappe.throw(
+                    f"Row {row.idx}: Status '{old_status}' cannot be changed manually. "
+                    f"It is controlled by the linked Test Case's workflow."
+                )
 @frappe.whitelist()
 def get_test_case_steps(test_case):
     steps = frappe.get_all(
@@ -67,3 +95,8 @@ def get_test_case_steps(test_case):
         order_by="idx asc"
     )
     return steps
+
+
+
+
+
