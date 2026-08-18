@@ -22,6 +22,7 @@
    "label": "Test Case",
    "options": "Test Case",
    "permlevel": 1,
+   "read_only": 1,
    "read_only_depends_on": "eval:doc.status==\"Draft\" || doc.status==\"Waiting for Approval\"",
    "reqd": 1
   },
@@ -44,7 +45,12 @@
   {
    "fieldname": "remark",
    "fieldtype": "Text",
-   "label": "Remark"
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Remark",
+   "mandatory_depends_on": "eval:[\"Blocked\",\"N/A\"].includes(doc.status)"
   },
   {
    "fieldname": "view_steps",
@@ -67,7 +73,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-08-18 12:04:56.117402",
+ "modified": "2026-08-18 17:21:24.617579",
  "modified_by": "Administrator",
  "module": "Test Case Management",
  "name": "Test Run Case",

@@ -58,9 +58,7 @@ fixtures = [
 ]
 
 
-doctype_js = {
-    "Test Run": "public/js/test_run.js"
-}
+
 
 doctype_list_js = {
     "Test Case Bank": "public/js/test_case_bank_list.js",
@@ -71,6 +69,9 @@ doc_type_dashboards = {
 }
 
 
+permission_query_conditions = {
+    "Test Run": "test_case_management.test_case_management.doctype.test_run.test_run.get_permission_query_conditions_for_test_run"
+}
 
 app_include_css = "/assets/test_case_management/css/custom_theme.css"
 

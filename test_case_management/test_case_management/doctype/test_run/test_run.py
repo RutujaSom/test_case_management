@@ -8,7 +8,6 @@ LOCKED_STATUSES = {"Draft", "Waiting For Approval"}
 class TestRun(Document):
 
     def validate(self):
-        self.guard_locked_test_case_status()
 
         if not self.test_plan:
             return
@@ -64,28 +63,7 @@ class TestRun(Document):
 
 
 
-    def guard_locked_test_case_status(self):
-        # Allow the automated sync (Test Case -> Test Run) to bypass the lock
-        if self.flags.get("ignore_status_lock"):
-            return
 
-        if not self.get("__islocal"):
-            old_doc = self.get_doc_before_save()
-        else:
-            old_doc = None
-
-        if not old_doc:
-            return
-
-        old_status_by_row = {row.name: row.status for row in old_doc.test_case}
-
-        for row in self.test_case:
-            old_status = old_status_by_row.get(row.name)
-            if old_status in LOCKED_STATUSES and row.status != old_status:
-                frappe.throw(
-                    f"Row {row.idx}: Status '{old_status}' cannot be changed manually. "
-                    f"It is controlled by the linked Test Case's workflow."
-                )
 @frappe.whitelist()
 def get_test_case_steps(test_case):
     steps = frappe.get_all(
@@ -98,5 +76,20 @@ def get_test_case_steps(test_case):
 
 
 
+def get_permission_query_conditions_for_test_run(user):
+    if not user:
+        user = frappe.session.user
+
+    # Don't restrict roles that should see everything
+    unrestricted_roles = {"System Manager", "Team Lead", "Project Manager"}
+    user_roles = set(frappe.get_roles(user))
+
+    if unrestricted_roles & user_roles:
+        return ""
+
+    if "Tester" in user_roles:
+        return f"""(`tabTest Run`.`tester` = {frappe.db.escape(user)})"""
+
+    return ""
 
 

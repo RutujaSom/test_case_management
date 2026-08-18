@@ -1,18 +1,10 @@
 // Copyright (c) 2025, Rutuja Somvanshi and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Test Project", {
-// 	refresh(frm) {
-
-// 	},
-// });
-
-
 // Triggered when the Test Project form is loaded or refreshed
 frappe.ui.form.on('Test Project', {
     refresh(frm) {
 
-        
         // Show the button only if the document is not new
         if (!frm.is_new()) {
 
